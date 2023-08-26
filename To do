@@ -1,3 +1,26 @@
 To do list and useful links
 
 - set up repo yay
+- makefile
+
+INPUT VALIDATION
+- set up opening and closing of a window using keys and buttons 
+- input validation (similar to "so long")
+
+- use of four textures (NO, SO, WE, EA) 
+- use of floor and cealing colour 
+
+- "If any misconfiguration of any kind is encountered in the file, 
+the program must exit properly and return "Error\n" 
+followed by an explicit error message of your choice"
+
+PARSING
+
+- using get next line?
+- how do we wanna safe the input? (2D array, linked list, use of structs)
+
+GRAPHICS
+
+- set up of the location
+- moving around
+
