@@ -2,19 +2,42 @@ To do list and useful links
 
 - set up repo yay
 - makefile
+- main
+- libft
+- minilibx
+- get_next_line
+- linked list
+- flood fill
 
 INPUT VALIDATION
-- set up opening and closing of a window using keys and buttons 
-- input validation (similar to "so long")
+- set up opening and closing of a window using keys and buttons
 
-- use of four textures (NO, SO, WE, EA) 
-- use of floor and cealing colour 
+MAP
+- The sides of the map are closed with walls
+- The map includes 6 types of characters: 1, 0, N, S, E or W.
+- If there are spaces, make sure that you can find another wall somewhere closed.
+- map is always the last thing on the .cub file
 
-- "If any misconfiguration of any kind is encountered in the file, 
-the program must exit properly and return "Error\n" 
+TEXTURES / ELEMENTS / WALLS
+- identified only as: NO, SO, WE, EA
+- needs to have a valid file path to the texture
+
+FLOOR / CEILING
+- identifier only as: F, C
+- given as RGB colors in range 0-255
+	-> 0, 255, 255
+
+- use of four textures (NO, SO, WE, EA)
+- use of floor and cealing colour
+
+- "If any misconfiguration of any kind is encountered in the file,
+the program must exit properly and return "Error\n"
 followed by an explicit error message of your choice"
 
 PARSING
+
+- map nodes:
+	WALL / FLOOR
 
 - using get next line?
 - how do we wanna safe the input? (2D array, linked list, use of structs)
