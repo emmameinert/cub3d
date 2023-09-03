@@ -10,7 +10,7 @@ To do list and useful links
 - flood fill
 
 INPUT VALIDATION
-- set up opening and closing of a window using keys and buttons //EMMA
+- set up opening and closing of a window using keys and buttons 
 
 MAP
 - The sides of the map are closed with walls
@@ -18,8 +18,8 @@ MAP
 - If there are spaces, make sure that you can find another wall somewhere closed.
 - map is always the last thing on the .cub file
 
-TEXTURES / ELEMENTS / WALLS
-- identified only as: NO, SO, WE, EA
+TEXTURES / ELEMENTS / WALLS EMMA
+- identified only as: NO, SO, WE, EA 
 - needs to have a valid file path to the texture
 
 FLOOR / CEILING
