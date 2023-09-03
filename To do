@@ -1,16 +1,16 @@
 To do list and useful links
 
 - set up repo yay
-- makefile
-- main
-- libft
+- makefile (updated in emmas branch (02.09.)
+- main (updated in emmas branch (02.09.)
+- libft (updated in emmas branch (02.09.)
 - minilibx
-- get_next_line
+- get_next_line (updated in emmas branch (02.09.)
 - linked list
 - flood fill
 
 INPUT VALIDATION
-- set up opening and closing of a window using keys and buttons
+- set up opening and closing of a window using keys and buttons //EMMA
 
 MAP
 - The sides of the map are closed with walls
@@ -38,9 +38,6 @@ PARSING
 
 - map nodes:
 	WALL / FLOOR
-
-- using get next line?
-- how do we wanna safe the input? (2D array, linked list, use of structs)
 
 GRAPHICS
 
