@@ -32,6 +32,27 @@ static int check_texture(char *line, t_data **info, int *counter)
     return (*counter + 1); //checks now if we have all information, doesnt check if we have one twice and missing another one
     free_char_array(input);
 }
+/// @brief checks if all necessary information has been added to out struct
+/// @param info 
+/// @param counter 
+/// @return 
+static  int    check_data(t_data **info, int *counter)
+{
+    if (!(*info)->no)
+        *counter--;
+    if (!(*info)->so)
+        *counter--;
+    if (!(*info)->ea)
+        *counter--;
+    if (!(*info)->we)
+        *counter--;
+    if (!(*info)->ceiling)
+        *counter--;
+    if (!(*info)->floor)
+        *counter--;
+    return (counter);
+}
+
 static int input_check(int fd)
 {
     char *line;
@@ -45,8 +66,17 @@ static int input_check(int fd)
 		line = get_next_line(fd);
         if (counter < 6)
             counter += check_texture(line, &info, &counter);
+        else
+            counter = check_data(&info, &counter); //checks we dont have double information and missing one
 		if (!line)
-			break ;
+		{
+            if (counter < 6) //makes sure we are not missing information
+            {
+                ft_putstr_fd("Error with missing input\n", 2);
+                return (1);
+            }
+            break ;
+        }
 		free(line);
 	}
     return (0);
@@ -74,7 +104,7 @@ void run_program(char **argv)
     fd = open_file(argv[1]);
     if (input_check(fd))
     {
-        ft_putstr_fd("Error with executable\n", 2);
+        ft_putstr_fd("Error with testfile\n", 2);
         exit(1);
     }
     //create_window
