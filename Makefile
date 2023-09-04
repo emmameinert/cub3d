@@ -5,7 +5,10 @@ LIBFT_PATH = ./libft
 
 BUILD_FLAGS = -Wall -Wextra -Werror
 
-SRC = input
+SRC = input \
+		cub3D \
+		input_utils \
+		texture_validation \
 
 HDRS = cubed \
 
