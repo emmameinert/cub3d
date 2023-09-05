@@ -45,14 +45,16 @@ int check_texture(char *line, t_data **info, int *counter)
         (*info)->so = open_file(input[1]);
     else if (!(*info)->ea  && !ft_strncmp_all(input[0], "EA"))
         (*info)->ea = open_file(input[1]);
-    else if (! (*info)->we && !ft_strncmp_all(input[0], "WE"))
+    else if (!(*info)->we && !ft_strncmp_all(input[0], "WE"))
         (*info)->we = open_file(input[1]);
     else if (!(*info)->floor && !ft_strncmp_all(input[0], "F"))
         (*info)->floor = check_parse_range(input[1]);
     else if (!(*info)->ceiling && !ft_strncmp_all(input[0], "C"))
         (*info)->ceiling = check_parse_range(input[1]);
     else
-        *counter--;
+        *counter = *counter - 1;
     free_char_array(input);
-    return (*counter + 1); //checks now if we have all information, doesnt check if we have one twice and missing another one
+    *counter = *counter + 1;
+    printf("counter: %d\n", *counter);
+    return (*counter); //checks now if we have all information, doesnt check if we have one twice and missing another one
 }

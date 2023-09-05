@@ -1,13 +1,7 @@
-hallo I am a testfile
-NO for north texture yay
-NO for north texture yay
-whatever we wanna test,
-SO for south texture
-EA
-WE
-this one we can use and edit all we want
+F 220,100,0
+C 225,30,0
+NO ./main.c
 
-now the map is following:
 1111
 1001
 10N1
