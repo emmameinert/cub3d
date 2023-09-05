@@ -22,9 +22,8 @@ all: $(NAME)
 
 $(NAME):
 		make -C $(LIBFT_PATH)
-		cc $(BUILD_FLAGS) $(SRC_SUFF) main.c -Llibft -lft -o $(NAME)
+		cc $(BUILD_FLAGS) $(SRC_SUFF) main.c -Llibft -lft -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
-#-lmlx -framework OpenGL -framework AppKit
 .PHONY: clean
 clean:
 	make clean -C $(LIBFT_PATH)
