@@ -35,9 +35,7 @@ int check_file_input(int fd) //parse_validate_input
 		if (!line)
             return(if_no_line(counter));
         if (counter < 6)
-            counter += check_texture(line, &info, &counter); 
-        else
-            counter = check_data(&info, &counter); //checks we dont have double information and missing one
+            counter += check_texture(line, &info, &counter);
         // if (!ft_isdigit(line[0]) || line[0] == 32)
         //     add_map(line, &info);
         //needs a check, that the map is the last thing in the file

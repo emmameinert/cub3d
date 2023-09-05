@@ -14,8 +14,8 @@ typedef struct s_data
     int so;
     int ea;
     int we;
-    char *ceiling;
-    char *floor;
+    char **ceiling;
+    char **floor;
 }	t_data;
 
 /// @brief coordinates for x y and z can be either our value (1/0) or our later calculated altitude
