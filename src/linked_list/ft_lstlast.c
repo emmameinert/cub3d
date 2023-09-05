@@ -1,5 +1,5 @@
 
-#include "../../headers/cubed.h"
+#include "../../headers/lst.h"
 
 t_list	*ft_lstlast(t_list *lst)
 {

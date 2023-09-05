@@ -1,5 +1,5 @@
 
-#include "../../headers/cubed.h"
+#include "../../headers/lst.h"
 
 static void	ft_clr_rec(t_list *lst, void (*del)(void *))
 {

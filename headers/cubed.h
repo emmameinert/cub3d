@@ -1,11 +1,12 @@
 #ifndef CUBED_H
     #define CUBED_H
 
-#include "../libft/libft.h"
-#include "stdio.h"
-#include "stdlib.h"
-#include "unistd.h"
-#include "fcntl.h"
+# include "../libft/libft.h"
+# include "lst.h"
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <fcntl.h>
 
 typedef struct s_data
 {
@@ -17,20 +18,7 @@ typedef struct s_data
     char *floor;
 }	t_data;
 
-/// @brief coordinates for x y and z can be either our value (1/0) or our later calculated altitude
-typedef struct s_coord
-{
-    int x;
-    int y;
-    int z;
-}   t_coord;
-
-/// linked list for our map grid
-typedef struct s_list
-{
-    t_coord    *current;
-    struct s_node *next;
-}   t_list;
+typedef struct t_coord;
 
 //START
 void    run_program(char **argv);

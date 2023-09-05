@@ -1,5 +1,5 @@
 
-#include "../../headers/cubed.h"
+#include "../../headers/lst.h"
 
 int	ft_lstsize(t_list *lst)
 {

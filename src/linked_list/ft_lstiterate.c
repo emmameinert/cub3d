@@ -1,10 +1,10 @@
 
-#include "../../headers/cubed.h"
+#include "../../headers/lst.h"
 
 void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
 	if (!lst || !f)
 		return ;
 	ft_lstiter(lst->next, f);
-	f(lst->content);
+	f(lst->coords);
 }
