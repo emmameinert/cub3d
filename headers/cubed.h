@@ -38,7 +38,7 @@ void    run_program(char **argv);
 
 //INPUT
 int check_file_input(int fd);
-int check_texture(char *line, t_data **info, int *counter);
+void check_texture(char *line, t_data **info, int *counter);
 int check_data(t_data **info, int *counter);
 //UTILS
 
