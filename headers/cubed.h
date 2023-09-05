@@ -25,12 +25,12 @@ typedef struct s_coord
     int z;
 }   t_coord;
 
-///linked list for our map grid
-typedef struct s_map
+/// linked list for our map grid
+typedef struct s_list
 {
     t_coord    *current;
-    struct s_map *next;
-}   t_map;
+    struct s_node *next;
+}   t_list;
 
 //START
 void    run_program(char **argv);
