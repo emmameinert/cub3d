@@ -23,7 +23,7 @@ static  char **check_parse_range(char *input)
         if (ft_atoi(numbers[i]) < 0 || ft_atoi(numbers[i]) > 255)
             error_flag = 1;
     }
-    if (error_flag)
+    if (error_flag || i != 3) //checks that the number is correct and we got three numbers
     {
         free_char_array(numbers);
         return (NULL);
