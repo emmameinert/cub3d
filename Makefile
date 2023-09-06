@@ -20,11 +20,9 @@ HSUFF = $(addsuffix .h, $(HPRE))
 .PHONY = all
 all: $(NAME)
 
-$(NAME):
+$(NAME):	main.c $(SRC_SUFF) $(HSUFF)
 		make -C $(LIBFT_PATH)
 		cc $(BUILD_FLAGS) $(SRC_SUFF) main.c -Llibft -lft -o $(NAME)
-
-# -lmlx -framework OpenGL -framework AppKit
 
 .PHONY: clean
 clean:

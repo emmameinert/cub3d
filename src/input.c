@@ -11,13 +11,6 @@ static int if_no_line(int counter)
     //check if valid (surrounded by walls) maybe flood fill algo
     return (0);
 }
-
-// static  void    add_map(char *line, t_data **info)
-// {
-//     //add to linked list
-//     //check for characters
-// }
-
 /// @brief runs through the file and checks for all needed information and the map
 /// @param fd from our map file
 /// @return 
@@ -36,7 +29,7 @@ int check_file_input(int fd) //parse_validate_input
             return(if_no_line(counter));
         printf("line: %s\n", line);
         if (counter < 6)
-            counter += check_texture(line, &info, &counter);
+            counter += check_texture(line, &info);
         printf("counter main: %d\n", counter);
         // if (!ft_isdigit(line[0]) || line[0] == 32)
         //     add_map(line, &info);

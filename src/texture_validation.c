@@ -35,11 +35,10 @@ static  void check_parse_range(char *input, t_color *color)
 /// @brief checks if we have information about the textures floor or cealing
 /// @param line line of the file we are reading
 /// @param info here we save our general information about the map
-int    check_texture(char *line, t_textures **info, int *counter)
+int    check_texture(char *line, t_textures **info)
 {
     char **input;
 
-    printf("counter before: %d\n", *counter);
     input = ft_split(line, 32);
     if ((*info)->no == 0 && !ft_strncmp_all(input[0], "NO"))
         (*info)->no = open_file(input[1]);
@@ -61,10 +60,8 @@ int    check_texture(char *line, t_textures **info, int *counter)
     {
         printf("input[0]: '%s'\n", input[0]);
         free_char_array(input);
-        printf("counter after in else: %d\n", *counter);
         return (0);
     }
-    printf("counter after: %d\n", *counter);
     free_char_array(input);
     return (1);
 }
