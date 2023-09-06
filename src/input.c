@@ -25,7 +25,7 @@ int check_file_input(int fd) //parse_validate_input
 {
     char *line;
     int counter;
-    t_data *info;
+    t_textures *info;
 
     info = set_info();
     counter = 0;
@@ -36,7 +36,7 @@ int check_file_input(int fd) //parse_validate_input
             return(if_no_line(counter));
         printf("line: %s\n", line);
         if (counter < 6)
-            check_texture(line, &info, &counter);
+            counter += check_texture(line, &info, &counter);
         printf("counter main: %d\n", counter);
         // if (!ft_isdigit(line[0]) || line[0] == 32)
         //     add_map(line, &info);

@@ -8,15 +8,22 @@
 #include "fcntl.h"
 #include "../mlx/mlx.h"
 
-typedef struct s_data
+typedef struct s_color
+{
+    int r;
+    int g;
+    int b;
+}   t_color;
+
+typedef struct s_textures
 {
     int no;
     int so;
     int ea;
     int we;
-    char **ceiling;
-    char **floor;
-}	t_data;
+    t_color *ceiling;
+    t_color *floor;
+}	t_textures;
 
 /// @brief coordinates for x y and z can be either our value (1/0) or our later calculated altitude
 typedef struct s_coord
@@ -38,11 +45,13 @@ void    run_program(char **argv);
 
 //INPUT
 int check_file_input(int fd);
-void check_texture(char *line, t_data **info, int *counter);
-int check_data(t_data **info, int *counter);
+int check_texture(char *line, t_textures **info, int *counter);
 //UTILS
 
+//FILES
 int     open_file(char *file);
-t_data *set_info(void);
+
+//MEMORY
+t_textures *set_info(void);
 
 #endif

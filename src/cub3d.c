@@ -10,6 +10,7 @@ void run_program(char **argv)
         ft_putstr_fd("Error with testfile\n", 2);
         exit(1);
     }
+    closr(fd);
     exit(0);
     //create_window
 }
