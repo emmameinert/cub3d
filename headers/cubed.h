@@ -14,19 +14,16 @@ typedef struct s_data
     int so;
     int ea;
     int we;
-    char *ceiling;
-    char *floor;
+    char **ceiling;
+    char **floor;
 }	t_data;
-
-typedef struct t_coord;
 
 //START
 void    run_program(char **argv);
 
 //INPUT
-int check_file_input(int fd);
-int check_texture(char *line, t_data **info, int *counter);
-int check_data(t_data **info, int *counter);
+int     check_file_input(int fd);
+void    check_texture(char *line, t_data **info, int *counter);
 //UTILS
 
 int     open_file(char *file);

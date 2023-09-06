@@ -35,7 +35,6 @@ $(NAME): main.c $(SRC_SUFF) $(SRC_LL_SUFF) $(HSUFF)
 		make -C $(LIBFT_PATH)
 		cc $(BUILD_FLAGS) $(SRC_LL_SUFF) $(SRC_SUFF) main.c -Llibft -lft -o $(NAME)
 
-#-lmlx -framework OpenGL -framework AppKit
 .PHONY: clean
 clean:
 	make clean -C $(LIBFT_PATH)
