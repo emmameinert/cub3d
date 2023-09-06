@@ -6,7 +6,7 @@
 /*   By: emmameinert <emmameinert@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 17:07:21 by meskelin          #+#    #+#             */
-/*   Updated: 2023/09/05 14:03:03 by emmameinert      ###   ########.fr       */
+/*   Updated: 2023/09/06 18:12:18 by emmameinert      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int		ft_isalnum(int c);
 int		ft_isascii(int c);
 int		ft_isprint(int c);
 int		ft_atoi(const char *str);
+int		ft_atoui(const char *str);
 char	*ft_strrchr(const char *s, int c);
 size_t	ft_strlen(const char *s);
 void	*ft_memset(void	*b, int c, size_t len);

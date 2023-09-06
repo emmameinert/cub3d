@@ -6,7 +6,7 @@
 #    By: emmameinert <emmameinert@student.42.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/24 16:13:53 by meskelin          #+#    #+#              #
-#    Updated: 2023/09/05 14:03:23 by emmameinert      ###   ########.fr        #
+#    Updated: 2023/09/06 18:12:29 by emmameinert      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,6 +53,7 @@ get_next_line_utils \
 get_next_line \
 free_array \
 ft_strncmp_all \
+ft_atoui \
 
 H_FILES = libft
 
