@@ -11,13 +11,6 @@ static int if_no_line(int counter)
     //check if valid (surrounded by walls) maybe flood fill algo
     return (0);
 }
-
-// static  void    add_map(char *line, t_data **info)
-// {
-//     //add to linked list
-//     //check for characters
-// }
-
 /// @brief runs through the file and checks for all needed information and the map
 /// @param fd from our map file
 /// @return 
