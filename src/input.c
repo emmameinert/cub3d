@@ -27,16 +27,15 @@ int check_file_input(int fd) //parse_validate_input
 		line = get_next_line(fd);
 		if (!line)
             return(if_no_line(counter));
-        printf("line: %s\n", line);
         if (counter < 6)
             counter += check_texture(line, &info);
         printf("counter main: %d\n", counter);
+        //check for garbageeeee
         // if (!ft_isdigit(line[0]) || line[0] == 32)
         //     add_map(line, &info);
         //needs a check, that the map is the last thing in the file
 		free(line);
 	}
-    printf("all good\n");
     return (0);
 }
 

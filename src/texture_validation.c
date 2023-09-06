@@ -20,17 +20,37 @@ static  void check_parse_range(char *input, t_color *color)
     while (numbers[i] && i < 3)
     {
         colour[i] = ft_atoui(numbers[i]);
-        if (colour < 0 || colour > 255)
+        if (colour[i] < 0 || colour[i] > 255)
            break ;
         i++;
     }
     free_char_array(numbers);
-    if (i != 2) 
-        ft_put_error_exit("Wrong colour");
+    if (i != 3) 
+        ft_put_error_exit("Wrong color");
     color->r = colour[0];
     color->g = colour[1];
     color->b = colour[2];
 }
+
+static  int    parse_floor_ceiling(char **input, t_textures **info)
+{
+    if (input[0][0] == 'F')
+    {
+        if ((*info)->floor->r != -2)
+            ft_put_error_exit("Floor duplicate");
+        check_parse_range(input[1], (*info)->floor);
+    }
+    else if (!ft_strncmp_all(input[0], "C"))
+    {
+        if ((*info)->ceiling->r != -2)
+            ft_put_error_exit("Ceiling duplicate");
+        check_parse_range(input[1], (*info)->ceiling);
+    }
+    else 
+        return (0);
+    return (1);
+}
+
 
 /// @brief checks if we have information about the textures floor or cealing
 /// @param line line of the file we are reading
@@ -40,25 +60,34 @@ int    check_texture(char *line, t_textures **info)
     char **input;
 
     input = ft_split(line, 32);
-    if ((*info)->no == 0 && !ft_strncmp_all(input[0], "NO"))
+    if (!input)
+        ft_put_error_exit("Allocation failed");
+    if (!ft_strncmp_all(input[0], "NO"))
+    {
+        if ((*info)->no != -2)
+            ft_put_error_exit("NO Texture duplicate");
         (*info)->no = open_file(input[1]);
-    else if ((*info)->so == 0 && !ft_strncmp_all(input[0], "SO"))
-        (*info)->so = open_file(input[1]);
-    else if ((*info)->ea == 0  && !ft_strncmp_all(input[0], "EA"))
-        (*info)->ea = open_file(input[1]);
-    else if ((*info)->we == 0 && !ft_strncmp_all(input[0], "WE"))
-        (*info)->we = open_file(input[1]);
-    else if (!ft_strncmp_all(input[0], "F"))
-    {
-        printf("floor check before: %d\n", (*info)->floor->r);
-        check_parse_range(input[1], (*info)->floor);
-        printf("floor check after : %d\n", (*info)->floor->r);
     }
-    else if (!ft_strncmp_all(input[0], "C"))
-        check_parse_range(input[1], (*info)->ceiling);
-    else 
+    else if (!ft_strncmp_all(input[0], "SO"))
     {
-        printf("input[0]: '%s'\n", input[0]);
+        if ((*info)->so != -2)
+            ft_put_error_exit("SO Texture duplicate");
+        (*info)->so = open_file(input[1]);
+    }
+    else if (!ft_strncmp_all(input[0], "EA"))
+    {
+        if ((*info)->ea != -2)
+            ft_put_error_exit("EA Texture duplicate");
+        (*info)->ea = open_file(input[1]);
+    }
+    else if (!ft_strncmp_all(input[0], "WE"))
+    {
+        if ((*info)->we != -2)
+            ft_put_error_exit("WE Texture duplicate");
+        (*info)->we = open_file(input[1]);
+    }
+    else if (!parse_floor_ceiling(input, info))
+    {
         free_char_array(input);
         return (0);
     }

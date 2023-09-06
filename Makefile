@@ -6,11 +6,11 @@ LIBFT_PATH = ./libft
 BUILD_FLAGS = -Wall -Wextra -Werror
 
 SRC = input \
-		cub3D \
+		cub3d \
 		input_utils \
-		texture_validation \
+		texture_validation 
 
-HDRS = cubed \
+HDRS = cubed 
 
 SRC_PRE = $(addprefix ./src/, $(SRC))
 SRC_SUFF = $(addsuffix .c, $(SRC_PRE))
@@ -20,7 +20,7 @@ HSUFF = $(addsuffix .h, $(HPRE))
 .PHONY = all
 all: $(NAME)
 
-$(NAME):	main.c $(SRC_SUFF) $(HSUFF)
+$(NAME): main.c $(SRC_SUFF) $(HSUFF)
 		make -C $(LIBFT_PATH)
 		cc $(BUILD_FLAGS) $(SRC_SUFF) main.c -Llibft -lft -o $(NAME)
 
