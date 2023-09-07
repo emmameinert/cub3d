@@ -1,8 +1,9 @@
+
 #include "../headers/cubed.h"
 
 /// @brief checks for integers in range and returns the correct one
-/// @param input 
-/// @return 
+/// @param input
+/// @return
 static  char **check_parse_range(char *input)
 {
     char **numbers;
@@ -52,7 +53,7 @@ void    check_texture(char *line, t_data **info, int *counter)
         (*info)->floor = check_parse_range(input[1]);
     else if (!ft_strncmp_all(input[0], "C"))
         (*info)->ceiling = check_parse_range(input[1]);
-    else 
+    else
         *counter = *counter - 1;
     free_char_array(input);
     *counter = *counter + 1;

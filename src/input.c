@@ -1,3 +1,4 @@
+
 #include "../headers/cubed.h"
 
 static int if_no_line(int counter)
@@ -11,9 +12,10 @@ static int if_no_line(int counter)
     //check if valid (surrounded by walls) maybe flood fill algo
     return (0);
 }
+
 /// @brief runs through the file and checks for all needed information and the map
 /// @param fd from our map file
-/// @return 
+/// @return
 int check_file_input(int fd) //parse_validate_input
 {
     char *line;
