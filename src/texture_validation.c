@@ -51,7 +51,38 @@ static  int    parse_floor_ceiling(char **input, t_textures **info)
     return (1);
 }
 
+static  void    texture_existence(int fd, char *msg)
+{
+    if (fd != -2)
+        ft_put_error_exit(msg);
+}
 
+static int texture_comparison(char **input, t_textures **info)
+{
+    if (!ft_strncmp_all(input[0], "NO"))
+    {
+        texture_existence((*info)->no, "NO Texture duplicate");
+        (*info)->no = open_file(input[1]);
+    }
+    else if (!ft_strncmp_all(input[0], "SO"))
+    {
+        texture_existence((*info)->so, "SO Texture duplicate");
+        (*info)->so = open_file(input[1]);
+    }
+    else if (!ft_strncmp_all(input[0], "EA"))
+    {
+        texture_existence((*info)->ea, "EA Texture duplicate");
+        (*info)->ea = open_file(input[1]);
+    }
+    else if (!ft_strncmp_all(input[0], "WE"))
+    {
+        texture_existence((*info)->we, "WE Texture duplicate");
+        (*info)->we = open_file(input[1]);
+    }
+    else
+        return (0);
+    return (1);
+}
 /// @brief checks if we have information about the textures floor or cealing
 /// @param line line of the file we are reading
 /// @param info here we save our general information about the map
@@ -62,34 +93,13 @@ int    check_texture(char *line, t_textures **info)
     input = ft_split(line, 32);
     if (!input)
         ft_put_error_exit("Allocation failed");
-    if (!ft_strncmp_all(input[0], "NO"))
+    if (!texture_comparison(input, info))
     {
-        if ((*info)->no != -2)
-            ft_put_error_exit("NO Texture duplicate");
-        (*info)->no = open_file(input[1]);
-    }
-    else if (!ft_strncmp_all(input[0], "SO"))
-    {
-        if ((*info)->so != -2)
-            ft_put_error_exit("SO Texture duplicate");
-        (*info)->so = open_file(input[1]);
-    }
-    else if (!ft_strncmp_all(input[0], "EA"))
-    {
-        if ((*info)->ea != -2)
-            ft_put_error_exit("EA Texture duplicate");
-        (*info)->ea = open_file(input[1]);
-    }
-    else if (!ft_strncmp_all(input[0], "WE"))
-    {
-        if ((*info)->we != -2)
-            ft_put_error_exit("WE Texture duplicate");
-        (*info)->we = open_file(input[1]);
-    }
-    else if (!parse_floor_ceiling(input, info))
-    {
-        free_char_array(input);
-        return (0);
+        if (!parse_floor_ceiling(input, info))
+        {
+            free_char_array(input);
+            return (0);
+        }
     }
     free_char_array(input);
     return (1);
