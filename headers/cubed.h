@@ -24,6 +24,8 @@ void    run_program(char **argv);
 //INPUT
 int     check_file_input(int fd);
 void    check_texture(char *line, t_data **info, int *counter);
+void	parse_map(char *input);
+
 //UTILS
 
 int     open_file(char *file);
