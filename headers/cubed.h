@@ -1,11 +1,12 @@
 #ifndef CUBED_H
     #define CUBED_H
 
-#include "../libft/libft.h"
-#include "stdio.h"
-#include "stdlib.h"
-#include "unistd.h"
-#include "fcntl.h"
+# include "../libft/libft.h"
+# include "lst.h"
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <fcntl.h>
 
 typedef struct s_color
 {

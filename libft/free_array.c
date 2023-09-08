@@ -1,3 +1,4 @@
+
 #include "libft.h"
 
 void	free_char_array(char **str)

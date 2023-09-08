@@ -1,3 +1,4 @@
+
 #include "libft.h"
 
 /*returns 0 if s1 and s2 is same, if not returns something that is not 0*/
