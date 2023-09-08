@@ -5,9 +5,10 @@ void     suffix_cmp(char *file, char *suffix)
     int len;
     char *file_ending;
     len = ft_strlen(file);
-    file_ending = ft_substr(file, len - 4, 4);
-    printf("file %s\n", file);
-    printf("file suffix: %s\n", file_ending);
+    if (!ft_strncmp_all(suffix, ".xpm"))
+        file_ending = ft_substr(file, len - 5, 4);
+    else
+        file_ending = ft_substr(file, len - 4, 4);
     if (ft_strncmp_all(file_ending, suffix))
     {
         free(file_ending);
