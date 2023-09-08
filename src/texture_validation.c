@@ -40,7 +40,7 @@ static  int    parse_floor_ceiling(char **input, t_textures **info)
             ft_put_error_exit("Floor duplicate");
         check_parse_range(input[1], (*info)->floor);
     }
-    else if (!ft_strncmp_all(input[0], "C"))
+    else if (input[0][0] == 'F')
     {
         if ((*info)->ceiling->r != -2)
             ft_put_error_exit("Ceiling duplicate");
@@ -51,34 +51,25 @@ static  int    parse_floor_ceiling(char **input, t_textures **info)
     return (1);
 }
 
-static  void    texture_existence(int fd, char *msg)
+static  int    texture_file_existence(int fd, char *msg, char *file)
 {
     if (fd != -2)
         ft_put_error_exit(msg);
+    suffix_cmp(file, ".xpm");
+    return(open_file(file));
+    
 }
 
 static int texture_comparison(char **input, t_textures **info)
 {
     if (!ft_strncmp_all(input[0], "NO"))
-    {
-        texture_existence((*info)->no, "NO Texture duplicate");
-        (*info)->no = open_file(input[1]);
-    }
+        (*info)->no = texture_file_existence((*info)->no, "NO Texture duplicate", input[1]);
     else if (!ft_strncmp_all(input[0], "SO"))
-    {
-        texture_existence((*info)->so, "SO Texture duplicate");
-        (*info)->so = open_file(input[1]);
-    }
+        (*info)->so = texture_file_existence((*info)->so, "SO Texture duplicate", input[1]);
     else if (!ft_strncmp_all(input[0], "EA"))
-    {
-        texture_existence((*info)->ea, "EA Texture duplicate");
-        (*info)->ea = open_file(input[1]);
-    }
+        (*info)->ea = texture_file_existence((*info)->ea, "EA Texture duplicate", input[1]);
     else if (!ft_strncmp_all(input[0], "WE"))
-    {
-        texture_existence((*info)->we, "WE Texture duplicate");
-        (*info)->we = open_file(input[1]);
-    }
+        (*info)->we = texture_file_existence((*info)->we, "WE Texture duplicate", input[1]);
     else
         return (0);
     return (1);

@@ -6,7 +6,7 @@
 /*   By: emmameinert <emmameinert@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 17:07:21 by meskelin          #+#    #+#             */
-/*   Updated: 2023/09/08 10:36:56 by emmameinert      ###   ########.fr       */
+/*   Updated: 2023/09/08 11:10:06 by emmameinert      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,6 @@ void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
+void 	ft_put_error_exit(char *msg);
 
 #endif

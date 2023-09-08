@@ -29,12 +29,14 @@ typedef struct s_textures
 void    run_program(char **argv);
 
 //INPUT
-int check_file_input(int fd);
-int check_texture(char *line, t_textures **info);
+void    validate_parse_file(int fd);
+int     check_texture(char *line, t_textures **info);
 //UTILS
+
 
 //FILES
 int     open_file(char *file);
+void    suffix_cmp(char *file, char *suffix);
 
 //MEMORY
 t_textures *set_info(void);
