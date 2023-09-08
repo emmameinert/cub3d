@@ -1,11 +1,5 @@
 #include "../headers/cubed.h"
 
-void ft_put_error_exit(char *msg)
-{
-    ft_putstr_fd("Error\n", 2);
-    ft_putendl_fd(msg, 2);
-    exit(1);
-}
 /// @brief checks for integers in range and returns the correct one
 /// @param input 
 /// @return 
