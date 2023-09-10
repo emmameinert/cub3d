@@ -7,7 +7,7 @@ int key_hook(t_mlx **mlx, int keycode)
     return (0);
 }
 
-int finish_destroy(t_mlx **mlx)
+int on_destroy(t_mlx **mlx)
 {
     exit_success(mlx);
     return(0);

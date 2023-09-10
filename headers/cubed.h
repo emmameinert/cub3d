@@ -17,6 +17,16 @@
 #  define WIN_HEIGHT 1080
 # endif
 
+enum e_keycode
+{
+   ON_KEYDOWN = 2,
+   ON_DESTROY = 17,
+   ESC = 53,
+   LEFT = 0,
+   DOWN = 1,
+   RIGHT = 2,
+   UP = 13,
+};
 
 typedef struct s_color
 {
@@ -62,7 +72,7 @@ int     validate_texture(char *line, t_textures **info);
 
 t_mlx   *init_mlx_wind(void);
 t_img   *init_img(t_mlx **mlx);
-int     finish_destroy(t_mlx **mlx);
+int     on_destroy(t_mlx **mlx);
 int     key_hook(t_mlx **mlx, int keycode);
 
 //FILES

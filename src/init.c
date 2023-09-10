@@ -10,7 +10,7 @@ t_mlx *init_mlx_wind(void)
 	mlx->mlx = mlx_init();
 	if (!mlx->mlx)
 		return (NULL);
-	mlx->window = mlx_new_window(mlx->mlx, WIN_WIDTH, WIN_HEIGHT, "fdf");
+	mlx->window = mlx_new_window(mlx->mlx, WIN_WIDTH, WIN_HEIGHT, "cub3d");
 	if (!mlx->window)
 		return (NULL);
 	return (mlx);

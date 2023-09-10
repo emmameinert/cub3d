@@ -2,16 +2,16 @@
 
 static void validate_missing_input(int counter)
 {
-    if (counter < 6) 
+    if (counter < 6)
         ft_put_error_exit("Error with missing textures");
     //check_map
     //check if valid (surrounded by walls) maybe flood fill algo
-    exit(0);
+    exit (0);
 }
 /// @brief runs through the file and checks for all needed information and the map
 /// @param fd from our map file
-/// @return 
-void validate_parse_file(int fd) 
+/// @return
+void validate_parse_file(int fd)
 {
     char *line;
     int counter;
