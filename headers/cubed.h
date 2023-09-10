@@ -8,25 +8,37 @@
 # include <unistd.h>
 # include <fcntl.h>
 
-typedef struct s_data
+typedef struct s_color
+{
+    int r;
+    int g;
+    int b;
+}   t_color;
+
+typedef struct s_textures
 {
     int no;
     int so;
     int ea;
     int we;
-    char **ceiling;
-    char **floor;
-}	t_data;
+    t_color *ceiling;
+    t_color *floor;
+}	t_textures;
 
 //START
 void    run_program(char **argv);
 
 //INPUT
-int     check_file_input(int fd);
-void    check_texture(char *line, t_data **info, int *counter);
+void    validate_parse_file(int fd);
+int     validate_texture(char *line, t_textures **info);
 //UTILS
 
+
+//FILES
 int     open_file(char *file);
-t_data *set_info(void);
+void    suffix_cmp(char *file, char *suffix);
+
+//MEMORY
+t_textures *init_info(void);
 
 #endif

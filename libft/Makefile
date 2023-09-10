@@ -1,4 +1,3 @@
-
 NAME = libft.a
 
 SRC_FILES = ft_isalpha \
@@ -42,6 +41,8 @@ get_next_line_utils \
 get_next_line \
 free_array \
 ft_strncmp_all \
+ft_atoui \
+ft_put_error_exit
 
 H_FILES = libft
 

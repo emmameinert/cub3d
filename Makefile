@@ -5,9 +5,10 @@ LIBFT_PATH = ./libft
 
 BUILD_FLAGS = -Wall -Wextra -Werror
 
-SRC =	input \
-		cub3D \
-		input_utils \
+SRC = file_validation \
+		cub3d \
+		init \
+		file_utils \
 		texture_validation
 
 SRC_LL =	ft_lstsize \
@@ -22,7 +23,7 @@ HDRS =	cubed \
 
 SRC_PRE = $(addprefix ./src/, $(SRC))
 SRC_SUFF = $(addsuffix .c, $(SRC_PRE))
-SRC_LL_PRE = $(addprefix ./src/, $(SRC_LL))
+SRC_LL_PRE = $(addprefix ./src/linked_list/, $(SRC_LL))
 SRC_LL_SUFF = $(addsuffix .c, $(SRC_LL_PRE))
 
 HPRE = $(addprefix ./headers/, $(HDRS))
@@ -31,14 +32,13 @@ HSUFF = $(addsuffix .h, $(HPRE))
 .PHONY = all
 all: $(NAME)
 
-$(NAME): main.c $(SRC_SUFF) $(SRC_LL_SUFF) $(HSUFF)
+$(NAME): main.c $(SRC_SUFF)  $(HSUFF)
 		make -C $(LIBFT_PATH)
-		cc $(BUILD_FLAGS) $(SRC_LL_SUFF) $(SRC_SUFF) main.c -Llibft -lft -o $(NAME)
+		cc $(BUILD_FLAGS) $(SRC_SUFF) main.c -Llibft -lft -o $(NAME)
 
 .PHONY: clean
 clean:
 	make clean -C $(LIBFT_PATH)
-	rm -f $(GNL_OBJ)
 	rm -f $(SRCSO)
 
 .PHONY: fclean

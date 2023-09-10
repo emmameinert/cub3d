@@ -1,12 +1,12 @@
 
 #include "../../headers/lst.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+void	ft_lstadd_back(t_node **lst, t_node *new)
 {
 	if (!lst)
 		return ;
 	if (!*lst)
 		*lst = new;
 	else
-		ft_lstlast(*lst)->next = new;
+		new = ft_lstlast((*lst)->next);
 }

@@ -1,7 +1,7 @@
 
 #include "../../headers/lst.h"
 
-int	ft_lstsize(t_list *lst)
+int	ft_lstsize(t_node *lst)
 {
 	int		count;
 	t_list	*ptr;

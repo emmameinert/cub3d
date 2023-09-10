@@ -1,9 +1,9 @@
 
 #include "../../headers/lst.h"
 
-t_list	*ft_lstlast(t_list *lst)
+t_node	*ft_lstlast(t_node *lst)
 {
-	t_list	*ptr;
+	t_node	*ptr;
 
 	ptr = lst;
 	if (!ptr)
