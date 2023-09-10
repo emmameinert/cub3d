@@ -1,8 +1,8 @@
 #include "../headers/cubed.h"
 
-static void if_no_line(int counter)
+static void validate_missing_input(int counter)
 {
-    if (counter < 6) //makes sure we are not missing information
+    if (counter < 6) 
         ft_put_error_exit("Error with missing textures");
     //check_map
     //check if valid (surrounded by walls) maybe flood fill algo
@@ -16,24 +16,19 @@ void validate_parse_file(int fd)
     int counter;
     t_textures *info;
 
-    info = set_info();
+    info = init_info();
     counter = 0;
     while (fd > 1)
 	{
 		line = get_next_line(fd);
 		if (!line)
-            if_no_line(counter);
+            validate_missing_input(counter);
         if (counter < 6)
-            counter += check_texture(line, &info);
+            counter += validate_texture(line, &info);
         printf("counter main: %d\n", counter);
-        //check for garbageeeee
-        // if (!ft_isdigit(line[0]) || line[0] == 32)
-        //     add_map(line, &info);
-        //needs a check, that the map is the last thing in the file
 		free(line);
 	}
 }
 
-//maybe seprate functions into the counter and texture and parsin/validating map
 
 

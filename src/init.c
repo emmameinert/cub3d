@@ -1,13 +1,13 @@
 #include "../headers/cubed.h"
 
-static void    set_colors(t_color **color)
+static void    init_colors(t_color **color)
 {
     (*color)->r = -2;
     (*color)->g = -2;
     (*color)->b = -2;
 }
 
-t_textures *set_info(void)
+t_textures *init_info(void)
 {
     t_textures *info;
 
@@ -23,17 +23,7 @@ t_textures *set_info(void)
     info->we = -2;
     info->ceiling = ft_calloc(1, sizeof(t_color));
     info->floor = ft_calloc(1, sizeof(t_color));
-    set_colors(&(info->ceiling));
-    set_colors(&(info->floor));
+    init_colors(&(info->ceiling));
+    init_colors(&(info->floor));
     return (info);
-}
-
-int     open_file(char *file)
-{
-    int fd;
-
-    fd = open(file, O_RDONLY);
-	// if (fd == -1)
-	// 	exit(1);
-	return (fd);
 }

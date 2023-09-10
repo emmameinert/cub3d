@@ -3,7 +3,7 @@
 /// @brief checks for integers in range and returns the correct one
 /// @param input 
 /// @return 
-static  void check_parse_range(char *input, t_color *color)
+static  void validate_parse_range(char *input, t_color *color)
 {
     char **numbers;
     int i;
@@ -32,13 +32,13 @@ static  int    parse_floor_ceiling(char **input, t_textures **info)
     {
         if ((*info)->floor->r != -2)
             ft_put_error_exit("Floor duplicate");
-        check_parse_range(input[1], (*info)->floor);
+        validate_parse_range(input[1], (*info)->floor);
     }
-    else if (input[0][0] == 'F')
+    else if (input[0][0] == 'C')
     {
         if ((*info)->ceiling->r != -2)
             ft_put_error_exit("Ceiling duplicate");
-        check_parse_range(input[1], (*info)->ceiling);
+        validate_parse_range(input[1], (*info)->ceiling);
     }
     else 
         return (0);
@@ -71,7 +71,7 @@ static int texture_comparison(char **input, t_textures **info)
 /// @brief checks if we have information about the textures floor or cealing
 /// @param line line of the file we are reading
 /// @param info here we save our general information about the map
-int    check_texture(char *line, t_textures **info)
+int    validate_texture(char *line, t_textures **info)
 {
     char **input;
 
