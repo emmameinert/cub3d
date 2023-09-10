@@ -1,7 +1,7 @@
 
 #include "../../headers/lst.h"
 
-static void	ft_clr_rec(t_list *lst, void (*del)(void *))
+static void	ft_clr_rec(t_node *lst, void (*del)(void *))
 {
 	if (!lst)
 		return ;
@@ -11,7 +11,7 @@ static void	ft_clr_rec(t_list *lst, void (*del)(void *))
 	free(lst);
 }
 
-void	ft_lstclear(t_list **lst, void (*del)(void *))
+void	ft_lstclear(t_node **lst, void (*del)(void *))
 {
 	if (!lst || !*lst || !del)
 		return ;

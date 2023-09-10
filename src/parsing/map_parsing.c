@@ -14,7 +14,7 @@ static int	valid_char(char ch)
 
 void	parse_map(char *input)
 {
-	t_list		**coords; // TODO move to the info data struct
+	t_node		**coords; // TODO move to the info data struct
 	static int	x;
 	static int	y;
 	char		ch;

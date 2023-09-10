@@ -1,7 +1,7 @@
 
 #include "../../headers/lst.h"
 
-void	ft_lstadd_back(t_list **lst, int x, int y, char ch)
+void	ft_lstadd_back(t_node **lst, int x, int y, char ch)
 {
 	if (!lst)
 		return ;

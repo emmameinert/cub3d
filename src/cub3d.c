@@ -5,11 +5,8 @@ void run_program(char **argv)
 {
     int fd;
 
+    suffix_cmp(argv[1], ".cub");
     fd = open_file(argv[1]);
-    // if (check_file_input(fd))
-    // {
-    //     ft_putstr_fd("Error with testfile\n", 2);
-    //     exit(1);
-    // }
+    validate_parse_file(fd);
     close(fd);
 }

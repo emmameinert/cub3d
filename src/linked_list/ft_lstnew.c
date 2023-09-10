@@ -1,12 +1,12 @@
 
 #include "../../headers/cubed.h"
 
-t_list	*ft_lstnew(int x, int y, char ch)
+t_node	*ft_lstnew(int x, int y, char ch)
 {
-	t_list	*new;
+	t_node	*new;
 	t_coord	*coords;
 
-	new = (t_list *)malloc(sizeof(*new));
+	new = (t_node *)malloc(sizeof(*new));
 	if (!new)
 		return (NULL);
 	coords = (t_coord*)malloc(sizeof(*coords));
