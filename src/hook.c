@@ -2,7 +2,7 @@
 
 int key_hook(t_mlx **mlx, int keycode)
 {
-    if (keycode == 53)
+    if (keycode == ESC)
         exit_success(mlx);
     return (0);
 }
