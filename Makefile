@@ -19,7 +19,10 @@ SRC_LL =	ft_lstsize \
 			ft_lstnew \
 			ft_lstadd_back
 
-SRC_UTLS = file_utils
+SRC_UTLS =	file_utils
+
+SRC_VLD =	map_validation \
+			texture_validation
 
 HDRS =	cubed \
 		lst
@@ -32,6 +35,8 @@ SRC_PRS_PRE = $(addprefix ./src/parsing/, $(SRC_PRS))
 SRC_PRS_SUFF = $(addsuffix .c, $(SRC_PRS_PRE))
 SRC_UTLS_PRE = $(addprefix ./src/utils/, $(SRC_UTLS))
 SRC_UTLS_SUFF = $(addsuffix .c, $(SRC_UTLS_PRE))
+SRC_VLD_PRE = $(addprefix ./src/validation/, $(SRC_VLD))
+SRC_VLD_SUFF = $(addsuffix .c, $(SRC_VLD_PRE))
 
 HPRE = $(addprefix ./headers/, $(HDRS))
 HSUFF = $(addsuffix .h, $(HPRE))
@@ -39,9 +44,9 @@ HSUFF = $(addsuffix .h, $(HPRE))
 .PHONY = all
 all: $(NAME)
 
-$(NAME): main.c $(SRC_LL_SUFF) $(SRC_UTLS_SUFF) $(SRC_PRS_SUFF) $(SRC_SUFF) $(HSUFF)
+$(NAME): main.c $(SRC_LL_SUFF) $(SRC_VLD_SUFF) $(SRC_UTLS_SUFF) $(SRC_PRS_SUFF) $(SRC_SUFF) $(HSUFF)
 		make -C $(LIBFT_PATH)
-		cc $(BUILD_FLAGS) $(SRC_LL_SUFF) $(SRC_PRS_SUFF) \
+		cc $(BUILD_FLAGS) $(SRC_LL_SUFF) $(SRC_VLD_SUFF) $(SRC_PRS_SUFF) \
 		$(SRC_UTLS_SUFF) $(SRC_SUFF) \
 		main.c -Llibft -lft -o $(NAME)
 

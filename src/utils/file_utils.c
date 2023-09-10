@@ -7,12 +7,14 @@ int	open_file(char *file)
 
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
-	{
-		ft_putstr_fd("Failed to open the file '", 2);
-		ft_putstr_fd(file, 2);
-		ft_put_error_exit("'");
-	}
+		ft_put_error_exit("Failed to open the file");
 	return (fd);
+}
+
+void	close_file(int fd)
+{
+	if (close(fd) == -1)
+		ft_put_error_exit("Failed to close the file");
 }
 
 void	suffix_cmp(char *file, char *suffix)

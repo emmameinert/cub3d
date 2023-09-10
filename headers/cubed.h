@@ -31,13 +31,20 @@ void		run_program(char **argv);
 
 //INPUT
 void		validate_parse_file(int fd);
-int			validate_texture(char *line, t_textures **info);
-void		parse_map(char *input);
+t_textures	*parse_textures(int fd);
+void		parse_map(int fd, t_node **map);
+
+// VALIDATION
+int		texture_file_existence(int fd, char *msg, char *file);
+void	validate_texture_count(int counter);
+int		valid_char(char ch);
+void	validate_map(t_node **map);
 
 //UTILS
 
 //FILES
 int			open_file(char *file);
+void		close_file(int fd);
 void		suffix_cmp(char *file, char *suffix);
 
 //MEMORY

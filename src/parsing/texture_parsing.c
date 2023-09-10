@@ -1,9 +1,6 @@
 
 #include "../../headers/cubed.h"
 
-/// @brief checks for integers in range and returns the correct one
-/// @param input
-/// @return
 static void	validate_parse_range(char *input, t_color *color)
 {
 	char	**numbers;
@@ -46,14 +43,6 @@ static int	parse_floor_ceiling(char **input, t_textures **info)
 	return (1);
 }
 
-static int	texture_file_existence(int fd, char *msg, char *file)
-{
-	if (fd != -2)
-		ft_put_error_exit(msg);
-	suffix_cmp(file, ".xpm");
-	return (open_file(file));
-}
-
 static int	texture_comparison(char **input, t_textures **info)
 {
     if (!ft_strncmp_all(input[0], "NO"))
@@ -72,7 +61,7 @@ static int	texture_comparison(char **input, t_textures **info)
 /// @brief checks if we have information about the textures floor or cealing
 /// @param line line of the file we are reading
 /// @param info here we save our general information about the map
-int	validate_texture(char *line, t_textures **info)
+static int	validate_texture(char *line, t_textures **info)
 {
 	char	**input;
 
@@ -89,4 +78,25 @@ int	validate_texture(char *line, t_textures **info)
 	}
 	free_char_array(input);
 	return (1);
+}
+
+t_textures *parse_textures(int fd)
+{
+	char		*line;
+	int			counter;
+	t_textures	*info;
+
+	info = init_info();
+	counter = 0;
+	while (fd > 1)
+	{
+		line = get_next_line(fd);
+		if (!line)
+			break ;
+		if (counter < 6)
+			counter += validate_texture(line, &info);
+		free(line);
+	}
+	validate_texture_count(counter);
+	return (info);
 }

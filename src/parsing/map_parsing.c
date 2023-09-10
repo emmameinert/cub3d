@@ -1,29 +1,40 @@
 
 #include "../../headers/cubed.h"
 
-static int	valid_char(char ch)
+static void	parse_row(char *input, t_node **map, int y)
 {
-	if (ch == '1' || ch == '0'
-		|| ch == 'N' || ch == 'E'
-		|| ch == 'W' || ch == 'S'
-		|| ch == ' ')
-		return (1);
-	return (0);
-}
+	int			x;
 
-void	parse_map(char *input)
-{
-	t_node		**coords; // TODO move to the info data struct
-	static int	x;
-	static int	y;
-
-	// TODO: ignore new lines before the map
+	x = 0;
 	while (*input)
 	{
+		if (*input == '\n')
+			break ;
 		if (valid_char(*input))
-			ft_lstadd_back(coords, x++, y++, *input);
+			ft_lstadd_back(map, x++, y, *input);
 		else
-			exit(0); // TODO call ft_puterror_exit_thingy
+			ft_put_error_exit("Invalid map character");
 		input++;
 	}
+}
+
+void	parse_map(int fd, t_node **map)
+{
+	int		y;
+	char	*line;
+
+	while (fd > 1)
+	{
+		line = get_next_line(fd);
+		if (!line)
+			break ;
+		if (y == 0 && line && line[0] == '\n')
+		{
+			free(line);
+			continue ;
+		}
+		parse_row(line, map, y++);
+		free(line);
+	}
+	validate_map(map);
 }
