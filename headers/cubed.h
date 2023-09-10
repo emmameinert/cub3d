@@ -30,7 +30,7 @@ void    run_program(char **argv);
 
 //INPUT
 void    validate_parse_file(int fd);
-int     check_texture(char *line, t_textures **info);
+int     validate_texture(char *line, t_textures **info);
 //UTILS
 
 
@@ -39,6 +39,6 @@ int     open_file(char *file);
 void    suffix_cmp(char *file, char *suffix);
 
 //MEMORY
-t_textures *set_info(void);
+t_textures *init_info(void);
 
 #endif

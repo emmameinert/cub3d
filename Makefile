@@ -5,9 +5,10 @@ LIBFT_PATH = ./libft
 
 BUILD_FLAGS = -Wall -Wextra -Werror
 
-SRC = input \
+SRC = file_validation \
 		cub3d \
-		input_utils \
+		init \
+		file_utils \
 		texture_validation
 
 SRC_LL =	ft_lstsize \
