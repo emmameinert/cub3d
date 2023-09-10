@@ -1,4 +1,5 @@
-#include "../headers/cubed.h"
+
+#include "../../headers/cubed.h"
 
 static void	validate_missing_input(int counter)
 {

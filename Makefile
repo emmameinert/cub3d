@@ -3,7 +3,7 @@ NAME = cub3D
 
 LIBFT_PATH = ./libft
 
-BUILD_FLAGS = -Wall -Wextra -Werror
+BUILD_FLAGS = -Wall -Wextra #-Werror
 
 SRC =	cub3d \
 		init

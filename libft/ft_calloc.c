@@ -13,7 +13,7 @@ void	*ft_calloc(size_t count, size_t size)
 		return (NULL);
 	ptr = (void *)malloc(sizeof(*ptr) * amount);
 	if (!ptr)
-		ft_put_error_exit("Error with memory allocation\n", 2);
+		ft_put_error_exit("Error with memory allocation");
 	ft_bzero(ptr, amount);
 	return (ptr);
 }

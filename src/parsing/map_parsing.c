@@ -1,5 +1,4 @@
 
-#include "../../headers/lst.h"
 #include "../../headers/cubed.h"
 
 static int	valid_char(char ch)
@@ -17,7 +16,6 @@ void	parse_map(char *input)
 	t_node		**coords; // TODO move to the info data struct
 	static int	x;
 	static int	y;
-	char		ch;
 
 	// TODO: ignore new lines before the map
 	while (*input)
