@@ -3,13 +3,15 @@ NAME = cub3D
 
 LIBFT_PATH = ./libft
 
-BUILD_FLAGS = -Wall -Wextra -Werror
+BUILD_FLAGS = -Wall -Wextra 
 
 SRC = file_validation \
 		cub3d \
 		init \
 		file_utils \
-		texture_validation
+		texture_validation \
+		hook \
+		exit
 
 SRC_LL =	ft_lstsize \
 			ft_lstclear \
@@ -34,7 +36,7 @@ all: $(NAME)
 
 $(NAME): main.c $(SRC_SUFF)  $(HSUFF)
 		make -C $(LIBFT_PATH)
-		cc $(BUILD_FLAGS) $(SRC_SUFF) main.c -Llibft -lft -o $(NAME)
+		cc $(BUILD_FLAGS) $(SRC_SUFF) main.c -Llibft -lft  -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
 .PHONY: clean
 clean:
