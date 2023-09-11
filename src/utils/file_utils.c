@@ -6,8 +6,8 @@ int	open_file(char *file)
 	int fd;
 
 	fd = open(file, O_RDONLY);
-	if (fd == -1)
-		ft_put_error_exit("Failed to open the file");
+	//if (fd == -1)
+	//	ft_put_error_exit("Failed to open the file");
 	return (fd);
 }
 

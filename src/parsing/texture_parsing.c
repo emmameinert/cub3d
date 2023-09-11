@@ -80,23 +80,26 @@ static int	validate_texture(char *line, t_textures **info)
 	return (1);
 }
 
-t_textures *parse_textures(int fd)
+char *parse_textures(int fd, t_textures **texture)
 {
 	char		*line;
 	int			counter;
-	t_textures	*info;
 
-	info = init_info();
 	counter = 0;
 	while (fd > 1)
 	{
 		line = get_next_line(fd);
 		if (!line)
-			break ;
+			return (NULL);
+		else if (counter == 6)
+		{
+			if (line[0] != '\n')
+				return (line);
+		}
 		if (counter < 6)
-			counter += validate_texture(line, &info);
+			counter += validate_texture(line, texture);
 		free(line);
 	}
 	validate_texture_count(counter);
-	return (info);
+	return (NULL);
 }
