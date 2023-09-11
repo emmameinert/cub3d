@@ -3,13 +3,14 @@ NAME = cub3D
 
 LIBFT_PATH = ./libft
 
-BUILD_FLAGS = -Wall -Wextra #-Werror
+BUILD_FLAGS = -Wall -Wextra -Werror -fsanitize=address,undefined
 
 SRC =	cub3d \
 		init
 
 SRC_PRS =	file_parsing \
 			texture_parsing \
+			array_parsing \
 			map_parsing
 
 SRC_LL =	ft_lstsize \

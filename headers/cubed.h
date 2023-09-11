@@ -22,8 +22,11 @@ typedef struct s_textures
 	int	so;
 	int	ea;
 	int	we;
+	int	m_widht;
+	int	m_height;
 	t_color	*ceiling;
 	t_color	*floor;
+	t_coord **map;
 }	t_textures;
 
 //START
@@ -31,8 +34,9 @@ void		run_program(char **argv);
 
 //INPUT
 void		validate_parse_file(int fd);
-t_textures	*parse_textures(int fd);
-void		parse_map(int fd, t_node **map);
+char		*parse_textures(int fd, t_textures **texture);
+void		parse_map(int fd, t_textures **textures, char *line);
+void		parse_array(t_textures **texture, t_node **map);
 
 // VALIDATION
 int		texture_file_existence(int fd, char *msg, char *file);

@@ -3,11 +3,12 @@
 
 void	validate_parse_file(int fd)
 {
-	t_textures	*textures;
-	t_node		*map;
+	t_textures	*info;
+	char		*line;
 
-	map = NULL;
-	textures = parse_textures(fd);
-	parse_map(fd, &map);
+	line = NULL;
+	info = init_info();
+	line = parse_textures(fd, &info);
+	parse_map(fd, &info, line);
 	close_file(fd);
 }
