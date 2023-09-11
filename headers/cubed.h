@@ -42,7 +42,7 @@ typedef struct s_textures
 	int	so;
 	int	ea;
 	int	we;
-	int	m_widht;
+	int	m_width;
 	int	m_height;
 	t_color	*ceiling;
 	t_color	*floor;

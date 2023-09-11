@@ -58,7 +58,7 @@ static void	parse_nodes(int fd, t_node **map, t_textures **textures, int first_l
 		free(line);
 	}
 	(*textures)->m_height = height;
-	(*textures)->m_widht = width;
+	(*textures)->m_width = width;
 }
 
 void	parse_map(int fd, t_textures **textures, char *line)
