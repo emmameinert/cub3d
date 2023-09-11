@@ -5,13 +5,14 @@ LIBFT_PATH = ./libft
 
 BUILD_FLAGS = -Wall -Wextra -Werror
 
-SRC =	file_parsing \
-		cub3d \
+SRC =	cub3d \
 		init \
-		texture_parsing \
-		map_parsing \
 		hook \
 		exit
+
+SRC_PRS =	file_parsing \
+			texture_parsing \
+			map_parsing
 
 SRC_LL =	ft_lstsize \
 			ft_lstclear \
@@ -49,7 +50,7 @@ $(NAME): main.c $(SRC_LL_SUFF) $(SRC_VLD_SUFF) $(SRC_UTLS_SUFF) $(SRC_PRS_SUFF) 
 		make -C $(LIBFT_PATH)
 		cc $(BUILD_FLAGS) $(SRC_LL_SUFF) $(SRC_VLD_SUFF) $(SRC_PRS_SUFF) \
 		$(SRC_UTLS_SUFF) $(SRC_SUFF) \
-		main.c -Llibft -lft  -Lmlx -lmlx -framework OpenGL -framework AppKit-o $(NAME)
+		main.c -Llibft -lft  -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
 .PHONY: clean
 clean:

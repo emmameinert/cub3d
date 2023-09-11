@@ -20,13 +20,13 @@
 
 enum e_keycode
 {
-   ON_KEYDOWN = 2,
-   ON_DESTROY = 17,
-   ESC = 53,
-   LEFT = 0,
-   DOWN = 1,
-   RIGHT = 2,
-   UP = 13,
+	ON_KEYDOWN = 2,
+	ON_DESTROY = 17,
+	ESC = 53,
+	LEFT = 0,
+	DOWN = 1,
+	RIGHT = 2,
+	UP = 13,
 };
 
 typedef struct s_color
@@ -48,19 +48,19 @@ typedef struct s_textures
 
 typedef struct s_img
 {
-    void *img;
-    char *addr;
-    int bits_per_pixel;
-    int line_length;
-    int endian;
-}   t_img;
+	void *img;
+	char *addr;
+	int bits_per_pixel;
+	int line_length;
+	int endian;
+}	t_img;
 
 typedef struct s_mlx
 {
-    void *mlx;
-    void *window;
-    t_img *img;
-}   t_mlx;
+	void *mlx;
+	void *window;
+	t_img *img;
+}	t_mlx;
 
 //START
 void		run_program(char **argv);
@@ -83,16 +83,16 @@ int			open_file(char *file);
 void		close_file(int fd);
 void		suffix_cmp(char *file, char *suffix);
 
-t_mlx   *init_mlx_wind(void);
-t_img   *init_img(t_mlx **mlx);
-int     on_destroy(t_mlx **mlx);
-int     key_hook(t_mlx **mlx, int keycode);
+t_mlx	*init_mlx_wind(void);
+t_img	*init_img(t_mlx **mlx);
+int		on_destroy(t_mlx **mlx);
+int		key_hook(int keycode, t_mlx **mlx);
 
 //MEMORY
 t_textures *init_info(void);
 
 // EXIT
-void    exit_success(t_mlx **mlx);
-void    exit_failure(void);
+void	exit_success(t_mlx **mlx);
+void	exit_failure(void);
 
 #endif

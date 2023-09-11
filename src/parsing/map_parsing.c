@@ -23,6 +23,7 @@ void	parse_map(int fd, t_node **map)
 	int		y;
 	char	*line;
 
+	y = 0;
 	while (fd > 1)
 	{
 		line = get_next_line(fd);
