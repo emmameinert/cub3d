@@ -4,7 +4,7 @@
 int	ft_lstsize(t_node *lst)
 {
 	int		count;
-	t_list	*ptr;
+	t_node	*ptr;
 
 	count = 0;
 	ptr = lst;

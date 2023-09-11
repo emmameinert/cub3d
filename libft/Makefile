@@ -53,11 +53,11 @@ OBJ = $(addsuffix .o, $(SRC_FILES))
 B_SRC = $(addsuffix .c, $(BONUS))
 HS = $(addsuffix .h, $(H_FILES))
 
-BUILD_FLAGS = -Wall -Wextra -Werror
+BUILD_FLAGS = -Wall -Wextra # -Werror
 
 all: $(NAME)
 
-$(NAME):
+$(NAME): $(SRC) $(HS)
 	cc $(BUILD_FLAGS) -c $(SRC) -I $(HS)
 	ar rc $(LIB_NAME) $(OBJ)
 	ranlib $(LIB_NAME)
