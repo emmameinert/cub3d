@@ -10,7 +10,7 @@ static t_coord	**init_coords(t_textures *textures)
 	i = 0;
 	while (i < textures->m_height)
 	{
-		coords[i] = (t_coord *)ft_calloc(textures->m_widht, sizeof(**coords));
+		coords[i] = (t_coord *)ft_calloc(textures->m_width, sizeof(**coords));
 		i++;
 	}
 	return (coords);
@@ -28,7 +28,7 @@ void	parse_array(t_textures **texture, t_node **map)
 	(*texture)->map = init_coords(*texture);
 	while (i < (*texture)->m_height)
 	{
-		while (j < (*texture)->m_widht)
+		while (j < (*texture)->m_width)
 		{
 			if (temp && temp->coords->ch != '\n')
 			{
