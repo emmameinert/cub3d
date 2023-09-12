@@ -40,9 +40,9 @@ static void    init_colors(t_color **color)
     (*color)->b = -2;
 }
 
-t_textures *init_info(void)
+t_info *init_info(void)
 {
-    t_textures *info;
+    t_info *info;
 
     info = ft_calloc(1, sizeof(*info));
     info->no = -2;

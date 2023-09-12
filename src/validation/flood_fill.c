@@ -1,52 +1,52 @@
 #include "../../headers/cubed.h"
 
-static  void    validate_start_point(t_textures **texture)
+static  void    validate_start_point(t_info **info)
 {
-    if ((*texture)->begin->x == 0 || (*texture)->begin->x == (*texture)->m_width)
+    if ((*info)->begin->x == 0 || (*info)->begin->x == (*info)->m_width)
         ft_put_error_exit("Start point out of maze");
-    if ((*texture)->begin->y == 0 || (*texture)->begin->y == (*texture)->m_height)
+    if ((*info)->begin->y == 0 || (*info)->begin->y == (*info)->m_height)
         ft_put_error_exit("Start point out of maze");
     //need to check for spaces around
 }
 
-void  flood_fill(t_textures **texture)
+void  flood_fill(t_info **info)
 {
     int i;
     int j;
-    i = (*texture)->begin->x;
-    j = (*texture)->begin->y;
-    (*texture)->map[j][i].ch = '0';
-    validate_start_point(texture);
-    while (j < (*texture)->m_height)
+    i = (*info)->begin->x;
+    j = (*info)->begin->y;
+    (*info)->map[j][i].ch = '0';
+    validate_start_point(info);
+    while (j < (*info)->m_height)
     {
-        while (i < (*texture)->m_width && (*texture)->map[j][i].ch != ' ')
+        while (i < (*info)->m_width && (*info)->map[j][i].ch != ' ')
         {
-            if (i >= 0 && i < (*texture)->m_width && j >= 0 && j <  (*texture)->m_height && (*texture)->map[j][i].ch == '1')
-                (*texture)->map[j][i].ch = '2';
+            if (i >= 0 && i < (*info)->m_width && j >= 0 && j <  (*info)->m_height && (*info)->map[j][i].ch == '1')
+                (*info)->map[j][i].ch = '2';
             i++;
         }
         i = 0;
         j++;
     }
     j = 0;
-    while (j < (*texture)->begin->y && (*texture)->map[j][i].ch != ' ')
+    while (j < (*info)->begin->y && (*info)->map[j][i].ch != ' ')
     {
         i = 0;
-        while (i < (*texture)->m_width && (*texture)->map[j][i].ch != ' ')
+        while (i < (*info)->m_width && (*info)->map[j][i].ch != ' ')
         {
-            if (i >= 0 && i < (*texture)->m_width && j >= 0 && j <  (*texture)->m_height && (*texture)->map[j][i].ch == '1')
-                (*texture)->map[j][i].ch = '2';
+            if (i >= 0 && i < (*info)->m_width && j >= 0 && j <  (*info)->m_height && (*info)->map[j][i].ch == '1')
+                (*info)->map[j][i].ch = '2';
             i++;
         }
         j++;
     }
-    if (j == (*texture)->begin->y)
+    if (j == (*info)->begin->y)
     {
         i = 0;
-        while (i < (*texture)->begin->x && (*texture)->map[j][i].ch != ' ')
+        while (i < (*info)->begin->x && (*info)->map[j][i].ch != ' ')
         {
-            if (i >= 0 && i < (*texture)->m_width && j >= 0 && j <  (*texture)->m_height && (*texture)->map[j][i].ch == '1')
-                (*texture)->map[j][i].ch = '2';
+            if (i >= 0 && i < (*info)->m_width && j >= 0 && j <  (*info)->m_height && (*info)->map[j][i].ch == '1')
+                (*info)->map[j][i].ch = '2';
             i++;
         }
     }
