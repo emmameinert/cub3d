@@ -1,44 +1,42 @@
 #include "../../headers/cubed.h"
 
-void  flood_fill(char **tab, t_textures *map, t_coord *begin)
+void  flood_fill(t_textures **texture)
 {
-    char filler;
     int i;
     int j;
-
-    // filler = tab[begin.y][begin.x];
-    i = begin->x;
-    j = begin->y;
-    while (j < map->m_height)
+    i = (*texture)->x_start;
+    j = (*texture)->y_start;
+    (*texture)->map[j][i].ch = '0';
+    while (j < (*texture)->m_height)
     {
-        while (i < map->m_width)
+        while (i < (*texture)->m_width)
         {
-            if (i >= 0 && i < map->m_width && j >= 0 && j <  map->m_height && tab[j][i] == filler)
-                tab[j][i] = 'F';
+            if (i >= 0 && i < (*texture)->m_width && j >= 0 && j <  (*texture)->m_height && (*texture)->map[j][i].ch == '1')
+                (*texture)->map[j][i].ch = '2';
             i++;
         }
         i = 0;
         j++;
     }
     j = 0;
-    while (j < begin->y)
+    while (j < (*texture)->y_start)
     {
         i = 0;
-        while (i < map->m_width)
+        while (i < (*texture)->m_width)
         {
-            if (i >= 0 && i < map->m_width && j >= 0 && j <  map->m_height && tab[j][i] == filler)
-                tab[j][i] = 'F';
+            if (i >= 0 && i < (*texture)->m_width && j >= 0 && j <  (*texture)->m_height && (*texture)->map[j][i].ch == '1')
+                (*texture)->map[j][i].ch = '2';
             i++;
         }
         j++;
     }
-    if (j == begin->y)
+    if (j == (*texture)->y_start)
     {
         i = 0;
-        while (i < begin->x)
+        while (i < (*texture)->x_start)
         {
-            if (i >= 0 && i < map->m_width && j >= 0 && j <  map->m_height && tab[j][i] == filler)
-                tab[j][i] = 'F';
+            if (i >= 0 && i < (*texture)->m_width && j >= 0 && j <  (*texture)->m_height && (*texture)->map[j][i].ch == '1')
+                (*texture)->map[j][i].ch = '2';
             i++;
         }
     }

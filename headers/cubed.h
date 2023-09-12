@@ -80,8 +80,8 @@ void		parse_array(t_textures **texture, t_node **map);
 int		texture_file_existence(int fd, char *msg, char *file);
 void	validate_texture_count(int counter);
 int		valid_char(char ch);
-void	validate_map(t_node **map);
-
+void	validate_map(t_node **map, t_textures **texture);
+void    flood_fill(t_textures **texture);
 //UTILS
 
 //FILES

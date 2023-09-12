@@ -34,9 +34,30 @@ int	valid_char(char ch)
 // 		i++;
 // 	}
 // }
-void	validate_map(t_node **map)
+
+static void	print_map(t_textures **texture)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (i < (*texture)->m_height)
+	{
+		j = 0;
+		while (j < (*texture)->m_width)
+		{
+			printf("[%c]", (*texture)->map[i][j].ch);
+			j++;
+		}
+		printf("\n");
+		i++;
+	}
+}
+void	validate_map(t_node **map, t_textures **texture)
 {
 	if (!map)
 		ft_put_error_exit("No map found");
-	// flood fill etc.
+	flood_fill(texture);
+	printf("\n\n");
+	print_map(texture);
 }

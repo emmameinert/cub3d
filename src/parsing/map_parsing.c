@@ -111,5 +111,5 @@ void	parse_map(int fd, t_textures **textures, char *line)
 	printf("map height: %d, map width: %d\n", (*textures)->m_height, (*textures)->m_width);
 	print_map(textures);
 	// TODO clean up map
-	validate_map(&map); // TODO: actual flood fill
+	validate_map(&map, textures); // TODO: actual flood fill
 }

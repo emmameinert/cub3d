@@ -25,7 +25,8 @@ SRC_LL =	ft_lstsize \
 SRC_UTLS =	file_utils
 
 SRC_VLD =	map_validation \
-			texture_validation
+			texture_validation \
+			flood_fill
 
 HDRS =	cubed \
 		lst
