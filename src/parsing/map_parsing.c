@@ -1,6 +1,17 @@
 
 #include "../../headers/cubed.h"
 
+static	void	double_player_validation(t_textures **texture, int x)
+{
+	if ((*texture)->x_start == 0)
+	{
+		(*texture)->x_start = x - 1;
+		(*texture)->y_start = (*texture)->m_height;
+	}
+	else
+		ft_put_error_exit("Too many players");
+}
+
 static void	parse_row(char *input, t_node **map, t_textures **texture)
 {
 	int			x;
@@ -16,22 +27,9 @@ static void	parse_row(char *input, t_node **map, t_textures **texture)
 			break ;
 		}
 		start = valid_char(*input);
-		if (start)
-		{
-			*map = ft_lstadd_back(map, x++, (*texture)->m_height, *input);
-			if (start == 2)
-			{
-				if (((*texture)->x_start == 0 && (*texture)->m_height != 0) && (x - 1) != 0)
-				{
-					(*texture)->x_start = x - 1;
-					(*texture)->y_start = (*texture)->m_height;
-				}
-				else
-					ft_put_error_exit("Too many player our player out of maze");
-			}
-		}
-		else
-			ft_put_error_exit("Invalid map character");
+		*map = ft_lstadd_back(map, x++, (*texture)->m_height, *input);
+		if (start == 2)
+			double_player_validation(texture, x);
 		input++;
 	}
 	if (x > (*texture)->m_width)
