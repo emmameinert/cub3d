@@ -3,10 +3,10 @@
 
 static	void	double_player_validation(t_textures **texture, int x)
 {
-	if ((*texture)->x_start == 0)
+	if ((*texture)->begin->x == 0)
 	{
-		(*texture)->x_start = x - 1;
-		(*texture)->y_start = (*texture)->m_height;
+		(*texture)->begin->x = x - 1;
+		(*texture)->begin->y = (*texture)->m_height;
 	}
 	else
 		ft_put_error_exit("Too many players");
@@ -104,10 +104,10 @@ void	parse_map(int fd, t_textures **textures, char *line)
 	}
 	else
 		parse_nodes(fd, &map, textures, 0);
-	if ((*textures)->x_start == 0)
+	if ((*textures)->begin->x == 0)
 		ft_put_error_exit("missing player");
 	parse_array(textures, &map);
-	printf("player start: %d %d\n", (*textures)->x_start, (*textures)->y_start);
+	//printf("player start: %d %d\n", (*textures)->x_start, (*textures)->y_start);
 	printf("map height: %d, map width: %d\n", (*textures)->m_height, (*textures)->m_width);
 	print_map(textures);
 	// TODO clean up map

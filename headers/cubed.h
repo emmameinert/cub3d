@@ -44,11 +44,10 @@ typedef struct s_textures
 	int	we;
 	int	m_width;
 	int	m_height;
-    int x_start;
-    int y_start;
 	t_color	*ceiling;
 	t_color	*floor;
 	t_coord **map;
+    t_coord *begin;
 }	t_textures;
 
 typedef struct s_img

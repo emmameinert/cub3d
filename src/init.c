@@ -51,10 +51,9 @@ t_textures *init_info(void)
     info->we = -2;
 	info->m_width = 0;
 	info->m_height = 0;
-    info->x_start = 0;
-    info->y_start = 0;
     info->ceiling = ft_calloc(1, sizeof(t_color));
     info->floor = ft_calloc(1, sizeof(t_color));
+	info->begin = ft_calloc(1, sizeof(t_coord));
     init_colors(&(info->ceiling));
     init_colors(&(info->floor));
     return (info);
