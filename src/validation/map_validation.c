@@ -33,9 +33,9 @@ static void	print_map(t_info **info)
 }
 void	validate_map(t_node **map, t_info **info)
 {
-	if (!map)
+	if (!map || !*info)
 		ft_put_error_exit("No map found");
-	flood_fill(info);
-	printf("\n\n");
-	print_map(info);
+	flood_fill(info, (*info)->player->y, (*info)->player->x);
+	//printf("\n\n");
+	//print_map(info);
 }

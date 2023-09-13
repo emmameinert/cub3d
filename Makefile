@@ -3,12 +3,10 @@ NAME = cub3D
 
 LIBFT_PATH = ./libft
 
-BUILD_FLAGS = -Wall -Wextra -Werror -fsanitize=address,undefined
+SRC_INT =	init_mlx \
+			init_info
 
-SRC =	cub3d \
-		init \
-		hook \
-		exit
+SRC =	cub3d
 
 SRC_PRS =	file_parsing \
 			texture_parsing \
@@ -22,7 +20,9 @@ SRC_LL =	ft_lstsize \
 			ft_lstnew \
 			ft_lstadd_back
 
-SRC_UTLS =	file_utils
+SRC_UTLS =	file \
+			hook \
+			exit
 
 SRC_VLD =	map_validation \
 			texture_validation \
@@ -31,6 +31,8 @@ SRC_VLD =	map_validation \
 HDRS =	cubed \
 		lst
 
+SRC_INT_PRE = $(addprefix ./src/initializing/, $(SRC_INT))
+SRC_INT_SUFF = $(addsuffix .c, $(SRC_INT_PRE))
 SRC_PRE = $(addprefix ./src/, $(SRC))
 SRC_SUFF = $(addsuffix .c, $(SRC_PRE))
 SRC_LL_PRE = $(addprefix ./src/linked_list/, $(SRC_LL))
@@ -48,9 +50,9 @@ HSUFF = $(addsuffix .h, $(HPRE))
 .PHONY = all
 all: $(NAME)
 
-$(NAME): main.c $(SRC_LL_SUFF) $(SRC_VLD_SUFF) $(SRC_UTLS_SUFF) $(SRC_PRS_SUFF) $(SRC_SUFF) $(HSUFF)
+$(NAME): main.c $(SRC_LL_SUFF) $(SRC_INT_SUFF) $(SRC_VLD_SUFF) $(SRC_UTLS_SUFF) $(SRC_PRS_SUFF) $(SRC_SUFF) $(HSUFF)
 		make -C $(LIBFT_PATH)
-		cc $(BUILD_FLAGS) $(SRC_LL_SUFF) $(SRC_VLD_SUFF) $(SRC_PRS_SUFF) \
+		cc $(BUILD_FLAGS) $(SRC_LL_SUFF) $(SRC_INT_SUFF) $(SRC_VLD_SUFF) $(SRC_PRS_SUFF) \
 		$(SRC_UTLS_SUFF) $(SRC_SUFF) \
 		main.c -Llibft -lft  -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 

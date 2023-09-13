@@ -3,10 +3,10 @@
 
 static	void	double_player_validation(t_info **info, int x)
 {
-	if ((*info)->begin->x == 0)
+	if ((*info)->player->x == -2)
 	{
-		(*info)->begin->x = x - 1;
-		(*info)->begin->y = (*info)->m_height;
+		(*info)->player->x = x;
+		(*info)->player->y = (*info)->y_index;
 	}
 	else
 		ft_put_error_exit("Too many players");
@@ -15,38 +15,35 @@ static	void	double_player_validation(t_info **info, int x)
 static void	parse_row(char *input, t_node **map, t_info **info)
 {
 	int			x;
-	int			start;
 
-	start = 0;
 	x = 0;
 	while (*input)
 	{
 		if (*input == '\n')
 		{
-			*map = ft_lstadd_back(map, x, (*info)->m_height, '\n');
+			*map = ft_lstadd_back(map, x, (*info)->y_index, '\n');
 			break ;
 		}
-		start = valid_char(*input);
-		*map = ft_lstadd_back(map, x++, (*info)->m_height, *input);
-		if (start == 2)
+		if (valid_char(*input) == 2)
 			double_player_validation(info, x);
+		*map = ft_lstadd_back(map, x++, (*info)->y_index, *input);
 		input++;
 	}
-	if (x > (*info)->m_width)
-		(*info)->m_width = x;
+	if (x > (*info)->x_index)
+		(*info)->x_index = x;
 }
 
 static void	init_height_width(t_info **info, int first_line_parsed)
 {
 	if (first_line_parsed)
 	{
-		(*info)->m_width = first_line_parsed;
-		(*info)->m_height = 1;
+		(*info)->y_index = first_line_parsed;
+		(*info)->x_index = 1;
 	}
 	else
 	{
-		(*info)->m_width = 0;
-		(*info)->m_height = 0;
+		(*info)->y_index = 0;
+		(*info)->x_index = 0;
 	}
 }
 
@@ -60,56 +57,56 @@ static void	parse_nodes(int fd, t_node **map, t_info **info, int first_line_pars
 		line = get_next_line(fd);
 		if (!line)
 			break ;
-		if ((*info)->m_height == 0 && line && line[0] == '\n')
+		if (!(*info)->y_index && line && line[0] == '\n')
 		{
 			free(line);
 			continue ;
 		}
-		(*info)->m_height++;
 		parse_row(line, map, info);
+		(*info)->y_index++;
 		free(line);
 	}
-
+	(*info)->m_height = (*info)->y_index;
+	(*info)->m_width = (*info)->x_index;
 }
-static void	print_map(t_info **info)
-{
-	int i;
-	int j;
 
-	i = 0;
-	while (i < (*info)->m_height)
-	{
-		j = 0;
-		while (j < (*info)->m_width)
-		{
-			printf("[%c]", (*info)->map[i][j].ch);
-			j++;
-		}
-		printf("\n");
-		i++;
-	}
-}
+//static void	print_map(t_info **info)
+//{
+//	int i;
+//	int j;
+
+//	i = 0;
+//	while (i < (*info)->m_height)
+//	{
+//		j = 0;
+//		while (j < (*info)->m_width)
+//		{
+//			printf("[%i,%i,%C] ", (*info)->map[i][j].y, (*info)->map[i][j].x, (*info)->map[i][j].ch);
+//			j++;
+//		}
+//		printf("\n");
+//		i++;
+//	}
+//}
 
 void	parse_map(int fd, t_info **info, char *line)
 {
-	int		width;
 	t_node	*map;
 
 	map = NULL;
 	if (line)
 	{
-		width = 0;
 		parse_row(line, &map, info);
-		parse_nodes(fd, &map, info, width);
+		parse_nodes(fd, &map, info, 1);
 	}
 	else
 		parse_nodes(fd, &map, info, 0);
-	if ((*info)->begin->x == 0)
-		ft_put_error_exit("missing player");
+	if (!(*info)->player->x)
+		ft_put_error_exit("Missing player");
 	parse_array(info, &map);
-	//printf("player start: %d %d\n", (*textures)->x_start, (*textures)->y_start);
 	printf("map height: %d, map width: %d\n", (*info)->m_height, (*info)->m_width);
-	print_map(info);
+	printf("player starting in [%d,%d]\n", (*info)->player->y, (*info)->player->x);
+	// print_map(info);
 	// TODO clean up map
 	validate_map(&map, info); // TODO: actual flood fill
 }

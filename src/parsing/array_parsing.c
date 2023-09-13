@@ -32,12 +32,12 @@ void	parse_array(t_info **info, t_node **map)
 		{
 			if (temp && temp->coords->ch != '\n')
 			{
-				(*info)->map[i][j++] = (t_coord){ temp->coords->x, temp->coords->y, 0, temp->coords->ch };
+				(*info)->map[i][j++] = (t_coord){ temp->coords->x, temp->coords->y, 0, temp->coords->ch, 0 };
 				temp = temp->next;
 			}
 			else
 			{
-				(*info)->map[i][j] = (t_coord){ j, i, 0, ' ' };
+				(*info)->map[i][j] = (t_coord){ j, i, 0, ' ', 0 };
 				j++;
 			}
 		}

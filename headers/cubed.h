@@ -36,6 +36,12 @@ typedef struct s_color
 	int	b;
 }	t_color;
 
+typedef struct s_player
+{
+	int x;
+	int y;
+}	t_player;
+
 typedef struct s_info
 {
 	int	no;
@@ -44,10 +50,12 @@ typedef struct s_info
 	int	we;
 	int	m_width;
 	int	m_height;
+	int	x_index;
+	int	y_index;
 	t_color	*ceiling;
 	t_color	*floor;
 	t_coord **map;
-    t_coord *begin;
+	t_player *player;
 }	t_info;
 
 typedef struct s_img
@@ -80,7 +88,7 @@ int		texture_file_existence(int fd, char *msg, char *file);
 void	validate_texture_count(int counter);
 int		valid_char(char ch);
 void	validate_map(t_node **map, t_info **texture);
-void    flood_fill(t_info **texture);
+void	flood_fill(t_info **texture, int y, int x);
 //UTILS
 
 //FILES
