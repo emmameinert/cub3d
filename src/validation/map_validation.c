@@ -31,11 +31,30 @@ static void	print_map(t_info **info)
 		i++;
 	}
 }
+
+static void	validate_inaccessables(t_info **info)
+{
+	t_coord	*temp;
+
+	(*info)->y_index = 0;
+	(*info)->x_index = 0;
+	while ((*info)->y_index < (*info)->m_height)
+	{
+		while ((*info)->x_index < (*info)->m_width)
+		{
+			temp = &(*info)->map[(*info)->y_index][(*info)->x_index++];
+			if (!temp->checked && temp->ch == '0')
+				ft_put_error_exit("Invalid map");
+		}
+		(*info)->x_index = 0;
+		(*info)->y_index++;
+	}
+}
+
 void	validate_map(t_node **map, t_info **info)
 {
 	if (!map || !*info)
 		ft_put_error_exit("No map found");
 	flood_fill(info, (*info)->player->y, (*info)->player->x);
-	//printf("\n\n");
-	//print_map(info);
+	validate_inaccessables(info);
 }
