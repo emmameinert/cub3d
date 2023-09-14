@@ -70,25 +70,6 @@ static void	parse_nodes(int fd, t_node **map, t_info **info, int first_line_pars
 	(*info)->m_width = (*info)->x_index;
 }
 
-//static void	print_map(t_info **info)
-//{
-//	int i;
-//	int j;
-
-//	i = 0;
-//	while (i < (*info)->m_height)
-//	{
-//		j = 0;
-//		while (j < (*info)->m_width)
-//		{
-//			printf("[%i,%i,%C] ", (*info)->map[i][j].y, (*info)->map[i][j].x, (*info)->map[i][j].ch);
-//			j++;
-//		}
-//		printf("\n");
-//		i++;
-//	}
-//}
-
 void	parse_map(int fd, t_info **info, char *line)
 {
 	t_node	*map;
@@ -104,9 +85,5 @@ void	parse_map(int fd, t_info **info, char *line)
 	if (!(*info)->player->x)
 		ft_put_error_exit("Missing player");
 	parse_array(info, &map);
-	printf("map height: %d, map width: %d\n", (*info)->m_height, (*info)->m_width);
-	printf("player starting in [%d,%d]\n", (*info)->player->y, (*info)->player->x);
-	// print_map(info);
-	// TODO clean up map
-	validate_map(&map, info); // TODO: actual flood fill
+	validate_map(&map, info);
 }
