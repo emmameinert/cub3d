@@ -10,10 +10,10 @@ static void	init_rgb(t_color **color)
 
 static void	init_textures(t_info **info)
 {
-	(*info)->no = -2;
-	(*info)->so = -2;
-	(*info)->ea = -2;
-	(*info)->we = -2;
+	(*info)->no = NULL;
+	(*info)->so = NULL;
+	(*info)->ea = NULL;
+	(*info)->we = NULL;
 }
 
 static void	init_colors(t_info **info)

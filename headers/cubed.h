@@ -44,10 +44,10 @@ typedef struct s_player
 
 typedef struct s_info
 {
-	int	no;
-	int	so;
-	int	ea;
-	int	we;
+	char	*no;
+	char	*so;
+	char	*ea;
+	char	*we;
 	int	m_width;
 	int	m_height;
 	int	x_index;
@@ -78,13 +78,13 @@ typedef struct s_mlx
 void		run_program(char **argv);
 
 //INPUT
-void		validate_parse_file(int fd);
+void		validate_parse_file(int fd, t_info **info);
 char		*parse_textures(int fd, t_info **texture);
 void		parse_map(int fd, t_info **textures, char *line);
 void		parse_array(t_info **texture, t_node **map);
 
 // VALIDATION
-int		texture_file_existence(int fd, char *msg, char *file);
+char    *texture_file_existence(char *msg, char *file);
 void	validate_texture_count(int counter);
 int		valid_char(char ch);
 void	validate_map(t_node **map, t_info **texture);
