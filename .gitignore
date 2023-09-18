@@ -4,3 +4,4 @@
 *.a
 libft/*.a
 cub3D
+mlx/*.o
