@@ -8,6 +8,7 @@ typedef struct s_coord
 	int		y;
 	int		z;
 	char	ch;
+	int		checked;
 }	t_coord;
 
 typedef struct s_node

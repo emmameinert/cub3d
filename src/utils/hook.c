@@ -1,5 +1,5 @@
 
-#include "../headers/cubed.h"
+#include "../../headers/cubed.h"
 
 int key_hook(int keycode, t_mlx **mlx)
 {

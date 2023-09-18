@@ -24,7 +24,7 @@ static void	validate_parse_range(char *input, t_color *color)
 	color->b = colour[2];
 }
 
-static int	parse_floor_ceiling(char **input, t_textures **info)
+static int	parse_floor_ceiling(char **input, t_info **info)
 {
 	if (input[0][0] == 'F')
 	{
@@ -43,7 +43,7 @@ static int	parse_floor_ceiling(char **input, t_textures **info)
 	return (1);
 }
 
-static int	texture_comparison(char **input, t_textures **info)
+static int	texture_comparison(char **input, t_info **info)
 {
     if (!ft_strncmp_all(input[0], "NO"))
         (*info)->no = texture_file_existence((*info)->no, "NO Texture duplicate", input[1]);
@@ -61,7 +61,7 @@ static int	texture_comparison(char **input, t_textures **info)
 /// @brief checks if we have information about the textures floor or cealing
 /// @param line line of the file we are reading
 /// @param info here we save our general information about the map
-static int	validate_texture(char *line, t_textures **info)
+static int	validate_texture(char *line, t_info **info)
 {
 	char	**input;
 
@@ -80,7 +80,7 @@ static int	validate_texture(char *line, t_textures **info)
 	return (1);
 }
 
-char *parse_textures(int fd, t_textures **texture)
+char *parse_textures(int fd, t_info **info)
 {
 	char		*line;
 	int			counter;
@@ -97,7 +97,7 @@ char *parse_textures(int fd, t_textures **texture)
 				return (line);
 		}
 		if (counter < 6)
-			counter += validate_texture(line, texture);
+			counter += validate_texture(line, info);
 		free(line);
 	}
 	validate_texture_count(counter);

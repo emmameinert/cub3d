@@ -3,7 +3,7 @@
 
 void	validate_parse_file(int fd)
 {
-	t_textures	*info;
+	t_info	*info;
 	char		*line;
 
 	line = NULL;

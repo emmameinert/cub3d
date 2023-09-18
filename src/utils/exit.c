@@ -1,5 +1,5 @@
 
-#include "../headers/cubed.h"
+#include "../../headers/cubed.h"
 
 void exit_success(t_mlx **mlx)
 {

@@ -1,7 +1,18 @@
 
 #include "../../headers/cubed.h"
 
-static void	parse_row(char *input, t_node **map, int y, int *longest_x)
+static	void	double_player_validation(t_info **info, int x)
+{
+	if ((*info)->player->x == -2)
+	{
+		(*info)->player->x = x;
+		(*info)->player->y = (*info)->y_index;
+	}
+	else
+		ft_put_error_exit("Too many players");
+}
+
+static void	parse_row(char *input, t_node **map, t_info **info)
 {
 	int			x;
 
@@ -10,72 +21,69 @@ static void	parse_row(char *input, t_node **map, int y, int *longest_x)
 	{
 		if (*input == '\n')
 		{
-			*map = ft_lstadd_back(map, x, y, '\n');
+			*map = ft_lstadd_back(map, x, (*info)->y_index, '\n');
 			break ;
 		}
-		if (valid_char(*input))
-			*map = ft_lstadd_back(map, x++, y, *input);
-		else
-			ft_put_error_exit("Invalid map character");
+		if (valid_char(*input) == 2)
+			double_player_validation(info, x);
+		*map = ft_lstadd_back(map, x++, (*info)->y_index, *input);
 		input++;
 	}
-	if (x > *longest_x)
-		*longest_x = x;
+	if (x > (*info)->x_index)
+		(*info)->x_index = x;
 }
 
-static void	init_height_width(int *height, int *width, int first_line_parsed)
+static void	init_height_width(t_info **info, int first_line_parsed)
 {
 	if (first_line_parsed)
 	{
-		(*width) = first_line_parsed;
-		(*height) = 1;
+		(*info)->y_index = first_line_parsed;
+		(*info)->x_index = 1;
 	}
 	else
 	{
-		(*width) = 0;
-		(*height) = 0;
+		(*info)->y_index = 0;
+		(*info)->x_index = 0;
 	}
 }
 
-static void	parse_nodes(int fd, t_node **map, t_textures **textures, int first_line_parsed)
+static void	parse_nodes(int fd, t_node **map, t_info **info, int first_line_parsed)
 {
 	char	*line;
-	int		height;
-	int		width;
 
-	init_height_width(&height, &width, first_line_parsed);
+	init_height_width(info, first_line_parsed);
 	while (fd > 1)
 	{
 		line = get_next_line(fd);
 		if (!line)
 			break ;
-		if (height == 0 && line && line[0] == '\n')
+		if (!(*info)->y_index && line && line[0] == '\n')
 		{
 			free(line);
 			continue ;
 		}
-		parse_row(line, map, height++, &width);
+		parse_row(line, map, info);
+		(*info)->y_index++;
 		free(line);
 	}
-	(*textures)->m_height = height;
-	(*textures)->m_width = width;
+	(*info)->m_height = (*info)->y_index;
+	(*info)->m_width = (*info)->x_index;
 }
 
-void	parse_map(int fd, t_textures **textures, char *line)
+void	parse_map(int fd, t_info **info, char *line)
 {
-	int		widht;
 	t_node	*map;
 
 	map = NULL;
 	if (line)
 	{
-		widht = 0;
-		parse_row(line, &map, 0, &widht);
-		parse_nodes(fd, &map, textures, widht);
+		parse_row(line, &map, info);
+		parse_nodes(fd, &map, info, 1);
 	}
 	else
-		parse_nodes(fd, &map, textures, 0);
-	parse_array(textures, &map);
-	// TODO clean up map
-	validate_map(&map); // TODO: actual flood fill
+		parse_nodes(fd, &map, info, 0);
+	if (!(*info)->player->x)
+		ft_put_error_exit("Missing player");
+	parse_array(info, &map);
+	validate_map(&map, info);
 }

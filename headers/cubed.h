@@ -36,7 +36,13 @@ typedef struct s_color
 	int	b;
 }	t_color;
 
-typedef struct s_textures
+typedef struct s_player
+{
+	int x;
+	int y;
+}	t_player;
+
+typedef struct s_info
 {
 	int	no;
 	int	so;
@@ -44,10 +50,13 @@ typedef struct s_textures
 	int	we;
 	int	m_width;
 	int	m_height;
+	int	x_index;
+	int	y_index;
 	t_color	*ceiling;
 	t_color	*floor;
 	t_coord **map;
-}	t_textures;
+	t_player *player;
+}	t_info;
 
 typedef struct s_img
 {
@@ -70,16 +79,16 @@ void		run_program(char **argv);
 
 //INPUT
 void		validate_parse_file(int fd);
-char		*parse_textures(int fd, t_textures **texture);
-void		parse_map(int fd, t_textures **textures, char *line);
-void		parse_array(t_textures **texture, t_node **map);
+char		*parse_textures(int fd, t_info **texture);
+void		parse_map(int fd, t_info **textures, char *line);
+void		parse_array(t_info **texture, t_node **map);
 
 // VALIDATION
 int		texture_file_existence(int fd, char *msg, char *file);
 void	validate_texture_count(int counter);
 int		valid_char(char ch);
-void	validate_map(t_node **map);
-
+void	validate_map(t_node **map, t_info **texture);
+void	flood_fill(t_info **texture, int y, int x);
 //UTILS
 
 //FILES
@@ -93,7 +102,7 @@ int		on_destroy(t_mlx **mlx);
 int		key_hook(int keycode, t_mlx **mlx);
 
 //MEMORY
-t_textures *init_info(void);
+t_info *init_info(void);
 
 // EXIT
 void	exit_success(t_mlx **mlx);
