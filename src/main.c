@@ -1,5 +1,5 @@
 
-#include "./headers/cubed.h"
+#include "../headers/cubed.h"
 
 int	main(int argc, char **argv)
 {

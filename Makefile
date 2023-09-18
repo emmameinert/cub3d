@@ -6,7 +6,8 @@ LIBFT_PATH = ./libft
 SRC_INT =	init_mlx \
 			init_info
 
-SRC =	cub3d
+SRC =	cub3d \
+		main
 
 SRC_PRS =	file_parsing \
 			texture_parsing \
@@ -50,11 +51,11 @@ HSUFF = $(addsuffix .h, $(HPRE))
 .PHONY = all
 all: $(NAME)
 
-$(NAME): main.c $(SRC_LL_SUFF) $(SRC_INT_SUFF) $(SRC_VLD_SUFF) $(SRC_UTLS_SUFF) $(SRC_PRS_SUFF) $(SRC_SUFF) $(HSUFF)
+$(NAME): $(SRC_LL_SUFF) $(SRC_INT_SUFF) $(SRC_VLD_SUFF) $(SRC_UTLS_SUFF) $(SRC_PRS_SUFF) $(SRC_SUFF) $(HSUFF)
 		make -C $(LIBFT_PATH)
 		cc $(BUILD_FLAGS) $(SRC_LL_SUFF) $(SRC_INT_SUFF) $(SRC_VLD_SUFF) $(SRC_PRS_SUFF) \
 		$(SRC_UTLS_SUFF) $(SRC_SUFF) \
-		main.c -Llibft -lft  -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+		-Llibft -lft  -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
 .PHONY: clean
 clean:
