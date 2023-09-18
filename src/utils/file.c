@@ -17,6 +17,14 @@ void	close_file(int fd)
 		ft_put_error_exit("Failed to close the file");
 }
 
+void	close_files(t_info *info)
+{
+	close_file(info->no->fd);
+	close_file(info->so->fd);
+	close_file(info->ea->fd);
+	close_file(info->we->fd);
+}
+
 void	suffix_cmp(char *file, char *suffix)
 {
 	int	len;

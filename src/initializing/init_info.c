@@ -8,12 +8,23 @@ static void	init_rgb(t_color **color)
 	(*color)->b = -2;
 }
 
+static void init_texture(t_texture **texture, int type)
+{
+	(*texture)->fd = -2;
+	(*texture)->img = ft_calloc(1, sizeof(t_img));
+	(*texture)->type = type;
+}
+
 static void	init_textures(t_info **info)
 {
-	(*info)->no = NULL;
-	(*info)->so = NULL;
-	(*info)->ea = NULL;
-	(*info)->we = NULL;
+	(*info)->no = ft_calloc(1, sizeof(*(*info)->no));
+	init_texture(&(*info)->no, NO);
+	(*info)->so = ft_calloc(1, sizeof(*(*info)->so));
+	init_texture(&(*info)->so, SO);
+	(*info)->ea = ft_calloc(1, sizeof(*(*info)->ea));
+	init_texture(&(*info)->ea, EA);
+	(*info)->we = ft_calloc(1, sizeof(*(*info)->we));
+	init_texture(&(*info)->we, WE);
 }
 
 static void	init_colors(t_info **info)
@@ -43,5 +54,7 @@ t_info	*init_info(void)
 	info->m_height = 0;
 	info->y_index = 0;
 	info->x_index = 0;
+	info->mlx = init_mlx_wind();
+	// info->mlx->img = init_img(&info->mlx);
 	return (info);
 }

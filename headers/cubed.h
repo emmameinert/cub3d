@@ -29,6 +29,14 @@ enum e_keycode
 	UP = 13,
 };
 
+enum e_type
+{
+	NO = 1,
+	SO = 2,
+	EA = 3,
+	WE = 4
+};
+
 typedef struct s_color
 {
 	int	r;
@@ -38,50 +46,63 @@ typedef struct s_color
 
 typedef struct s_player
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 }	t_player;
-
-typedef struct s_info
-{
-	char	*no;
-	char	*so;
-	char	*ea;
-	char	*we;
-	int	m_width;
-	int	m_height;
-	int	x_index;
-	int	y_index;
-	t_color	*ceiling;
-	t_color	*floor;
-	t_coord **map;
-	t_player *player;
-}	t_info;
 
 typedef struct s_img
 {
-	void *img;
-	char *addr;
-	int bits_per_pixel;
-	int line_length;
-	int endian;
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
 }	t_img;
 
 typedef struct s_mlx
 {
-	void *mlx;
-	void *window;
-	t_img *img;
+	void	*mlx;
+	void	*window;
+	t_img	*img;
 }	t_mlx;
+
+typedef struct s_texture
+{
+	t_img	*img;
+	char	*filename;
+	int		type;
+	int		fd;
+	int		height;
+	int		width;
+	int		**matrix;
+}	t_texture;
+
+typedef struct s_info
+{
+	t_texture	*no;
+	t_texture	*so;
+	t_texture	*ea;
+	t_texture	*we;
+	int			m_width;
+	int			m_height;
+	int			x_index;
+	int			y_index;
+	t_color		*ceiling;
+	t_color		*floor;
+	t_coord		**map;
+	t_player	*player;
+	t_mlx		*mlx;
+}	t_info;
 
 //START
 void		run_program(char **argv);
 
 //INPUT
-void		validate_parse_file(int fd, t_info **info);
+void		validate_parse_input(int fd, t_info **info);
 char		*parse_textures(int fd, t_info **texture);
 void		parse_map(int fd, t_info **textures, char *line);
 void		parse_array(t_info **texture, t_node **map);
+void		parse_matrices(t_info **info);
 
 // VALIDATION
 char    *texture_file_existence(char *msg, char *file);
@@ -89,6 +110,7 @@ void	validate_texture_count(int counter);
 int		valid_char(char ch);
 void	validate_map(t_node **map, t_info **texture);
 void	flood_fill(t_info **texture, int y, int x);
+
 //UTILS
 
 //FILES

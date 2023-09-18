@@ -1,7 +1,7 @@
 
 #include "../../headers/cubed.h"
 
-void	validate_parse_file(int fd, t_info **info)
+void	validate_parse_input(int fd, t_info **info)
 {
 	char		*line;
 

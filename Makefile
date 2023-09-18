@@ -10,6 +10,7 @@ SRC =	cub3d \
 		main
 
 SRC_PRS =	file_parsing \
+			matrix_parsing \
 			texture_parsing \
 			array_parsing \
 			map_parsing

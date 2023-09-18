@@ -3,10 +3,9 @@
 
 char	*texture_file_existence(char *msg, char *file)
 {
-	// suffix_cmp(file, ".xpm");
-	if (open_file(file) < 0)
-		return (NULL);
-	return(file);
+	suffix_cmp(file, ".xpm");
+
+	return (ft_strtrim(file, "\n"));
 }
 
 void	validate_texture_count(int counter)
