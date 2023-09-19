@@ -118,7 +118,9 @@ int		valid_char(char ch);
 void	validate_map(t_node **map, t_info **texture);
 void	flood_fill(t_info **texture, int y, int x);
 
-//UTILS
+//DRAW
+void	draw_minimap(t_info **info);
+void	draw_background(t_info **info);
 
 //FILES
 int			open_file(char *file);

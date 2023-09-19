@@ -32,6 +32,7 @@ SRC_VLD =	map_validation \
 
 SRC_RNDR =	mlx_handler \
 			put_pixel \
+			draw \
 			render
 
 HDRS =	cubed \
