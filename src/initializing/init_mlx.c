@@ -15,23 +15,19 @@ static t_mlx *init_mlx_wind(void)
 	return (mlx);
 }
 
-static t_img *init_img(t_mlx **mlx)
+static t_img *init_img(t_info **info)
 {
 	t_img	*img;
 
 	img = (t_img *)ft_calloc(1, sizeof(*img));
-	img->img = mlx_new_image((*mlx)->mlx, WIN_WIDTH, WIN_HEIGHT);
+	img->img = mlx_new_image((*info)->mlx, WIN_WIDTH, WIN_HEIGHT);
 	if (!img->img)
 		ft_put_error_exit("Mlx img could not be initialized!");
-	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
-			&img->line_length, &img->endian);
-	if (!img->addr)
-		ft_put_error_exit("Mlx img address could not be initialized!");
 	return (img);
 }
 
 void	init_mlx(t_info **info)
 {
 	(*info)->mlx = init_mlx_wind();
-	//init_img((*info)->mlx);
+	(*info)->mlx->img = init_img(info);
 }

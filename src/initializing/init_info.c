@@ -40,6 +40,9 @@ static void	init_player(t_info **info)
 	(*info)->player = ft_calloc(1, sizeof(t_player));
 	(*info)->player->x = -2;
 	(*info)->player->y = -2;
+	(*info)->player->angle = 60;
+	(*info)->player->dir_x = 0;
+	(*info)->player->dir_y = 0;
 }
 
 t_info	*init_info(void)

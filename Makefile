@@ -30,7 +30,9 @@ SRC_VLD =	map_validation \
 			texture_validation \
 			flood_fill
 
-SRC_RNDR = mlx_handler
+SRC_RNDR =	mlx_handler \
+			put_pixel \
+			render
 
 HDRS =	cubed \
 		lst
