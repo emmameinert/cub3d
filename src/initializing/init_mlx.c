@@ -1,7 +1,7 @@
 
 #include "../../headers/cubed.h"
 
-t_mlx *init_mlx_wind(void)
+static t_mlx *init_mlx_wind(void)
 {
 	t_mlx	*mlx;
 
@@ -15,7 +15,7 @@ t_mlx *init_mlx_wind(void)
 	return (mlx);
 }
 
-t_img *init_img(t_mlx **mlx)
+static t_img *init_img(t_mlx **mlx)
 {
 	t_img	*img;
 
@@ -28,4 +28,10 @@ t_img *init_img(t_mlx **mlx)
 	if (!img->addr)
 		ft_put_error_exit("Mlx img address could not be initialized!");
 	return (img);
+}
+
+void	init_mlx(t_info **info)
+{
+	(*info)->mlx = init_mlx_wind();
+	//init_img((*info)->mlx);
 }

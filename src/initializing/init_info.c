@@ -54,7 +54,6 @@ t_info	*init_info(void)
 	info->m_height = 0;
 	info->y_index = 0;
 	info->x_index = 0;
-	info->mlx = init_mlx_wind();
-	// info->mlx->img = init_img(&info->mlx);
+	init_mlx(&info);
 	return (info);
 }

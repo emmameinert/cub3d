@@ -12,7 +12,5 @@ void run_program(char **argv)
 	validate_parse_input(fd, &info);
 	info->no->img->img = mlx_xpm_file_to_image(info->mlx->mlx, info->no->filename, &info->no->width, &info->no->height);
 	mlx_put_image_to_window(info->mlx->mlx, info->mlx->window, info->no->img->img, 500, 500);
-	mlx_hook(info->mlx->window, ON_KEYDOWN, 1, key_hook, &info->mlx);
-	mlx_hook(info->mlx->window, ON_DESTROY, 1, on_destroy, &info->mlx);
-	mlx_loop(info->mlx->mlx);
+	hook_loop(&info);
 }

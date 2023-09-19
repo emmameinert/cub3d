@@ -118,10 +118,11 @@ int			open_file(char *file);
 void		close_file(int fd);
 void		suffix_cmp(char *file, char *suffix);
 
-t_mlx	*init_mlx_wind(void);
-t_img	*init_img(t_mlx **mlx);
+// MLX
+void	init_mlx(t_info **info);
 int		on_destroy(t_mlx **mlx);
 int		key_hook(int keycode, t_mlx **mlx);
+void	hook_loop(t_info **info);
 
 //MEMORY
 t_info *init_info(void);

@@ -30,6 +30,8 @@ SRC_VLD =	map_validation \
 			texture_validation \
 			flood_fill
 
+SRC_RNDR = mlx_handler
+
 HDRS =	cubed \
 		lst
 
@@ -45,6 +47,8 @@ SRC_UTLS_PRE = $(addprefix ./src/utils/, $(SRC_UTLS))
 SRC_UTLS_SUFF = $(addsuffix .c, $(SRC_UTLS_PRE))
 SRC_VLD_PRE = $(addprefix ./src/validation/, $(SRC_VLD))
 SRC_VLD_SUFF = $(addsuffix .c, $(SRC_VLD_PRE))
+SRC_RNDR_PRE = $(addprefix ./src/rendering/, $(SRC_RNDR))
+SRC_RNDR_SUFF = $(addsuffix .c, $(SRC_RNDR_PRE))
 
 HPRE = $(addprefix ./headers/, $(HDRS))
 HSUFF = $(addsuffix .h, $(HPRE))
@@ -52,9 +56,9 @@ HSUFF = $(addsuffix .h, $(HPRE))
 .PHONY = all
 all: $(NAME)
 
-$(NAME): $(SRC_LL_SUFF) $(SRC_INT_SUFF) $(SRC_VLD_SUFF) $(SRC_UTLS_SUFF) $(SRC_PRS_SUFF) $(SRC_SUFF) $(HSUFF)
+$(NAME): $(SRC_LL_SUFF) $(SRC_INT_SUFF) $(SRC_VLD_SUFF) $(SRC_RNDR_SUFF) $(SRC_UTLS_SUFF) $(SRC_PRS_SUFF) $(SRC_SUFF) $(HSUFF)
 		make -C $(LIBFT_PATH)
-		cc $(BUILD_FLAGS) $(SRC_LL_SUFF) $(SRC_INT_SUFF) $(SRC_VLD_SUFF) $(SRC_PRS_SUFF) \
+		cc $(BUILD_FLAGS) $(SRC_LL_SUFF) $(SRC_INT_SUFF) $(SRC_VLD_SUFF) $(SRC_RNDR_SUFF) $(SRC_PRS_SUFF) \
 		$(SRC_UTLS_SUFF) $(SRC_SUFF) \
 		-Llibft -lft  -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
