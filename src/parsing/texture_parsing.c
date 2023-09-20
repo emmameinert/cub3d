@@ -46,13 +46,13 @@ static int	parse_floor_ceiling(char **input, t_info **info)
 static int	texture_comparison(char **input, t_info **info)
 {
     if (!ft_strncmp_all(input[0], "NO"))
-        (*info)->no->filename = texture_file_existence("NO Texture duplicate", input[1]);
+        (*info)->no->filename = texture_file_existence((*info)->no->filename, "NO Texture duplicate", input[1]);
     else if (!ft_strncmp_all(input[0], "SO"))
-        (*info)->so->filename = texture_file_existence("SO Texture duplicate", input[1]);
+        (*info)->so->filename = texture_file_existence((*info)->so->filename, "SO Texture duplicate", input[1]);
     else if (!ft_strncmp_all(input[0], "EA"))
-        (*info)->ea->filename = texture_file_existence("EA Texture duplicate", input[1]);
+        (*info)->ea->filename = texture_file_existence((*info)->ea->filename, "EA Texture duplicate", input[1]);
     else if (!ft_strncmp_all(input[0], "WE"))
-        (*info)->we->filename = texture_file_existence("WE Texture duplicate", input[1]);
+        (*info)->we->filename = texture_file_existence((*info)->we->filename, "WE Texture duplicate", input[1]);
     else
         return (0);
     return (1);

@@ -1,10 +1,11 @@
 
 #include "../../headers/cubed.h"
 
-char	*texture_file_existence(char *msg, char *file)
+char	*texture_file_existence(char *texture_file, char *msg, char *file)
 {
 	suffix_cmp(file, ".xpm");
-
+	if (texture_file)
+		ft_put_error_exit(msg);
 	return (ft_strtrim(file, "\n"));
 }
 

@@ -43,16 +43,16 @@ void	draw_minimap(t_info **info)
 	}
 }
 
-void	draw_background(t_info **info)
+void	draw_loop(t_info **info, int height, int width, int color)
 {
 	int	x;
 	int	y;
 
 	y = -1;
-	while (++y < WIN_HEIGHT)
+	while (++y < height)
 	{
 		x = -1;
-		while (++x < WIN_WIDTH)
-			put_pixel(info, x, y, ROYAL_BLUE);
+		while (++x < width)
+			put_pixel(info, x, y, color);
 	}
 }

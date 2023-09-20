@@ -2,6 +2,7 @@
 NAME = cub3D
 
 LIBFT_PATH = ./libft
+MLX_PATH = ./mlx
 
 SRC_INT =	init_mlx \
 			init_info
@@ -38,6 +39,8 @@ SRC_RNDR =	mlx_handler \
 HDRS =	cubed \
 		lst
 
+BUILD_FLAGS = -Wall -Wextra #-Werror
+
 SRC_INT_PRE = $(addprefix ./src/initializing/, $(SRC_INT))
 SRC_INT_SUFF = $(addsuffix .c, $(SRC_INT_PRE))
 SRC_PRE = $(addprefix ./src/, $(SRC))
@@ -61,13 +64,15 @@ all: $(NAME)
 
 $(NAME): $(SRC_LL_SUFF) $(SRC_INT_SUFF) $(SRC_VLD_SUFF) $(SRC_RNDR_SUFF) $(SRC_UTLS_SUFF) $(SRC_PRS_SUFF) $(SRC_SUFF) $(HSUFF)
 		make -C $(LIBFT_PATH)
+		make -C $(MLX_PATH)
 		cc $(BUILD_FLAGS) $(SRC_LL_SUFF) $(SRC_INT_SUFF) $(SRC_VLD_SUFF) $(SRC_RNDR_SUFF) $(SRC_PRS_SUFF) \
 		$(SRC_UTLS_SUFF) $(SRC_SUFF) \
-		-Llibft -lft  -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+		-Llibft -lft -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
 .PHONY: clean
 clean:
 	make clean -C $(LIBFT_PATH)
+	make clean -C $(MLX_PATH)
 	rm -f $(SRCSO)
 
 .PHONY: fclean
@@ -77,4 +82,3 @@ fclean: clean
 
 .PHONY: re
 re: fclean all
-
