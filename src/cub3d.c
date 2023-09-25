@@ -1,7 +1,7 @@
 
 #include "../headers/cubed.h"
 
-void run_program(char **argv)
+void	run_program(char **argv)
 {
 	int fd;
 	t_info *info;

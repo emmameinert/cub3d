@@ -10,10 +10,13 @@ SRC_INT =	init_mlx \
 SRC =	cub3d \
 		main
 
+SRC_MATH =	radians
+
 SRC_PRS =	file_parsing \
 			matrix_parsing \
 			texture_parsing \
 			array_parsing \
+			player_parsing \
 			map_parsing
 
 SRC_LL =	ft_lstsize \
@@ -33,16 +36,21 @@ SRC_VLD =	map_validation \
 
 SRC_RNDR =	mlx_handler \
 			put_pixel \
-			draw \
+			draw_minimap \
+			draw_background \
+			draw_line \
+			draw_player \
 			render
 
 HDRS =	cubed \
 		lst
 
-BUILD_FLAGS = -Wall -Wextra #-Werror
+BUILD_FLAGS = -Wall -Wextra -Werror
 
 SRC_INT_PRE = $(addprefix ./src/initializing/, $(SRC_INT))
 SRC_INT_SUFF = $(addsuffix .c, $(SRC_INT_PRE))
+SRC_MATH_PRE = $(addprefix ./src/math/, $(SRC_MATH))
+SRC_MATH_SUFF = $(addsuffix .c, $(SRC_MATH_PRE))
 SRC_PRE = $(addprefix ./src/, $(SRC))
 SRC_SUFF = $(addsuffix .c, $(SRC_PRE))
 SRC_LL_PRE = $(addprefix ./src/linked_list/, $(SRC_LL))
@@ -62,10 +70,10 @@ HSUFF = $(addsuffix .h, $(HPRE))
 .PHONY = all
 all: $(NAME)
 
-$(NAME): $(SRC_LL_SUFF) $(SRC_INT_SUFF) $(SRC_VLD_SUFF) $(SRC_RNDR_SUFF) $(SRC_UTLS_SUFF) $(SRC_PRS_SUFF) $(SRC_SUFF) $(HSUFF)
+$(NAME): $(SRC_LL_SUFF) $(SRC_MATH_SUFF) $(SRC_INT_SUFF) $(SRC_VLD_SUFF) $(SRC_RNDR_SUFF) $(SRC_UTLS_SUFF) $(SRC_PRS_SUFF) $(SRC_SUFF) $(HSUFF)
 		make -C $(LIBFT_PATH)
 		make -C $(MLX_PATH)
-		cc $(BUILD_FLAGS) $(SRC_LL_SUFF) $(SRC_INT_SUFF) $(SRC_VLD_SUFF) $(SRC_RNDR_SUFF) $(SRC_PRS_SUFF) \
+		cc $(BUILD_FLAGS) $(SRC_LL_SUFF) $(SRC_MATH_SUFF) $(SRC_INT_SUFF) $(SRC_VLD_SUFF) $(SRC_RNDR_SUFF) $(SRC_PRS_SUFF) \
 		$(SRC_UTLS_SUFF) $(SRC_SUFF) \
 		-Llibft -lft -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 

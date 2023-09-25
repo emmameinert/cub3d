@@ -20,6 +20,14 @@
 #  define WIN_HEIGHT 1080
 # endif
 
+# ifndef MINI_SIZE
+#  define MINI_SIZE 16
+# endif
+
+# ifndef PLR_SIZE
+#  define PLR_SIZE MINI_SIZE / 2
+# endif
+
 enum e_keycode
 {
 	ON_KEYDOWN = 2,
@@ -39,6 +47,18 @@ enum e_type
 	WE = 4
 };
 
+typedef struct s_bres
+{
+	int	slope_x;
+	int	slope_y;
+	int	dir_x;
+	int	dir_y;
+	int	error;
+	int	errort2;
+	int	x;
+	int	y;
+}	t_bres;
+
 typedef struct s_color
 {
 	int	r;
@@ -50,7 +70,8 @@ typedef struct s_player
 {
 	double	x;
 	double	y;
-	int		angle;
+	char	dir;
+	double	angle;
 	double	dir_y;
 	double	dir_x;
 }	t_player;
@@ -103,7 +124,7 @@ typedef struct s_info
 void		run_program(char **argv);
 
 // MATH
-double		ft_dtorad(int angle);
+double		ft_dtorad(double angle);
 
 //INPUT
 void		validate_parse_input(int fd, t_info **info);
@@ -111,6 +132,7 @@ char		*parse_textures(int fd, t_info **texture);
 void		parse_map(int fd, t_info **textures, char *line);
 void		parse_array(t_info **texture, t_node **map);
 void		parse_matrices(t_info **info);
+void		parse_player(t_player **player);
 
 // VALIDATION
 char	*texture_file_existence(char *texture_file, char *msg, char *file);
@@ -121,7 +143,9 @@ void	flood_fill(t_info **texture, int y, int x);
 
 //DRAW
 void	draw_minimap(t_info **info);
-void	draw_loop(t_info **info, int height, int width, int color);
+void	draw_background(t_info **info, int height, int width);
+void	draw_line(t_info **info, t_coord *from, t_coord *to, int color);
+void	draw_player(t_info **info);
 
 //FILES
 int			open_file(char *file);
@@ -142,42 +166,5 @@ t_info *init_info(void);
 // EXIT
 void	exit_success(t_mlx **mlx);
 void	exit_failure(void);
-
-# define BLACK				0x000000
-# define WHITE				0xffffff
-# define GREEN				0x009933
-# define RED				0xff0000
-# define TURQUOISE			0x00cccc
-# define YELLOW				0xffff00
-# define PURPLE				0x800080
-# define PINK				0xff33cc
-# define TOMATO				0xff6347
-# define LEMON_CHIFFON		0xfffacd
-# define ROYAL_BLUE			0x4169e1
-# define COLOR_BLACK		0x000000
-# define COLOR_WHITE		0xFFFFFF
-# define COLOR_RED			0xFF0000
-# define COLOR_GREEN		0x00FF00
-# define COLOR_BLUE			0x0000FF
-# define COLOR_YELLOW		0xFFFF00
-# define COLOR_CYAN			0x00FFFF
-# define COLOR_MAGENTA		0xFF00FF
-# define COLOR_GRAY			0x808080
-# define COLOR_LIGHTGRAY	0xC0C0C0
-# define COLOR_DARKGRAY		0x404040
-# define COLOR_BROWN		0x964B00
-# define COLOR_ORANGE		0xFFA500
-# define COLOR_PINK			0xFFC0CB
-# define COLOR_PURPLE		0x800080
-# define COLOR_LIME			0x00FF00
-# define COLOR_NAVY			0x000080
-# define COLOR_TEAL			0x008080
-# define COLOR_OLIVE		0x808000
-# define COLOR_MAROON		0x800000
-# define COLOR_AQUA			0x00FFFF
-# define COLOR_SILVER		0xC0C0C0
-# define COLOR_LIGHTBLUE	0xADD8E6
-# define COLOR_GOLD			0xFFD700
-# define COLOR_VIOLET		0xEE82EE
 
 #endif

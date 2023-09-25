@@ -38,21 +38,7 @@ void	draw_minimap(t_info **info)
 				color = ROYAL_BLUE;
 			else
 				color = WHITE;
-			create_grid(info, x * 16, y * 16, color);
+			create_grid(info, x * MINI_SIZE, y * MINI_SIZE, color);
 		}
-	}
-}
-
-void	draw_loop(t_info **info, int height, int width, int color)
-{
-	int	x;
-	int	y;
-
-	y = -1;
-	while (++y < height)
-	{
-		x = -1;
-		while (++x < width)
-			put_pixel(info, x, y, color);
 	}
 }

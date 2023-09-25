@@ -25,7 +25,10 @@ static void	parse_row(char *input, t_node **map, t_info **info)
 			break ;
 		}
 		if (valid_char(*input) == 2)
+		{
 			double_player_validation(info, x);
+			(*info)->player->dir = *input;
+		}
 		*map = ft_lstadd_back(map, x++, (*info)->y_index, *input);
 		input++;
 	}
