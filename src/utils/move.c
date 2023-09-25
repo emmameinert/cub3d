@@ -15,7 +15,6 @@ void	rot_player(int sign, t_info **info)
 
 void	move_front_back(int sign_x, int sign_y, t_info **info)
 {
-	// TODO: COLLISIONS
 	(*info)->player->x += sign_x * (*info)->player->dir_x * PLR_STEP;
 	(*info)->player->y += sign_y * (*info)->player->dir_y * PLR_STEP;
 }
