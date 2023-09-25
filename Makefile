@@ -10,7 +10,7 @@ SRC_INT =	init_mlx \
 SRC =	cub3d \
 		main
 
-SRC_MATH =	radians
+SRC_MATH =	angle
 
 SRC_PRS =	file_parsing \
 			matrix_parsing \
@@ -28,6 +28,7 @@ SRC_LL =	ft_lstsize \
 
 SRC_UTLS =	file \
 			hook \
+			move \
 			exit
 
 SRC_VLD =	map_validation \
@@ -45,7 +46,7 @@ SRC_RNDR =	mlx_handler \
 HDRS =	cubed \
 		lst
 
-BUILD_FLAGS = -Wall -Wextra -Werror
+BUILD_FLAGS = -Wall -Wextra -Werror -fsanitize=address,undefined
 
 SRC_INT_PRE = $(addprefix ./src/initializing/, $(SRC_INT))
 SRC_INT_SUFF = $(addsuffix .c, $(SRC_INT_PRE))

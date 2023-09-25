@@ -28,6 +28,14 @@
 #  define PLR_SIZE MINI_SIZE / 2
 # endif
 
+# ifndef PLR_STEP
+#  define PLR_STEP 5
+# endif
+
+# ifndef PLR_ROT_STEP
+#  define PLR_ROT_STEP 10
+# endif
+
 enum e_keycode
 {
 	ON_KEYDOWN = 2,
@@ -37,6 +45,8 @@ enum e_keycode
 	DOWN = 1,
 	RIGHT = 2,
 	UP = 13,
+	ROT_LEFT = 123,
+	ROT_RIGHT = 124
 };
 
 enum e_type
@@ -74,6 +84,8 @@ typedef struct s_player
 	double	angle;
 	double	dir_y;
 	double	dir_x;
+	double	move_speed;
+	double	rot_speed;
 }	t_player;
 
 typedef struct s_img
@@ -120,11 +132,12 @@ typedef struct s_info
 	t_mlx		*mlx;
 }	t_info;
 
-//START
+// START
 void		run_program(char **argv);
 
 // MATH
 double		ft_dtorad(double angle);
+double		ft_angle(double angle);
 
 //INPUT
 void		validate_parse_input(int fd, t_info **info);
@@ -141,30 +154,37 @@ int		valid_char(char ch);
 void	validate_map(t_node **map, t_info **texture);
 void	flood_fill(t_info **texture, int y, int x);
 
-//DRAW
+// DRAW
 void	draw_minimap(t_info **info);
 void	draw_background(t_info **info, int height, int width);
 void	draw_line(t_info **info, t_coord *from, t_coord *to, int color);
 void	draw_player(t_info **info);
 
-//FILES
+// FILES
 int			open_file(char *file);
 void		close_file(int fd);
 void		suffix_cmp(char *file, char *suffix);
 
 // MLX
 void	init_mlx(t_info **info);
-int		on_destroy(t_mlx **mlx);
-int		key_hook(int keycode, t_mlx **mlx);
+int		on_destroy(t_info **info);
+int		key_hook(int keycode, t_info **info);
 void	hook_loop(t_info **info);
 void	put_pixel(t_info **info, int x, int y, int color);
 void	render(t_info **info);
 
-//MEMORY
+// INIT
 t_info *init_info(void);
 
+// MOVE
+void	calc_player_angle(t_info **info);
+void	move_front_back(int sign_x, int sign_y, t_info **info);
+void	move_side(int sign_x, int sign_y, t_info **info);
+void	rot_player(int sign, t_info **info);
+
 // EXIT
-void	exit_success(t_mlx **mlx);
+int		on_destroy(t_info **info);
 void	exit_failure(void);
+void	exit_success(t_mlx **mlx);
 
 #endif

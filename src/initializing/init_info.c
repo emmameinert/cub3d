@@ -43,6 +43,8 @@ static void	init_player(t_info **info)
 	(*info)->player->angle = 60;
 	(*info)->player->dir_x = 0;
 	(*info)->player->dir_y = 0;
+	(*info)->player->move_speed = 0.5;
+	(*info)->player->rot_speed = 5.0;
 }
 
 t_info	*init_info(void)
