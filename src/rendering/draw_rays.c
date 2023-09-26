@@ -14,21 +14,22 @@ static void	check_horizontal(t_info **info)
 	i = 0;
 	depth_of_field = 0;
 	ray.angle = ft_angle((*info)->player->angle + (*info)->player->fov_angle / 2);
+	ray.sin = sin(ft_dtorad(ray.angle));
 	while (i < 1)
 	{
-		angleTan = -1 / tan(ft_dtorad(ray.angle));
-		if (ray.angle < M_PI) // looking up
+		angleTan = 1 / tan(ft_dtorad(ray.angle));
+		if (ray.sin > 0.001) // looking up
 		{
-			ray.y = ((*info)->player->y / MINI_SIZE * MINI_SIZE) - 0.0001;
+			ray.y = ((*info)->player->y / GRID_SIZE * GRID_SIZE) - 0.0001;
 			ray.x = ((*info)->player->x - ray.y) * angleTan + (*info)->player->x;
-			ray.y_offset = -MINI_SIZE;
+			ray.y_offset = -GRID_SIZE;
 			ray.x_offset = -ray.y_offset * angleTan;
 		}
-		if (ray.angle > M_PI) // looking down
+		if (ray.sin < -0.001) // looking down
 		{
-			ray.y = ((*info)->player->y / MINI_SIZE * MINI_SIZE) + MINI_SIZE;
+			ray.y = ((*info)->player->y / GRID_SIZE * GRID_SIZE) + GRID_SIZE;
 			ray.x = ((*info)->player->x - ray.y) * angleTan + (*info)->player->x;
-			ray.y_offset = MINI_SIZE;
+			ray.y_offset = GRID_SIZE;
 			ray.x_offset = -ray.y_offset * angleTan;
 		}
 		if (ray.angle == 0 || ray.angle == M_PI) // looking straight left or right
@@ -39,8 +40,8 @@ static void	check_horizontal(t_info **info)
 		}
 		while (depth_of_field < (*info)->m_height) // increment the ray until we find a wall / are at the end of map
 		{
-			map.x = (int)(ray.x / MINI_SIZE);
-			map.y = (int)(ray.y / MINI_SIZE);
+			map.x = (int)(ray.x / GRID_SIZE);
+			map.y = (int)(ray.y / GRID_SIZE);
 			map.map_pos = map.y * (*info)->m_width + map.x;
 			if (map.map_pos > 0 && map.map_pos < (*info)->m_width * (*info)->m_height
 				&& (*info)->map[map.map_pos / (*info)->m_width][map.map_pos % (*info)->m_width].ch == '1') // did we hit a wall?

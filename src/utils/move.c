@@ -20,7 +20,7 @@ void	move_front_back(int sign_x, int sign_y, t_info **info)
 
 	nextX = (*info)->player->x + (sign_x * ((*info)->player->dir_x * (PLR_STEP + 4)));
 	nextY = (*info)->player->y + (sign_y * ((*info)->player->dir_y * (PLR_STEP + 4)));
-	if ((*info)->map[(int)nextY / MINI_SIZE] && (*info)->map[(int)nextY / MINI_SIZE][(int)nextX / MINI_SIZE].ch == '1')
+	if ((*info)->map[(int)nextY / GRID_SIZE] && (*info)->map[(int)nextY / GRID_SIZE][(int)nextX / GRID_SIZE].ch == '1')
 		return ;
 	(*info)->player->x = (*info)->player->x + (sign_x * (*info)->player->dir_x * PLR_STEP);
 	(*info)->player->y = (*info)->player->y + (sign_y * (*info)->player->dir_y * PLR_STEP);

@@ -3,8 +3,8 @@
 
 void	parse_player(t_player **player)
 {
-	(*player)->x = (*player)->x * MINI_SIZE + PLR_SIZE;
-	(*player)->y = (*player)->y * MINI_SIZE + PLR_SIZE;
+	(*player)->x = (*player)->x * GRID_SIZE + PLR_SIZE;
+	(*player)->y = (*player)->y * GRID_SIZE + PLR_SIZE;
 	if ((*player)->dir == 'E')
 		(*player)->angle = 0;
 	if ((*player)->dir == 'S')

@@ -38,7 +38,7 @@ void	draw_minimap(t_info **info)
 				color = ROYAL_BLUE;
 			else
 				color = WHITE;
-			create_grid(info, x * MINI_SIZE, y * MINI_SIZE, color);
+			create_grid(info, x * GRID_SIZE, y * GRID_SIZE, color);
 		}
 	}
 }

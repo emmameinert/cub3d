@@ -20,12 +20,12 @@
 #  define WIN_HEIGHT 1080
 # endif
 
-# ifndef MINI_SIZE
-#  define MINI_SIZE 16
+# ifndef GRID_SIZE
+#  define GRID_SIZE 16
 # endif
 
 # ifndef PLR_SIZE
-#  define PLR_SIZE MINI_SIZE / 2
+#  define PLR_SIZE GRID_SIZE / 2
 # endif
 
 # ifndef PLR_STEP
@@ -120,6 +120,8 @@ typedef struct s_ray
 {
 	double	y;
 	double	x;
+	double	sin;
+	double	cos;
 	double	angle;
 	double	x_offset;
 	double	y_offset;
