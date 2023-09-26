@@ -1,12 +1,12 @@
 
 #include "../../headers/cubed.h"
 
-int	texture_file_existence(int fd, char *msg, char *file)
+char	*texture_file_existence(char *texture_file, char *msg, char *file)
 {
-	if (fd != -2)
-		ft_put_error_exit(msg);
 	suffix_cmp(file, ".xpm");
-	return (open_file(file));
+	if (texture_file)
+		ft_put_error_exit(msg);
+	return (ft_strtrim(file, "\n"));
 }
 
 void	validate_texture_count(int counter)

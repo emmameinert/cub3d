@@ -13,25 +13,6 @@ int	valid_char(char ch)
 	return (0);
 }
 
-static void	print_map(t_info **info)
-{
-	int i;
-	int j;
-
-	i = 0;
-	while (i < (*info)->m_height)
-	{
-		j = 0;
-		while (j < (*info)->m_width)
-		{
-			printf("[%c]", (*info)->map[i][j].ch);
-			j++;
-		}
-		printf("\n");
-		i++;
-	}
-}
-
 static void	validate_inaccessables(t_info **info)
 {
 	t_coord	*temp;

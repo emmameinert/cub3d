@@ -1,14 +1,13 @@
 
 #include "../../headers/cubed.h"
 
-void	validate_parse_file(int fd)
+void	validate_parse_input(int fd, t_info **info)
 {
-	t_info	*info;
 	char		*line;
 
 	line = NULL;
-	info = init_info();
-	line = parse_textures(fd, &info);
-	parse_map(fd, &info, line);
+	line = parse_textures(fd, info);
+	parse_map(fd, info, line);
+	parse_player(&(*info)->player);
 	close_file(fd);
 }

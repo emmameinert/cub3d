@@ -8,12 +8,23 @@ static void	init_rgb(t_color **color)
 	(*color)->b = -2;
 }
 
+static void init_texture(t_texture **texture, int type)
+{
+	(*texture)->fd = -2;
+	(*texture)->img = ft_calloc(1, sizeof(t_img));
+	(*texture)->type = type;
+}
+
 static void	init_textures(t_info **info)
 {
-	(*info)->no = -2;
-	(*info)->so = -2;
-	(*info)->ea = -2;
-	(*info)->we = -2;
+	(*info)->no = ft_calloc(1, sizeof(*(*info)->no));
+	init_texture(&(*info)->no, NO);
+	(*info)->so = ft_calloc(1, sizeof(*(*info)->so));
+	init_texture(&(*info)->so, SO);
+	(*info)->ea = ft_calloc(1, sizeof(*(*info)->ea));
+	init_texture(&(*info)->ea, EA);
+	(*info)->we = ft_calloc(1, sizeof(*(*info)->we));
+	init_texture(&(*info)->we, WE);
 }
 
 static void	init_colors(t_info **info)
@@ -29,6 +40,11 @@ static void	init_player(t_info **info)
 	(*info)->player = ft_calloc(1, sizeof(t_player));
 	(*info)->player->x = -2;
 	(*info)->player->y = -2;
+	(*info)->player->angle = 60;
+	(*info)->player->dir_x = 0;
+	(*info)->player->dir_y = 0;
+	(*info)->player->move_speed = 0.5;
+	(*info)->player->rot_speed = 5.0;
 }
 
 t_info	*init_info(void)
@@ -43,5 +59,6 @@ t_info	*init_info(void)
 	info->m_height = 0;
 	info->y_index = 0;
 	info->x_index = 0;
+	init_mlx(&info);
 	return (info);
 }

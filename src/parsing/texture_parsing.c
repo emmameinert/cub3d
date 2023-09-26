@@ -46,13 +46,13 @@ static int	parse_floor_ceiling(char **input, t_info **info)
 static int	texture_comparison(char **input, t_info **info)
 {
     if (!ft_strncmp_all(input[0], "NO"))
-        (*info)->no = texture_file_existence((*info)->no, "NO Texture duplicate", input[1]);
+        (*info)->no->filename = texture_file_existence((*info)->no->filename, "NO Texture duplicate", input[1]);
     else if (!ft_strncmp_all(input[0], "SO"))
-        (*info)->so = texture_file_existence((*info)->so, "SO Texture duplicate", input[1]);
+        (*info)->so->filename = texture_file_existence((*info)->so->filename, "SO Texture duplicate", input[1]);
     else if (!ft_strncmp_all(input[0], "EA"))
-        (*info)->ea = texture_file_existence((*info)->ea, "EA Texture duplicate", input[1]);
+        (*info)->ea->filename = texture_file_existence((*info)->ea->filename, "EA Texture duplicate", input[1]);
     else if (!ft_strncmp_all(input[0], "WE"))
-        (*info)->we = texture_file_existence((*info)->we, "WE Texture duplicate", input[1]);
+        (*info)->we->filename = texture_file_existence((*info)->we->filename, "WE Texture duplicate", input[1]);
     else
         return (0);
     return (1);
@@ -101,5 +101,6 @@ char *parse_textures(int fd, t_info **info)
 		free(line);
 	}
 	validate_texture_count(counter);
+	// parse_matrices(info);
 	return (NULL);
 }

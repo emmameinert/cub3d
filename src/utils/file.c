@@ -6,8 +6,8 @@ int	open_file(char *file)
 	int fd;
 
 	fd = open(file, O_RDONLY);
-	if (fd == -1)
-		ft_put_error_exit("Failed to open the file");
+	// if (fd == -1)
+	// 	ft_put_error_exit("Failed to open the file");
 	return (fd);
 }
 
@@ -15,6 +15,14 @@ void	close_file(int fd)
 {
 	if (close(fd) == -1)
 		ft_put_error_exit("Failed to close the file");
+}
+
+void	close_files(t_info *info)
+{
+	close_file(info->no->fd);
+	close_file(info->so->fd);
+	close_file(info->ea->fd);
+	close_file(info->we->fd);
 }
 
 void	suffix_cmp(char *file, char *suffix)

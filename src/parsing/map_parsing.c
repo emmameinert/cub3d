@@ -5,8 +5,8 @@ static	void	double_player_validation(t_info **info, int x)
 {
 	if ((*info)->player->x == -2)
 	{
-		(*info)->player->x = x;
-		(*info)->player->y = (*info)->y_index;
+		(*info)->player->x = (double)x;
+		(*info)->player->y = (double)(*info)->y_index;
 	}
 	else
 		ft_put_error_exit("Too many players");
@@ -25,7 +25,10 @@ static void	parse_row(char *input, t_node **map, t_info **info)
 			break ;
 		}
 		if (valid_char(*input) == 2)
+		{
 			double_player_validation(info, x);
+			(*info)->player->dir = *input;
+		}
 		*map = ft_lstadd_back(map, x++, (*info)->y_index, *input);
 		input++;
 	}
@@ -82,7 +85,7 @@ void	parse_map(int fd, t_info **info, char *line)
 	}
 	else
 		parse_nodes(fd, &map, info, 0);
-	if (!(*info)->player->x)
+	if ((*info)->player->x == -2)
 		ft_put_error_exit("Missing player");
 	parse_array(info, &map);
 	validate_map(&map, info);
