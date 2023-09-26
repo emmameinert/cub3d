@@ -153,8 +153,7 @@ typedef struct s_info
 	t_coord		**map;
 	t_player	*player;
 	t_mlx		*mlx;
-	t_ray		*ray_h;
-	t_ray		*ray_v;
+	t_ray		*ray;
 	t_map		*ray_map;
 }	t_info;
 
