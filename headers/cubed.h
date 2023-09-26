@@ -86,6 +86,7 @@ typedef struct s_player
 	double	dir_x;
 	double	move_speed;
 	double	rot_speed;
+	int		fov_angle;
 }	t_player;
 
 typedef struct s_img
@@ -115,6 +116,25 @@ typedef struct s_texture
 	int		**matrix;
 }	t_texture;
 
+typedef struct s_ray
+{
+	double	y;
+	double	x;
+	double	angle;
+	double	x_offset;
+	double	y_offset;
+	double	wall_dist_h;
+	double	wall_dist_v;
+	int		ray;
+}	t_ray;
+
+typedef struct s_map
+{
+	int		y;
+	int		x;
+	int		map_pos;
+}	t_map;
+
 typedef struct s_info
 {
 	t_texture	*no;
@@ -130,6 +150,7 @@ typedef struct s_info
 	t_coord		**map;
 	t_player	*player;
 	t_mlx		*mlx;
+	t_ray		*rays;
 }	t_info;
 
 // START
@@ -159,6 +180,7 @@ void	draw_minimap(t_info **info);
 void	draw_background(t_info **info, int height, int width);
 void	draw_line(t_info **info, t_coord *from, t_coord *to, int color);
 void	draw_player(t_info **info);
+void	draw_rays(t_info **info);
 
 // FILES
 int			open_file(char *file);

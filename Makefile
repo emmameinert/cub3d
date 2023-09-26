@@ -41,6 +41,7 @@ SRC_RNDR =	mlx_handler \
 			draw_background \
 			draw_line \
 			draw_player \
+			draw_rays \
 			render
 
 HDRS =	cubed \

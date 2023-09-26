@@ -15,4 +15,5 @@ void	parse_player(t_player **player)
 		(*player)->angle = 90;
 	(*player)->dir_x = cos(ft_dtorad((*player)->angle));
 	(*player)->dir_y = -sin(ft_dtorad((*player)->angle));
+	(*player)->fov_angle = 60;
 }
