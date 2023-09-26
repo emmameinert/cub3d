@@ -122,6 +122,7 @@ typedef struct s_ray
 	double	x;
 	double	sin;
 	double	cos;
+	double	tan;
 	double	angle;
 	double	x_offset;
 	double	y_offset;
@@ -152,7 +153,9 @@ typedef struct s_info
 	t_coord		**map;
 	t_player	*player;
 	t_mlx		*mlx;
-	t_ray		*rays;
+	t_ray		*ray_h;
+	t_ray		*ray_v;
+	t_map		*ray_map;
 }	t_info;
 
 // START
@@ -183,6 +186,9 @@ void	draw_background(t_info **info, int height, int width);
 void	draw_line(t_info **info, t_coord *from, t_coord *to, int color);
 void	draw_player(t_info **info);
 void	draw_rays(t_info **info);
+
+// RAYCASTING
+void	cast_vertical(t_info **info);
 
 // FILES
 int			open_file(char *file);

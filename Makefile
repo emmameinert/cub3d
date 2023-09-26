@@ -12,6 +12,8 @@ SRC =	cub3d \
 
 SRC_MATH =	angle
 
+SRC_RCST =	cast_vertical
+
 SRC_PRS =	file_parsing \
 			matrix_parsing \
 			texture_parsing \
@@ -65,6 +67,8 @@ SRC_VLD_PRE = $(addprefix ./src/validation/, $(SRC_VLD))
 SRC_VLD_SUFF = $(addsuffix .c, $(SRC_VLD_PRE))
 SRC_RNDR_PRE = $(addprefix ./src/rendering/, $(SRC_RNDR))
 SRC_RNDR_SUFF = $(addsuffix .c, $(SRC_RNDR_PRE))
+SRC_RCST_PRE = $(addprefix ./src/raycasting/, $(SRC_RCST))
+SRC_RCST_SUFF = $(addsuffix .c, $(SRC_RCST_PRE))
 
 HPRE = $(addprefix ./headers/, $(HDRS))
 HSUFF = $(addsuffix .h, $(HPRE))
@@ -72,10 +76,10 @@ HSUFF = $(addsuffix .h, $(HPRE))
 .PHONY = all
 all: $(NAME)
 
-$(NAME): $(SRC_LL_SUFF) $(SRC_MATH_SUFF) $(SRC_INT_SUFF) $(SRC_VLD_SUFF) $(SRC_RNDR_SUFF) $(SRC_UTLS_SUFF) $(SRC_PRS_SUFF) $(SRC_SUFF) $(HSUFF)
+$(NAME): $(SRC_LL_SUFF) $(SRC_MATH_SUFF) $(SRC_INT_SUFF) $(SRC_RCST_SUFF) $(SRC_VLD_SUFF) $(SRC_RNDR_SUFF) $(SRC_UTLS_SUFF) $(SRC_PRS_SUFF) $(SRC_SUFF) $(HSUFF)
 		make -C $(LIBFT_PATH)
 		make -C $(MLX_PATH)
-		cc $(BUILD_FLAGS) $(SRC_LL_SUFF) $(SRC_MATH_SUFF) $(SRC_INT_SUFF) $(SRC_VLD_SUFF) $(SRC_RNDR_SUFF) $(SRC_PRS_SUFF) \
+		cc $(BUILD_FLAGS) $(SRC_LL_SUFF) $(SRC_MATH_SUFF) $(SRC_RCST_SUFF) $(SRC_INT_SUFF) $(SRC_VLD_SUFF) $(SRC_RNDR_SUFF) $(SRC_PRS_SUFF) \
 		$(SRC_UTLS_SUFF) $(SRC_SUFF) \
 		-Llibft -lft -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
