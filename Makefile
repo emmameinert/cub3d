@@ -12,7 +12,9 @@ SRC =	cub3d \
 
 SRC_MATH =	angle
 
-SRC_RCST =	cast_vertical
+SRC_RCST =	find_wall \
+			cast_vertical \
+			cast_horizontal
 
 SRC_PRS =	file_parsing \
 			matrix_parsing \

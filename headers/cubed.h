@@ -126,8 +126,6 @@ typedef struct s_ray
 	double	angle;
 	double	x_offset;
 	double	y_offset;
-	double	wall_dist_h;
-	double	wall_dist_v;
 	int		ray;
 }	t_ray;
 
@@ -135,7 +133,7 @@ typedef struct s_map
 {
 	int		y;
 	int		x;
-	int		map_pos;
+	int		pos;
 }	t_map;
 
 typedef struct s_info
@@ -154,7 +152,7 @@ typedef struct s_info
 	t_player	*player;
 	t_mlx		*mlx;
 	t_ray		*ray;
-	t_map		*ray_map;
+	t_coord		*line;
 }	t_info;
 
 // START
@@ -188,6 +186,8 @@ void	draw_rays(t_info **info);
 
 // RAYCASTING
 void	cast_vertical(t_info **info);
+void	cast_horizontal(t_info **info);
+int		find_wall(t_info **info, int map_size);
 
 // FILES
 int			open_file(char *file);

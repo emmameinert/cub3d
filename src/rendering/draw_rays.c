@@ -1,32 +1,40 @@
 
 #include "../../headers/cubed.h"
 
-static void	draw_ray(t_info **info)
+static void	draw_ray(t_info **info, t_coord *to)
 {
 	t_coord from;
-	t_coord to;
 
 	from.x = (*info)->player->x;
 	from.y = (*info)->player->y;
-	to.x = (int)(*info)->ray->x;
-	to.y = (int)(*info)->ray->y;
-	draw_line(info, &from, &to, RED);
+	draw_line(info, &from, to, RED);
+}
+
+static void	set_line(t_info **info, double x, double y)
+{
+	(*info)->line->x = x;
+	(*info)->line->y = y;
 }
 
 void	draw_rays(t_info **info)
 {
-	t_ray	ray;
-	t_map	ray_map;
+	double	dist_v;
+	double	dist_h;
 	int		i;
 
-	(*info)->ray = &ray;
-	(*info)->ray_map = &ray_map;
 	i = 0;
+	dist_v = 1000000;
+	dist_h = 1000000;
 	while (i < 1)
 	{
 		cast_vertical(info);
-		draw_ray(info);
-		//cast_horizontal(info);
+		dist_v = find_wall(info, (*info)->m_width);
+		set_line(info, (*info)->ray->x, (*info)->ray->y); // set initially based on the vertical wall hit
+		cast_horizontal(info);
+		dist_h = find_wall(info, (*info)->m_height);
+		if (dist_h < dist_v)
+			set_line(info, (*info)->ray->x, (*info)->ray->y); // horizontal wall hit is closer, use that
+		draw_ray(info, (*info)->line);
 		i++;
 	}
 }

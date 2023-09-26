@@ -60,5 +60,7 @@ t_info	*init_info(void)
 	info->y_index = 0;
 	info->x_index = 0;
 	init_mlx(&info);
+	info->ray = ft_calloc(1, sizeof(t_ray));
+	info->line = ft_calloc(1, sizeof(t_coord));
 	return (info);
 }
