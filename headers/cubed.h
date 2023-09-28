@@ -185,8 +185,8 @@ void	draw_player(t_info **info);
 void	draw_rays(t_info **info);
 
 // RAYCASTING
-void	cast_vertical(t_info **info);
-void	cast_horizontal(t_info **info);
+void	cast_vertical(t_info **info, int ray);
+void	cast_horizontal(t_info **info, int ray);
 int		find_wall(t_info **info, int map_size);
 
 // FILES

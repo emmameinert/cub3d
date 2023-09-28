@@ -22,15 +22,15 @@ void	draw_rays(t_info **info)
 	double	dist_h;
 	int		i;
 
-	i = 0;
+	i = -60;
 	dist_v = 1000000;
 	dist_h = 1000000;
-	while (i < 1)
+	while (i < 0)
 	{
-		cast_vertical(info);
+		cast_vertical(info, i);
 		dist_v = find_wall(info, (*info)->m_width);
 		set_line(info, (*info)->ray->x, (*info)->ray->y); // set initially based on the vertical wall hit
-		cast_horizontal(info);
+		cast_horizontal(info, i);
 		dist_h = find_wall(info, (*info)->m_height);
 		if (dist_h < dist_v)
 			set_line(info, (*info)->ray->x, (*info)->ray->y); // horizontal wall hit is closer, use that
