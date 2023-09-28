@@ -22,7 +22,7 @@ static void	iterate_left(t_info **info)
 static void	iterate_back_front(t_info **info)
 {
 	(*info)->ray->x = (*info)->player->x;
-	(*info)->ray->y = (*info)->player->x;
+	(*info)->ray->y = -(*info)->player->x;
 }
 
 static void	init_ray(t_info **info, int ray)
