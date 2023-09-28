@@ -11,7 +11,7 @@ static int	wall_hit(int pos, t_info **info)
 
 static double	calc_dist(t_info **info)
 {
-	return (cos(ft_dtorad((*info)->ray->angle)) * ((*info)->ray->x - (*info)->player->x)
+	return (cos(ft_dtorad((*info)->ray->angle)) * ((*info)->ray->x - (*info)->player->x) \
 		- sin(ft_dtorad((*info)->ray->angle)) * ((*info)->ray->y - (*info)->player->y));
 }
 
@@ -28,13 +28,13 @@ int	find_wall(t_info **info, int map_size)
 		dov = 0;
 	while (dov < map_size)
 	{
-		map.x = (int)((*info)->ray->x / GRID_SIZE);
+		map.x = (int)((*info)->ray->x / GRID_SIZE) ;
 		map.y = (int)((*info)->ray->y / GRID_SIZE);
 		map.pos = map.y * (*info)->m_width + map.x;
 		if (wall_hit(map.pos, info))
 		{
 			dist = calc_dist(info);
-			return dist;
+			return (dist);
 		}
 		(*info)->ray->x += (*info)->ray->x_offset;
 		(*info)->ray->y += (*info)->ray->y_offset;

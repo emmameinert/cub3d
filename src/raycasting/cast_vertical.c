@@ -3,7 +3,6 @@
 
 static void	iterate_right(t_info **info)
 {
-	/// GRID_SIZE * GRID_SIZE
 	(*info)->ray->x = ((*info)->player->x) + GRID_SIZE;
 	(*info)->ray->y = ((*info)->player->x - (*info)->ray->x) * (*info)->ray->tan + (*info)->player->y;
 	(*info)->ray->x_offset = GRID_SIZE;
@@ -12,7 +11,6 @@ static void	iterate_right(t_info **info)
 
 static void	iterate_left(t_info **info)
 {
-	// GRID_SIZE * GRID_SIZE
 	(*info)->ray->x = ((*info)->player->x) - 0.001;
 	(*info)->ray->y = ((*info)->player->x - (*info)->ray->x) * (*info)->ray->tan + (*info)->player->y;
 	(*info)->ray->x_offset = -GRID_SIZE;
@@ -27,9 +25,9 @@ static void	iterate_back_front(t_info **info)
 
 static void	init_ray(t_info **info, int ray)
 {
-	(*info)->ray->angle = ft_angle((*info)->player->angle + ((*info)->player->fov_angle / 2) + ray);
-	if (tan(ft_dtorad((*info)->ray->angle)) == 0)
-		(*info)->ray->angle = (*info)->ray->angle + 0.1;
+	(*info)->ray->angle = ft_angle((*info)->player->angle + ((*info)->player->fov_angle / 2) - ray);
+	if ((*info)->ray->angle == 180 || (*info)->ray->angle == 0)
+		(*info)->ray->angle = (*info)->ray->angle + 1;
 	(*info)->ray->tan = tan(ft_dtorad((*info)->ray->angle));
 	(*info)->ray->cos = cos(ft_dtorad((*info)->ray->angle));
 }

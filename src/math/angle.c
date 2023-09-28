@@ -11,7 +11,7 @@ double	ft_angle(double angle)
 {
 	if (angle < 0)
 		return (angle + 360);
-	else if (angle > 360)
+	else if (angle > 359)
 		return (angle - 360);
 	return (angle);
 }
