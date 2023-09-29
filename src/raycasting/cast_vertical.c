@@ -11,7 +11,7 @@ static void	iterate_right(t_info **info)
 
 static void	iterate_left(t_info **info)
 {
-	(*info)->ray->x = ((*info)->player->x) - 0.001;
+	(*info)->ray->x = ((*info)->player->x) - 0.0001;
 	(*info)->ray->y = ((*info)->player->x - (*info)->ray->x) * (*info)->ray->tan + (*info)->player->y;
 	(*info)->ray->x_offset = -GRID_SIZE;
 	(*info)->ray->y_offset = -(*info)->ray->x_offset * (*info)->ray->tan;
@@ -20,7 +20,7 @@ static void	iterate_left(t_info **info)
 static void	iterate_back_front(t_info **info)
 {
 	(*info)->ray->x = (*info)->player->x;
-	(*info)->ray->y = -(*info)->player->x;
+	(*info)->ray->y = (*info)->player->y;
 }
 
 static void	init_ray(t_info **info, int ray)
@@ -39,6 +39,6 @@ void	cast_vertical(t_info **info, int ray)
 		iterate_right(info);
 	else if ((*info)->ray->cos < -0.001) // looking left
 		iterate_left(info);
-	else if ((*info)->ray->angle == 90) // looking up
+	else // if ((*info)->ray->angle == 270)// looking up
 		iterate_back_front(info);
 }

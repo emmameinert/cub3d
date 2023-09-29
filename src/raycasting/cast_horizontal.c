@@ -31,7 +31,7 @@ static void	init_ray(t_info **info, int ray)
 static void	iterate_left_right(t_info **info)
 {
 	(*info)->ray->x = (*info)->player->x;
-	(*info)->ray->y = (*info)->player->x;
+	(*info)->ray->y = (*info)->player->y;
 }
 
 void	cast_horizontal(t_info **info, int ray)
@@ -42,5 +42,5 @@ void	cast_horizontal(t_info **info, int ray)
 	else if ((*info)->ray->sin < -0.001) // looking down
 		iterate_down(info);
 	else 
-		iterate_left_right(info); 
+		iterate_left_right(info);
 }

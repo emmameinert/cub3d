@@ -40,5 +40,5 @@ int	find_wall(t_info **info, int map_size)
 		(*info)->ray->y += (*info)->ray->y_offset;
 		dov++;
 	}
-	return ((*info)->m_width);
+	return (1000000);
 }
