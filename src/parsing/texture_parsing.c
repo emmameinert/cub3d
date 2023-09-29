@@ -6,7 +6,7 @@ static void	validate_parse_range(char *line, t_color *color, int start)
 	char	**numbers;
 	int		i;
 	int		colour[3];
-	char *input;
+	char 	*input;
 
 	input = ft_substr(line, start, ft_strlen(line) - start);
 	numbers = ft_split(input, ',');

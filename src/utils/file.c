@@ -29,15 +29,16 @@ void	suffix_cmp(char *file, char *suffix)
 {
 	int	len;
 	char	*file_ending;
-	char	*file2;
-	file2 = ft_strtrim(file, "'\t''\n'' '");
-	len = ft_strlen(file2);
-	file_ending = ft_substr(file2, len - 4, 4);
+	char	*file_trimmed;
+	
+	file_trimmed = ft_strtrim(file, "\t\n ");
+	len = ft_strlen(file_trimmed);
+	file_ending = ft_substr(file_trimmed, len - 4, 4);
 	if (ft_strncmp_all(file_ending, suffix))
 	{
 		free(file_ending);
 		ft_put_error_exit(suffix);
 	}
-	free(file2);
+	free(file_trimmed);
 	free(file_ending);
 }
