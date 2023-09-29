@@ -39,6 +39,6 @@ void	cast_vertical(t_info **info, int ray)
 		iterate_right(info);
 	else if ((*info)->ray->cos < -0.001) // looking left
 		iterate_left(info);
-	else // if ((*info)->ray->angle == 270)// looking up
+	else 
 		iterate_back_front(info);
 }

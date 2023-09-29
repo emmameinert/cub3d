@@ -32,12 +32,10 @@ void	draw_rays(t_info **info)
 		dist_h = 100000;
 		cast_horizontal(info, i);
 		dist_h = find_wall(info, (*info)->m_height);
-		// printf("hori: %f verti:%f\n", dist_h, dist_v);
 		if (dist_h < dist_v)
 			set_line(info, (*info)->ray->x, (*info)->ray->y);	 // horizontal wall hit is closer, use that
 		dist_h = dist_v;
 		draw_ray(info, (*info)->line);
-		// printf("ray angle: %f player angle: %f i: %d\n", (*info)->ray->angle, (*info)->player->angle, i);
 		i += 29;
 	}
 }
