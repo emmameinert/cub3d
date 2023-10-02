@@ -20,9 +20,9 @@ static int	wall_hit(t_ray *ray, t_info **info)
 static void	init_ray(t_ray *ray, t_player *player, int i)
 {
 	if (i == 0)
-		ray->angle = player->angle - (player->fov / 2);
+		ray->angle = player->angle + (player->fov / 2);
 	else
-		ray->angle = ft_angle(ray->angle + player->ray_increment);
+		ray->angle = ft_angle(ray->angle - player->ray_increment);
 	ray->x = player->x;
 	ray->y = player->y;
 	ray->cos = 0;
