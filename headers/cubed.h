@@ -142,6 +142,7 @@ typedef struct s_info
 	t_coord		**map;
 	t_player	*player;
 	t_mlx		*mlx;
+	t_ray		rays[WIN_WIDTH];
 }	t_info;
 
 // START
@@ -172,8 +173,8 @@ void	draw_minimap(t_info **info);
 void	draw_background(t_info **info, int height, int width);
 void	draw_line(t_info **info, t_coord *from, t_coord *to, int color);
 void	draw_player(t_info **info);
-void	draw_rays(t_info **info, t_ray *ray);
-void	draw_maze(t_info **info, t_ray ray, int x);
+void	draw_rays(t_info **info);
+void	draw_maze(t_info **info);
 
 // RAYCASTING
 void	cast_rays(t_info **info);

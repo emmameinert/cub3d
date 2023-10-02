@@ -54,14 +54,19 @@ void	draw_floor(t_info **info, double half_wallheight, int x)
 	draw_line(info, &from, &to, (*info)->floor->draw_color);
 }
 
-void	draw_maze(t_info **info, t_ray ray, int x)
+void	draw_maze(t_info **info)
 {
+	int		i;
 	double	dist;
 	double	half_wallheight;
 
-	dist = calculate_distance(info, ray);
-	half_wallheight = calculate_wallheight(dist);
-	draw_ceiling(info, half_wallheight, x);
-	draw_wall(info, half_wallheight, x);
-	draw_floor(info, half_wallheight, x);
+	i = -1;
+	while (++i < WIN_WIDTH)
+	{
+		dist = calculate_distance(info, (*info)->rays[i]);
+		half_wallheight = calculate_wallheight(dist);
+		draw_ceiling(info, half_wallheight, i);
+		draw_wall(info, half_wallheight, i);
+		draw_floor(info, half_wallheight, i);
+	}
 }
