@@ -51,7 +51,7 @@ SRC_RNDR =	mlx_handler \
 HDRS =	cubed \
 		lst
 
-BUILD_FLAGS = -Wall -Wextra -Werror -fsanitize=address,undefined
+BUILD_FLAGS = -Wall -Wextra -Werror
 
 SRC_INT_PRE = $(addprefix ./src/initializing/, $(SRC_INT))
 SRC_INT_SUFF = $(addsuffix .c, $(SRC_INT_PRE))

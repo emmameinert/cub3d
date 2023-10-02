@@ -16,4 +16,5 @@ void	parse_player(t_player **player)
 	(*player)->fov = 60;
 	(*player)->dir_x = cos(ft_dtorad((*player)->angle));
 	(*player)->dir_y = -sin(ft_dtorad((*player)->angle));
+	(*player)->ray_increment = ((*player)->fov / (double)WIN_WIDTH);
 }
