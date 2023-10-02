@@ -20,12 +20,12 @@
 #  define WIN_HEIGHT 1080
 # endif
 
-# ifndef MINI_SIZE
-#  define MINI_SIZE 16
+# ifndef GRID_SIZE
+#  define GRID_SIZE 16
 # endif
 
 # ifndef PLR_SIZE
-#  define PLR_SIZE MINI_SIZE / 2
+#  define PLR_SIZE GRID_SIZE / 2
 # endif
 
 # ifndef PLR_STEP
@@ -76,6 +76,15 @@ typedef struct s_color
 	int	b;
 }	t_color;
 
+typedef struct s_ray
+{
+	double	x;
+	double	y;
+	double	cos;
+	double	sin;
+	double	angle;
+}	t_ray;
+
 typedef struct s_player
 {
 	double	x;
@@ -86,6 +95,7 @@ typedef struct s_player
 	double	dir_x;
 	double	move_speed;
 	double	rot_speed;
+	int		fov;
 }	t_player;
 
 typedef struct s_img
@@ -159,6 +169,10 @@ void	draw_minimap(t_info **info);
 void	draw_background(t_info **info, int height, int width);
 void	draw_line(t_info **info, t_coord *from, t_coord *to, int color);
 void	draw_player(t_info **info);
+void	draw_rays(t_info **info, t_ray *ray);
+
+// RAYCASTING
+void	cast_rays(t_info **info);
 
 // FILES
 int			open_file(char *file);
