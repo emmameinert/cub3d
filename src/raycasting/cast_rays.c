@@ -34,9 +34,9 @@ void	cast_rays(t_info **info)
 
 	i = -1;
 	angle = (*info)->player->angle - ((*info)->player->fov / 2); // start from -30 degrees from the player direction
-	while (++i < 1) // increment ray
+	while (++i < WIN_WIDTH) // increment ray
 	{
-		init_ray(&ray, (*info)->player, angle);
+		init_ray(&ray, (*info)->player, angle + i);
 		ray.cos = cos(ft_dtorad(ray.angle)) / 64; // calculate the x increment
 		ray.sin = -sin(ft_dtorad(ray.angle)) / 64; // calculate the y increment
 		while (!wall_hit(&ray, info)) // check for wall hit
@@ -45,5 +45,6 @@ void	cast_rays(t_info **info)
 			ray.y += ray.sin;
 		}
 		draw_rays(info, &ray);
+		// draw_maze(info, ray);
 	}
 }

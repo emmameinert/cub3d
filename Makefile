@@ -10,7 +10,8 @@ SRC_INT =	init_mlx \
 SRC =	cub3d \
 		main
 
-SRC_MATH =	angle
+SRC_MATH =	angle \
+			color
 
 SRC_RCST =	cast_rays
 
@@ -43,6 +44,7 @@ SRC_RNDR =	mlx_handler \
 			draw_background \
 			draw_line \
 			draw_player \
+			draw_maze \
 			draw_rays \
 			render
 

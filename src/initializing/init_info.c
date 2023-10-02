@@ -33,6 +33,8 @@ static void	init_colors(t_info **info)
 	(*info)->floor = ft_calloc(1, sizeof(t_color));
 	init_rgb(&((*info)->ceiling));
 	init_rgb(&((*info)->floor));
+	(*info)->ceiling->draw_color = 0;
+	(*info)->floor->draw_color = 0;
 }
 
 static void	init_player(t_info **info)

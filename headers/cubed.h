@@ -74,6 +74,7 @@ typedef struct s_color
 	int	r;
 	int	g;
 	int	b;
+	int draw_color;
 }	t_color;
 
 typedef struct s_ray
@@ -148,6 +149,7 @@ void		run_program(char **argv);
 // MATH
 double		ft_dtorad(double angle);
 double		ft_angle(double angle);
+int 		ft_rgbtocolor(t_color rgb);
 
 //INPUT
 void		validate_parse_input(int fd, t_info **info);
@@ -170,6 +172,7 @@ void	draw_background(t_info **info, int height, int width);
 void	draw_line(t_info **info, t_coord *from, t_coord *to, int color);
 void	draw_player(t_info **info);
 void	draw_rays(t_info **info, t_ray *ray);
+void	draw_maze(t_info **info, t_ray ray);
 
 // RAYCASTING
 void	cast_rays(t_info **info);

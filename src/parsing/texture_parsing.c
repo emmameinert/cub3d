@@ -22,6 +22,7 @@ static void	validate_parse_range(char *input, t_color *color)
 	color->r = colour[0];
 	color->g = colour[1];
 	color->b = colour[2];
+	color->draw_color = ft_rgbtocolor(*color);
 }
 
 static int	parse_floor_ceiling(char **input, t_info **info)
