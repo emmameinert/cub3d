@@ -54,6 +54,18 @@ void	draw_floor(t_info **info, double half_wallheight, int x)
 	draw_line(info, &from, &to, (*info)->floor->draw_color);
 }
 
+void	draw_screen(t_info **info, int x)
+{
+	t_coord	from;
+	t_coord	to;
+
+	from.y = 0;
+	to.y = WIN_HEIGHT;
+	from.x = x;
+	to.x = x;
+	draw_line(info, &from, &to, COLOR_GRAY);
+}
+
 void	draw_maze(t_info **info)
 {
 	int		i;
@@ -64,6 +76,11 @@ void	draw_maze(t_info **info)
 	while (++i < WIN_WIDTH)
 	{
 		dist = calculate_distance(info, (*info)->rays[i]);
+		if (dist < 1)
+		{
+			draw_screen(info, i);
+			continue ;
+		}
 		half_wallheight = calculate_wallheight(dist);
 		draw_ceiling(info, half_wallheight, i);
 		draw_wall(info, half_wallheight, i);
