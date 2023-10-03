@@ -29,7 +29,7 @@
 # endif
 
 # ifndef PLR_STEP
-#  define PLR_STEP 5
+#  define PLR_STEP 1
 # endif
 
 # ifndef PLR_ROT_STEP

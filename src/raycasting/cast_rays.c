@@ -8,9 +8,9 @@ static int	wall_hit(t_ray *ray, t_info **info)
 
 	increment_y = (int)floor(ray->y / GRID_SIZE);
 	increment_x = (int)floor(ray->x / GRID_SIZE);
-	if (increment_x >= (*info)->m_width || increment_x < 0)
+	if (increment_x >= (*info)->m_width || increment_x < 0 || (*info)->map[increment_y][increment_x].ch == ' ')
 		return (1);
-	else if (increment_y >= (*info)->m_height || increment_y < 0)
+	else if (increment_y >= (*info)->m_height || increment_y < 0 || (*info)->map[increment_y][increment_x].ch == ' ')
 		return (1);
 	if ((*info)->map[increment_y][increment_x].ch == '1')
 		return (1);
