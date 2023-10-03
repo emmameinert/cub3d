@@ -69,6 +69,7 @@ static void	parse_nodes(int fd, t_node **map, t_info **info, int first_line_pars
 		(*info)->y_index++;
 		free(line);
 	}
+	validate_map_exists(map);
 	(*info)->m_height = (*info)->y_index;
 	(*info)->m_width = (*info)->x_index;
 }

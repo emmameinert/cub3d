@@ -16,7 +16,7 @@ static char	*ft_return_empty(char *str)
 {
 	str = (char *)malloc(sizeof(char) * 1);
 	if (!str)
-		return (NULL);
+		ft_put_error_exit("Memory allocation issue");
 	str[0] = '\0';
 	return (str);
 }
@@ -48,7 +48,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	last = 0;
 	str = NULL;
 	if (!set || !s1)
-		return (NULL);
+		ft_put_error_exit("Can't trim a string");
 	len = ft_strlen(s1);
 	first = ft_find_first(s1, first, set);
 	last = len - 1;
@@ -59,7 +59,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	last = 0;
 	str = (char *)malloc(sizeof(*str) * len + 1);
 	if (!str)
-		return (NULL);
+		ft_put_error_exit("Memory allocation issue");
 	while (last < len)
 		str[last++] = s1[first++];
 	str[last] = '\0';

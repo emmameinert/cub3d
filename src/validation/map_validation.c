@@ -32,6 +32,12 @@ static void	validate_inaccessables(t_info **info)
 	}
 }
 
+void	validate_map_exists(t_node **map)
+{
+	if (!ft_lstsize(*map))
+		ft_put_error_exit("Map non-existant or not last as input");
+}
+
 void	validate_map(t_node **map, t_info **info)
 {
 	if (!map || !*info)

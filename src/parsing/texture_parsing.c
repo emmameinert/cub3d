@@ -9,6 +9,7 @@ static void	validate_parse_range(char *line, t_color *color, int start)
 	char 	*input;
 
 	input = ft_substr(line, start, ft_strlen(line) - start);
+	input = ft_strtrim(input, "\n\t FC");
 	numbers = ft_split(input, ',');
 	i = 0;
 	while (numbers[i] && i < 3)
@@ -77,8 +78,6 @@ static int	validate_texture(char *line, t_info **info)
 	char	**input;
 
 	input = ft_split(line, 32);
-	if (!input)
-		ft_put_error_exit("Allocation failed");
 	if (!texture_comparison(input, info))
 	{
 		if (!parse_floor_ceiling(input, line, info))
@@ -101,7 +100,7 @@ char *parse_textures(int fd, t_info **info)
 	{
 		line = get_next_line(fd);
 		if (!line)
-			return (NULL);
+			break ;
 		else if (counter == 6)
 		{
 			if (line[0] != '\n')
