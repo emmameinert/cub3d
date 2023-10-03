@@ -1,12 +1,6 @@
 
 #include "../../headers/cubed.h"
 
-static int	get_texture_dir(t_ray *ray)
-{
-	printf("angle: %i\n", ray->angle);
-	return (NO);
-}
-
 static int	wall_hit(t_ray *ray, t_info **info)
 {
 	int	increment_x;
@@ -19,12 +13,7 @@ static int	wall_hit(t_ray *ray, t_info **info)
 	else if (increment_y >= (*info)->m_height || increment_y < 0 || (*info)->map[increment_y][increment_x].ch == ' ')
 		return (1);
 	if ((*info)->map[increment_y][increment_x].ch == '1')
-	{
-		ray->wall_x = increment_x;
-		ray->wall_y = increment_y;
-		ray->wall_dir = get_texture_dir(ray);
 		return (1);
-	}
 	return (0);
 }
 
