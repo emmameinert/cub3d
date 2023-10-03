@@ -26,7 +26,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		len = actual_len;
 	str = (char *)malloc(sizeof(*str) * len + 1);
 	if (!str)
-		return (NULL);
+		ft_put_error_exit("Memory allocation issue");
 	index = 0;
 	while (len > index && s[start + index])
 	{

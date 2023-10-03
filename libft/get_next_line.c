@@ -16,7 +16,7 @@ static char	*trim_cache(char *cache)
 		index_c++;
 	result = (char *)malloc(sizeof(char) * ((len - index_c) + 2));
 	if (!result)
-		return (NULL);
+		ft_put_error_exit("Memory allocation issue");
 	index_r = 0;
 	while (cache[index_c] != '\0')
 		result[index_r++] = cache[index_c++];
@@ -41,7 +41,7 @@ static char	*parse_nl(char *cache)
 		cache_index++;
 	result = (char *)malloc(sizeof(char) * (cache_index + 2));
 	if (!result)
-		return (NULL);
+		ft_put_error_exit("Memory allocation issue");
 	index = 0;
 	while (index <= cache_index && cache)
 	{
@@ -64,7 +64,7 @@ static char	*read_fd(int fd, char *cache)
 
 	buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buffer)
-		return (NULL);
+		ft_put_error_exit("Memory allocation issue");
 	read_bytes = 1;
 	while (read_bytes > 0)
 	{

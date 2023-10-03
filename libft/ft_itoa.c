@@ -31,7 +31,7 @@ char	*ft_itoa(int n)
 		len = 1;
 	str = (char *)malloc(sizeof(char) * len + 1);
 	if (!str)
-		return (NULL);
+		ft_put_error_exit("Memory allocation issue");
 	str[len--] = '\0';
 	if (nb == 0)
 		str[0] = '0';
