@@ -29,7 +29,7 @@ static void	init_ray(double angle, t_ray *ray, t_player *player)
 static double	get_angle(t_info **info, int i)
 {
 	if (i == 0)
-		return ((*info)->player->angle + ((*info)->player->fov / 2));
+		return (ft_angle((*info)->player->angle + ((*info)->player->fov / 2)));
 	else
 		return (ft_angle((*info)->rays[i - 1].angle - (*info)->player->ray_increment));
 }
