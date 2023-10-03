@@ -101,7 +101,7 @@ char *parse_textures(int fd, t_info **info)
 	{
 		line = get_next_line(fd);
 		if (!line)
-			return (NULL);
+			break ;
 		else if (counter == 6)
 		{
 			if (line[0] != '\n')
