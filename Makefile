@@ -10,7 +10,10 @@ SRC_INT =	init_mlx \
 SRC =	cub3d \
 		main
 
-SRC_MATH =	angle
+SRC_MATH =	angle \
+			color
+
+SRC_RCST =	cast_rays
 
 SRC_PRS =	file_parsing \
 			matrix_parsing \
@@ -41,15 +44,19 @@ SRC_RNDR =	mlx_handler \
 			draw_background \
 			draw_line \
 			draw_player \
+			draw_maze \
+			draw_rays \
 			render
 
 HDRS =	cubed \
 		lst
 
-BUILD_FLAGS = -Wall -Wextra -Werror -fsanitize=address,undefined
+BUILD_FLAGS = -Wall -Wextra -Werror
 
 SRC_INT_PRE = $(addprefix ./src/initializing/, $(SRC_INT))
 SRC_INT_SUFF = $(addsuffix .c, $(SRC_INT_PRE))
+SRC_RCST_PRE = $(addprefix ./src/raycasting/, $(SRC_RCST))
+SRC_RCST_SUFF = $(addsuffix .c, $(SRC_RCST_PRE))
 SRC_MATH_PRE = $(addprefix ./src/math/, $(SRC_MATH))
 SRC_MATH_SUFF = $(addsuffix .c, $(SRC_MATH_PRE))
 SRC_PRE = $(addprefix ./src/, $(SRC))
@@ -71,10 +78,10 @@ HSUFF = $(addsuffix .h, $(HPRE))
 .PHONY = all
 all: $(NAME)
 
-$(NAME): $(SRC_LL_SUFF) $(SRC_MATH_SUFF) $(SRC_INT_SUFF) $(SRC_VLD_SUFF) $(SRC_RNDR_SUFF) $(SRC_UTLS_SUFF) $(SRC_PRS_SUFF) $(SRC_SUFF) $(HSUFF)
+$(NAME): $(SRC_LL_SUFF) $(SRC_MATH_SUFF) $(SRC_RCST_SUFF) $(SRC_INT_SUFF) $(SRC_VLD_SUFF) $(SRC_RNDR_SUFF) $(SRC_UTLS_SUFF) $(SRC_PRS_SUFF) $(SRC_SUFF) $(HSUFF)
 		make -C $(LIBFT_PATH)
 		make -C $(MLX_PATH)
-		cc $(BUILD_FLAGS) $(SRC_LL_SUFF) $(SRC_MATH_SUFF) $(SRC_INT_SUFF) $(SRC_VLD_SUFF) $(SRC_RNDR_SUFF) $(SRC_PRS_SUFF) \
+		cc $(BUILD_FLAGS) $(SRC_LL_SUFF) $(SRC_MATH_SUFF) $(SRC_RCST_SUFF) $(SRC_INT_SUFF) $(SRC_VLD_SUFF) $(SRC_RNDR_SUFF) $(SRC_PRS_SUFF) \
 		$(SRC_UTLS_SUFF) $(SRC_SUFF) \
 		-Llibft -lft -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 

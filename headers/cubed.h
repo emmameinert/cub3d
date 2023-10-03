@@ -20,16 +20,16 @@
 #  define WIN_HEIGHT 1080
 # endif
 
-# ifndef MINI_SIZE
-#  define MINI_SIZE 16
+# ifndef GRID_SIZE
+#  define GRID_SIZE 16
 # endif
 
 # ifndef PLR_SIZE
-#  define PLR_SIZE MINI_SIZE / 2
+#  define PLR_SIZE GRID_SIZE / 2
 # endif
 
 # ifndef PLR_STEP
-#  define PLR_STEP 5
+#  define PLR_STEP 1
 # endif
 
 # ifndef PLR_ROT_STEP
@@ -74,7 +74,17 @@ typedef struct s_color
 	int	r;
 	int	g;
 	int	b;
+	int draw_color;
 }	t_color;
+
+typedef struct s_ray
+{
+	double	x;
+	double	y;
+	double	cos;
+	double	sin;
+	double	angle;
+}	t_ray;
 
 typedef struct s_player
 {
@@ -86,6 +96,8 @@ typedef struct s_player
 	double	dir_x;
 	double	move_speed;
 	double	rot_speed;
+	double	fov;
+	double	ray_increment;
 }	t_player;
 
 typedef struct s_img
@@ -130,6 +142,7 @@ typedef struct s_info
 	t_coord		**map;
 	t_player	*player;
 	t_mlx		*mlx;
+	t_ray		rays[WIN_WIDTH];
 }	t_info;
 
 // START
@@ -138,6 +151,7 @@ void		run_program(char **argv);
 // MATH
 double		ft_dtorad(double angle);
 double		ft_angle(double angle);
+int 		ft_rgbtocolor(t_color rgb);
 
 //INPUT
 char		*parse_textures(int fd, t_info **texture);
@@ -160,6 +174,11 @@ void	draw_minimap(t_info **info);
 void	draw_background(t_info **info, int height, int width);
 void	draw_line(t_info **info, t_coord *from, t_coord *to, int color);
 void	draw_player(t_info **info);
+void	draw_rays(t_info **info);
+void	draw_maze(t_info **info);
+
+// RAYCASTING
+void	cast_rays(t_info **info);
 
 // FILES
 int			open_file(char *file);
