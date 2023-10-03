@@ -84,9 +84,7 @@ typedef struct s_ray
 	double	cos;
 	double	sin;
 	double	angle;
-	int		wall_y;
-	int		wall_x;
-	int		wall_dir;
+	int		wall_color;
 }	t_ray;
 
 typedef struct s_player

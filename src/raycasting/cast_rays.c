@@ -1,6 +1,29 @@
 
 #include "../../headers/cubed.h"
 
+static void	get_wall_dir(t_ray *ray)
+{
+	int	mod_y;
+	int	mod_x;
+	int y;
+	int x;
+
+	y = (int)ray->y;
+	x = (int)ray->x;
+	mod_y = y % 16;
+	mod_x = x % 16;
+	if (mod_y == 0)
+		ray->wall_color = COLOR_GRAY; // NO
+	else if (mod_y == 15)
+		ray->wall_color = COLOR_GOLD; // SO
+	else if (mod_x == 0)
+		ray->wall_color = GREEN; // WE
+	else if (mod_x == 15)
+		ray->wall_color = PINK; // EA
+	else
+		ray->wall_color = BLACK; // :(
+}
+
 static int	wall_hit(t_ray *ray, t_info **info)
 {
 	int	increment_x;
@@ -13,7 +36,10 @@ static int	wall_hit(t_ray *ray, t_info **info)
 	else if (increment_y >= (*info)->m_height || increment_y < 0 || (*info)->map[increment_y][increment_x].ch == ' ')
 		return (1);
 	if ((*info)->map[increment_y][increment_x].ch == '1')
+	{
+		get_wall_dir(ray);
 		return (1);
+	}
 	return (0);
 }
 
@@ -43,12 +69,12 @@ void	cast_rays(t_info **info)
 	while (++i < WIN_WIDTH) // increment ray
 	{
 		init_ray(get_angle(info, i), &(*info)->rays[i], (*info)->player);
-		(*info)->rays[i].cos = cos(ft_dtorad((*info)->rays[i].angle)) / 192; // calculate the x increment
-		(*info)->rays[i].sin = -sin(ft_dtorad((*info)->rays[i].angle)) / 192; // calculate the y increment
+		(*info)->rays[i].cos = cos(ft_dtorad((*info)->rays[i].angle)); // / 192; // calculate the x increment
+		(*info)->rays[i].sin = -sin(ft_dtorad((*info)->rays[i].angle)); // / 192; // calculate the y increment
 		while (!wall_hit(&(*info)->rays[i], info)) // check for wall hit
 		{
-			(*info)->rays[i].x += (*info)->rays[i].cos;
-			(*info)->rays[i].y += (*info)->rays[i].sin;
+			(*info)->rays[i].x += ((*info)->rays[i].cos / 192);
+			(*info)->rays[i].y += ((*info)->rays[i].sin / 192);
 		}
 	}
 }
