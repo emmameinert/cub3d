@@ -52,11 +52,11 @@ char	**ft_split(char const *s, char c)
 	size_t	count;
 
 	if (s == NULL)
-		return (NULL);
+		ft_put_error_exit("Error in split function");
 	count = ft_count_words(s, c);
 	split = (char **)malloc(sizeof(char *) * (count + 1));
 	if (split == NULL)
-		return (NULL);
+		ft_put_error_exit("Memory allocation failed");
 	split[count] = NULL;
 	ft_add_words(split, s, c, 0);
 	return (split);

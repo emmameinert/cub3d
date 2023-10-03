@@ -77,8 +77,6 @@ static int	validate_texture(char *line, t_info **info)
 	char	**input;
 
 	input = ft_split(line, 32);
-	if (!input)
-		ft_put_error_exit("Allocation failed");
 	if (!texture_comparison(input, info))
 	{
 		if (!parse_floor_ceiling(input, line, info))

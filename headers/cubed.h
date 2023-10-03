@@ -140,7 +140,6 @@ double		ft_dtorad(double angle);
 double		ft_angle(double angle);
 
 //INPUT
-void		validate_parse_input(int fd, t_info **info);
 char		*parse_textures(int fd, t_info **texture);
 void		parse_map(int fd, t_info **textures, char *line);
 void		parse_array(t_info **texture, t_node **map);
@@ -149,6 +148,8 @@ void		parse_player(t_player **player);
 
 // VALIDATION
 char	*texture_file_existence(char *texture_file, char *msg, char *file);
+void	validate_parse_input(int fd, t_info **info);
+void	validate_map_exists(t_node **map);
 void	validate_texture_count(int counter);
 int		valid_char(char ch);
 void	validate_map(t_node **map, t_info **texture);
