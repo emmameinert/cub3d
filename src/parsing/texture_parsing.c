@@ -111,6 +111,6 @@ char *parse_textures(int fd, t_info **info)
 		free(line);
 	}
 	validate_texture_count(counter);
-	// parse_matrices(info);
+	parse_matrices(info);
 	return (NULL);
 }
