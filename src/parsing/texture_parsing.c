@@ -1,12 +1,14 @@
 
 #include "../../headers/cubed.h"
 
-static void	validate_parse_range(char *input, t_color *color)
+static void	validate_parse_range(char *line, t_color *color, int start)
 {
 	char	**numbers;
 	int		i;
 	int		colour[3];
+	char 	*input;
 
+	input = ft_substr(line, start, ft_strlen(line) - start);
 	numbers = ft_split(input, ',');
 	i = 0;
 	while (numbers[i] && i < 3)
@@ -16,6 +18,7 @@ static void	validate_parse_range(char *input, t_color *color)
 			break ;
 		i++;
 	}
+	free(input);
 	free_char_array(numbers);
 	if (i != 3)
 		ft_put_error_exit("Wrong color");
@@ -24,19 +27,26 @@ static void	validate_parse_range(char *input, t_color *color)
 	color->b = colour[2];
 }
 
-static int	parse_floor_ceiling(char **input, t_info **info)
+static int	parse_floor_ceiling(char **input, char *line, t_info **info)
 {
+	int i;
+
+	i = 0;
 	if (input[0][0] == 'F')
 	{
 		if ((*info)->floor->r != -2)
 			ft_put_error_exit("Floor duplicate");
-		validate_parse_range(input[1], (*info)->floor);
+		while (line[i] != 'F')
+			i++;
+		validate_parse_range(line, (*info)->floor, i);
 	}
 	else if (input[0][0] == 'C')
 	{
 		if ((*info)->ceiling->r != -2)
 			ft_put_error_exit("Ceiling duplicate");
-		validate_parse_range(input[1], (*info)->ceiling);
+		while (line[i] != 'C')
+			i++;
+		validate_parse_range(line, (*info)->ceiling, i);
 	}
 	else
 		return (0);
@@ -70,7 +80,7 @@ static int	validate_texture(char *line, t_info **info)
 		ft_put_error_exit("Allocation failed");
 	if (!texture_comparison(input, info))
 	{
-		if (!parse_floor_ceiling(input, info))
+		if (!parse_floor_ceiling(input, line, info))
 		{
 			free_char_array(input);
 			return (0);
