@@ -29,16 +29,16 @@ void	suffix_cmp(char *file, char *suffix)
 {
 	int	len;
 	char	*file_ending;
-
-	len = ft_strlen(file);
-	if (!ft_strncmp_all(suffix, ".xpm"))
-		file_ending = ft_substr(file, len - 5, 4);
-	else
-		file_ending = ft_substr(file, len - 4, 4);
+	char	*file_trimmed;
+	
+	file_trimmed = ft_strtrim(file, "\t\n ");
+	len = ft_strlen(file_trimmed);
+	file_ending = ft_substr(file_trimmed, len - 4, 4);
 	if (ft_strncmp_all(file_ending, suffix))
 	{
 		free(file_ending);
-		ft_put_error_exit("Wrong file suffix");
+		ft_put_error_exit(suffix);
 	}
+	free(file_trimmed);
 	free(file_ending);
 }
