@@ -9,6 +9,7 @@ static void	validate_parse_range(char *line, t_color *color, int start)
 	char 	*input;
 
 	input = ft_substr(line, start, ft_strlen(line) - start);
+	input = ft_strtrim(input, "\n\t FC");
 	numbers = ft_split(input, ',');
 	i = 0;
 	while (numbers[i] && i < 3)
