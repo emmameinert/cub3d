@@ -12,7 +12,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	len = ft_strlen(s);
 	ptr = (char *)malloc(sizeof(*ptr) * len + 1);
 	if (!ptr)
-		return (NULL);
+		ft_put_error_exit("Memory allocation issue");
 	i = 0;
 	while (len > i)
 	{

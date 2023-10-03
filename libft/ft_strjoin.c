@@ -11,7 +11,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		return (NULL);
 	str = (char *)malloc(sizeof(char) * ft_strlen(s1) + ft_strlen(s2) + 1);
 	if (!str)
-		return (NULL);
+		ft_put_error_exit("Memory allocation issue");
 	while (*s1 != '\0')
 	{
 		str[index++] = *(s1++);

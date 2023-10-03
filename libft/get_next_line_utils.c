@@ -24,7 +24,7 @@ char	*ft_strjoin_free(char *cache, char *buffer)
 	len = (ft_strlen(cache) + ft_strlen(buffer));
 	result = (char *)malloc(sizeof(char) * (len + 1));
 	if (!result)
-		return (NULL);
+		ft_put_error_exit("Memory allocation issue");
 	index_r = 0;
 	index_c = 0;
 	while (cache[index_c] != '\0')
@@ -43,7 +43,7 @@ char	*ft_init_str(void)
 
 	str = (char *)malloc(sizeof(char) * 1);
 	if (!str)
-		return (NULL);
+		ft_put_error_exit("Memory allocation issue");
 	*str = '\0';
 	return (str);
 }
