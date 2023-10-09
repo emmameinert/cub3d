@@ -1,43 +1,39 @@
 
 #include "../../headers/cubed.h"
 
-static void	get_wall_dir(t_ray *ray)
+static void	get_wall_dir(t_info **info, int i, int is_vertical)
 {
-	int	mod_y;
-	int	mod_x;
-	int y;
-	int x;
-
-	y = (int)ray->y;
-	x = (int)ray->x;
-	mod_y = y % 16;
-	mod_x = x % 16;
-	if (mod_y == 0)
-		ray->wall_color = COLOR_GRAY; // NO
-	else if (mod_y == 15)
-		ray->wall_color = COLOR_GOLD; // SO
-	else if (mod_x == 0)
-		ray->wall_color = GREEN; // WE
-	else if (mod_x == 15)
-		ray->wall_color = PINK; // EA
+	if (is_vertical)
+	{
+		if ((*info)->rays[i].angle < 90 || ((*info)->rays[i].angle > 270 && (*info)->rays[i].angle < 360))
+			(*info)->rays[i].wall_color = GREEN;
+		else if ((*info)->rays[i].angle > 90 && (*info)->rays[i].angle < 270)
+			(*info)->rays[i].wall_color = PINK;
+	}
 	else
-		ray->wall_color = BLACK; // :(
+	{
+		if ((*info)->rays[i].angle < 180)
+			(*info)->rays[i].wall_color = COLOR_GOLD;
+		else
+			(*info)->rays[i].wall_color = COLOR_GRAY;
+	}
 }
 
-static int	wall_hit(t_ray *ray, t_info **info)
+static int	wall_hit(t_info **info, int i, int is_vertical)
 {
-	int	increment_x;
+	static int	increment_x;
 	int	increment_y;
 
-	increment_y = (int)floor(ray->y / GRID_SIZE);
-	increment_x = (int)floor(ray->x / GRID_SIZE);
+	increment_y = (int)floor((*info)->rays[i].y / GRID_SIZE);
+	if (is_vertical)
+		increment_x = (int)floor((*info)->rays[i].x / GRID_SIZE);
 	if (increment_x >= (*info)->m_width || increment_x < 0 || (*info)->map[increment_y][increment_x].ch == ' ')
 		return (1);
 	else if (increment_y >= (*info)->m_height || increment_y < 0 || (*info)->map[increment_y][increment_x].ch == ' ')
 		return (1);
 	if ((*info)->map[increment_y][increment_x].ch == '1')
 	{
-		get_wall_dir(ray);
+		get_wall_dir(info, i, is_vertical);
 		return (1);
 	}
 	return (0);
@@ -62,19 +58,27 @@ static double	get_angle(t_info **info, int i)
 
 void	cast_rays(t_info **info)
 {
+	double	cos_inc;
+	double	sin_inc;
 	int		i;
 
 	i = -1;
+	cos_inc = 0.0;
+	sin_inc = 0.0;
 	 // start from -30 degrees from the player direction
 	while (++i < WIN_WIDTH) // increment ray
 	{
 		init_ray(get_angle(info, i), &(*info)->rays[i], (*info)->player);
-		(*info)->rays[i].cos = cos(ft_dtorad((*info)->rays[i].angle)); // / 192; // calculate the x increment
-		(*info)->rays[i].sin = -sin(ft_dtorad((*info)->rays[i].angle)); // / 192; // calculate the y increment
-		while (!wall_hit(&(*info)->rays[i], info)) // check for wall hit
+		cos_inc = cos(ft_dtorad((*info)->rays[i].angle)) / 192; // calculate the x increment
+		sin_inc = -sin(ft_dtorad((*info)->rays[i].angle)) / 192; // calculate the y increment
+		while (1) // check for wall hit
 		{
-			(*info)->rays[i].x += ((*info)->rays[i].cos / 192);
-			(*info)->rays[i].y += ((*info)->rays[i].sin / 192);
+			(*info)->rays[i].x += cos_inc;
+			if (wall_hit(info, i, 1))
+				break ;
+			(*info)->rays[i].y += sin_inc;
+			if (wall_hit(info, i, 0))
+				break ;
 		}
 	}
 }

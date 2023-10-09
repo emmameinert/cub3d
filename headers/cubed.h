@@ -33,7 +33,7 @@
 # endif
 
 # ifndef PLR_ROT_STEP
-#  define PLR_ROT_STEP 10
+#  define PLR_ROT_STEP 5
 # endif
 
 enum e_keycode
