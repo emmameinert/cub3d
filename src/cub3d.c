@@ -10,6 +10,7 @@ void	run_program(char **argv)
 	fd = open_file(argv[1]);
 	info = init_info();
 	validate_parse_input(fd, &info);
+	close_file(fd);
 	render(&info);
 	hook_loop(&info);
 }

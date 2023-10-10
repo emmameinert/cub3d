@@ -104,7 +104,11 @@ char *parse_textures(int fd, t_info **info)
 		else if (counter == 6)
 		{
 			if (line[0] != '\n')
+			{
+				validate_texture_count(counter);
+				parse_matrices(info);
 				return (line);
+			}
 		}
 		if (counter < 6)
 			counter += validate_texture(line, info);

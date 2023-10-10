@@ -9,5 +9,4 @@ void	validate_parse_input(int fd, t_info **info)
 	line = parse_textures(fd, info);
 	parse_map(fd, info, line);
 	parse_player(&(*info)->player);
-	close_file(fd);
 }

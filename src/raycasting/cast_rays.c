@@ -6,16 +6,16 @@ static void	get_wall_info(t_info **info, int i, int is_vertical)
 	if (is_vertical)
 	{
 		if ((*info)->rays[i].angle < 90 || ((*info)->rays[i].angle > 270 && (*info)->rays[i].angle < 360))
-			(*info)->rays[i].wall_color = GREEN;
+			(*info)->rays[i].wall_color = WE;
 		else if ((*info)->rays[i].angle > 90 && (*info)->rays[i].angle < 270)
-			(*info)->rays[i].wall_color = PINK;
+			(*info)->rays[i].wall_color = EA;
 	}
 	else
 	{
 		if ((*info)->rays[i].angle < 180)
-			(*info)->rays[i].wall_color = COLOR_GOLD;
+			(*info)->rays[i].wall_color = SO;
 		else
-			(*info)->rays[i].wall_color = COLOR_GRAY;
+			(*info)->rays[i].wall_color = NO;
 	}
 }
 
