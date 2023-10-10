@@ -178,7 +178,7 @@ void	draw_player(t_info **info);
 void	draw_rays(t_info **info);
 void	draw_maze(t_info **info);
 void	draw_ceiling(t_info **info, double half_wallheight, int x);
-void	draw_wall(t_info **info, double half_wallheight, t_ray *ray);
+void	draw_wall(t_info **info, double half_wallheight, t_ray *ray, int x);
 void	draw_floor(t_info **info, double half_wallheight, int x);
 void	draw_screen(t_info **info, int x);
 

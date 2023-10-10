@@ -21,7 +21,7 @@ static double	calc_wall_dist(t_info **info, t_ray ray)
 static void	draw_on_y(t_info **info, double half_wallheight, int x)
 {
 	draw_ceiling(info, half_wallheight, x);
-	draw_wall(info, half_wallheight, &(*info)->rays[x]);
+	draw_wall(info, half_wallheight, &(*info)->rays[x], x);
 	draw_floor(info, half_wallheight, x);
 }
 

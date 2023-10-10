@@ -12,7 +12,7 @@ static t_texture	*get_texture(t_info **info, t_ray *ray)
 	return ((*info)->ea);
 }
 
-void	draw_wall(t_info **info, double half_wallheight, t_ray *ray)
+void	draw_wall(t_info **info, double half_wallheight, t_ray *ray, int x)
 {
 	t_coord		from;
 	t_coord		to;
@@ -22,9 +22,9 @@ void	draw_wall(t_info **info, double half_wallheight, t_ray *ray)
 	int			text_x;
 
 	from.y = (WIN_HEIGHT / 2) - half_wallheight;
-	from.x = ray->x;
+	from.x = x;
 	text = get_texture(info, ray);
-	text_x = (int)(ray->x * (text->width / GRID_SIZE)) % text->width;
+	text_x = (int)(ray->x * text->width / GRID_SIZE) % text->width;
 	y_inc = (half_wallheight * 2) / text->height;
 	text_y = -1;
 	to.x = from.x;
