@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 17:16:14 by meskelin          #+#    #+#             */
-/*   Updated: 2023/09/25 14:59:34 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/10/10 11:12:06 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,18 @@ void	draw_line(t_info **info, t_coord *from, t_coord *to, int color)
 				break ;
 	}
 	free(bres);
+}
+
+void	draw_y_line(t_info **info, t_coord *from, t_coord *to, int color)
+{
+	int y;
+
+	y = from->y;
+	while (1)
+	{
+		if (0 > y || y > WIN_HEIGHT || y >= to->y)
+			break ;
+		put_pixel(info, from->x, y, color);
+		y++;
+	}
 }

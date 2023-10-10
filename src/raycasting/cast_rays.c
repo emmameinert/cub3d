@@ -1,7 +1,7 @@
 
 #include "../../headers/cubed.h"
 
-static void	get_wall_dir(t_info **info, int i, int is_vertical)
+static void	get_wall_info(t_info **info, int i, int is_vertical)
 {
 	if (is_vertical)
 	{
@@ -33,7 +33,7 @@ static int	wall_hit(t_info **info, int i, int is_vertical)
 		return (1);
 	if ((*info)->map[increment_y][increment_x].ch == '1')
 	{
-		get_wall_dir(info, i, is_vertical);
+		get_wall_info(info, i, is_vertical);
 		return (1);
 	}
 	return (0);
@@ -65,12 +65,11 @@ void	cast_rays(t_info **info)
 	i = -1;
 	cos_inc = 0.0;
 	sin_inc = 0.0;
-	 // start from -30 degrees from the player direction
-	while (++i < WIN_WIDTH) // increment ray
+	while (++i < WIN_WIDTH)
 	{
 		init_ray(get_angle(info, i), &(*info)->rays[i], (*info)->player);
-		cos_inc = cos(ft_dtorad((*info)->rays[i].angle)) / 192; // calculate the x increment
-		sin_inc = -sin(ft_dtorad((*info)->rays[i].angle)) / 192; // calculate the y increment
+		cos_inc = cos(ft_dtorad((*info)->rays[i].angle)) / 192;
+		sin_inc = -sin(ft_dtorad((*info)->rays[i].angle)) / 192;
 		while (1) // check for wall hit
 		{
 			(*info)->rays[i].x += cos_inc;
