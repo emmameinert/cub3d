@@ -13,18 +13,6 @@ void	draw_ceiling(t_info **info, double half_wallheight, int x)
 	draw_y_line(info, &from, &to, (*info)->ceiling->draw_color);
 }
 
-void	draw_wall(t_info **info, double half_wallheight, int x)
-{
-	t_coord	from;
-	t_coord	to;
-
-	from.y = (WIN_HEIGHT / 2) - half_wallheight;
-	to.y = (WIN_HEIGHT / 2) + half_wallheight;
-	from.x = x;
-	to.x = x;
-	draw_y_line(info, &from, &to, COLOR_BLACK);
-}
-
 void	draw_floor(t_info **info, double half_wallheight, int x)
 {
 	t_coord	from;

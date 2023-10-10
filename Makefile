@@ -44,7 +44,8 @@ SRC_RNDR =	mlx_handler \
 			draw_background \
 			draw_line \
 			draw_player \
-			draw_component \
+			draw_color \
+			draw_wall \
 			draw_maze \
 			draw_rays \
 			render

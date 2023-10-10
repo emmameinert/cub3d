@@ -31,7 +31,7 @@ void	draw_minimap(t_info **info)
 		{
 			temp = &(*info)->map[y][x];
 			if (temp->ch == '1')
-				color = RED;
+				color = COLOR_AQUA;
 			else if (temp->ch == '0')
 				color = WHITE;
 			else if (temp->ch == ' ')
