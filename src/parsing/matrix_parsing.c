@@ -26,7 +26,7 @@ static void	parse_matrix(t_texture **tex)
 
 static void	parse_texture_matrix(t_info **info, t_texture **tex)
 {
-	(*tex)->img->img = mlx_xpm_file_to_image((*info)->mlx, (*tex)->filename, &(*tex)->width, &(*tex)->height);
+	(*tex)->img->img = mlx_xpm_file_to_image((*info)->mlx->mlx, (*tex)->filename, &(*tex)->width, &(*tex)->height);
 	if (!(*tex)->img->img)
 		ft_put_error_exit("Can't open texture file");
 	(*tex)->img->addr = mlx_get_data_addr((*tex)->img->img, &(*tex)->img->bits_per_pixel,

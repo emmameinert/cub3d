@@ -122,7 +122,6 @@ typedef struct s_texture
 	t_img	*img;
 	char	*filename;
 	int		type;
-	int		fd;
 	int		height;
 	int		width;
 	int		**matrix;
