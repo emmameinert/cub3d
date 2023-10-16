@@ -13,7 +13,7 @@ static double	calc_wall_dist(t_info **info, t_ray ray)
 {
 	double dist;
 
-	dist = sqrt(pow((*info)->player->x - ray.x, 2) + pow((*info)->player->y - ray.y, 2)) * 0.175;
+	dist = sqrt(pow((*info)->player->x - ray.x, 2) + pow((*info)->player->y - ray.y, 2)) * 0.15;
 	dist = dist * cos(ft_dtorad(ray.angle - (*info)->player->angle)); // fish eye fix
 	return (dist);
 }
@@ -35,11 +35,6 @@ void	draw_maze(t_info **info)
 	while (++i < WIN_WIDTH)
 	{
 		dist = calc_wall_dist(info, (*info)->rays[i]);
-		if (dist < 1)
-		{
-			draw_screen(info, i);
-			continue ;
-		}
 		half_wallheight = calculate_wallheight(dist);
 		draw_on_y(info, half_wallheight, i);
 	}

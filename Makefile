@@ -5,7 +5,8 @@ LIBFT_PATH = ./libft
 MLX_PATH = ./mlx
 
 SRC_INT =	init_mlx \
-			init_info
+			init_info \
+			init_ray
 
 SRC =	cub3d \
 		main

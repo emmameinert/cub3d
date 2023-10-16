@@ -201,6 +201,7 @@ void	render(t_info **info);
 
 // INIT
 t_info *init_info(void);
+void	init_ray(double angle, t_ray *ray, t_player *player);
 
 // MOVE
 void	calc_player_angle(t_info **info);
