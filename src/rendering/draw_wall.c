@@ -26,20 +26,13 @@ void	draw_wall(t_info **info, double half_wallheight, t_ray *ray, int x)
 	to.x = from.x;
 	to.y = (WIN_HEIGHT / 2) + half_wallheight;
 	text = get_texture(info, ray);
-
 	text_y = 0;
 	if ((half_wallheight * 2) > WIN_HEIGHT)
 		text_y = ((half_wallheight * 2) - WIN_HEIGHT / 2) * x;
-	if (ray->wall_color == NO)
+	if (ray->wall_color == NO || ray->wall_color == SO)
 		text_x = (int)(ray->x * text->width / GRID_SIZE) % text->width;
-	else if (ray->wall_color == WE)
-		text_x = text->width - 1 - (x % text->width);
-	else if (ray->wall_color == SO)
-		text_x = (int)ray->x % text->width;
-	else if (ray->wall_color == EA)
-		text_x = (int)x % text->width;
-	else
-		text_x = (int)(ray->x * text->width / GRID_SIZE) % text->width;
+	else if (ray->wall_color == WE || ray->wall_color == EA)
+		text_x = (int)(ray->y * text->width / GRID_SIZE) % text->width;
 	y_inc = text->height / (half_wallheight * 2);
 	while (text_y < text->height && from.y <= to.y)
 	{
