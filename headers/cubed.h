@@ -79,6 +79,7 @@ typedef struct s_color
 
 typedef struct s_ray
 {
+	int		text_x;
 	double	x;
 	double	y;
 	double	cos;
