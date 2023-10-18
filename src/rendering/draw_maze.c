@@ -9,61 +9,20 @@ static double	calculate_wallheight(double distance)
 	return (height);
 }
 
-static double	calculate_distance(t_info **info, t_ray ray)
+static double	calc_wall_dist(t_info **info, t_ray ray)
 {
 	double dist;
 
-	dist = sqrt(pow((*info)->player->x - ray.x, 2) + pow((*info)->player->y - ray.y, 2)) * 0.175;
+	dist = sqrt(pow((*info)->player->x - ray.x, 2) + pow((*info)->player->y - ray.y, 2)) * 0.15;
 	dist = dist * cos(ft_dtorad(ray.angle - (*info)->player->angle)); // fish eye fix
 	return (dist);
 }
 
-void	draw_ceiling(t_info **info, double half_wallheight, int x)
+static void	draw_on_y(t_info **info, double half_wallheight, int x)
 {
-	t_coord	from;
-	t_coord	to;
-
-	from.y = 0;
-	to.y = (WIN_HEIGHT / 2) - half_wallheight;
-	from.x = x;
-	to.x = x;
-	draw_line(info, &from, &to, (*info)->ceiling->draw_color);
-}
-
-void	draw_wall(t_info **info, double half_wallheight, int x)
-{
-	t_coord	from;
-	t_coord	to;
-
-	from.y = (WIN_HEIGHT / 2) - half_wallheight;
-	to.y = (WIN_HEIGHT / 2) + half_wallheight;
-	from.x = x;
-	to.x = x;
-	draw_line(info, &from, &to, COLOR_GRAY);
-}
-
-void	draw_floor(t_info **info, double half_wallheight, int x)
-{
-	t_coord	from;
-	t_coord	to;
-
-	from.y = (WIN_HEIGHT / 2) + half_wallheight;
-	to.y = WIN_HEIGHT;
-	from.x = x;
-	to.x = x;
-	draw_line(info, &from, &to, (*info)->floor->draw_color);
-}
-
-void	draw_screen(t_info **info, int x)
-{
-	t_coord	from;
-	t_coord	to;
-
-	from.y = 0;
-	to.y = WIN_HEIGHT;
-	from.x = x;
-	to.x = x;
-	draw_line(info, &from, &to, COLOR_GRAY);
+	draw_ceiling(info, half_wallheight, x);
+	draw_wall(info, half_wallheight, &(*info)->rays[x], x);
+	draw_floor(info, half_wallheight, x);
 }
 
 void	draw_maze(t_info **info)
@@ -75,15 +34,8 @@ void	draw_maze(t_info **info)
 	i = -1;
 	while (++i < WIN_WIDTH)
 	{
-		dist = calculate_distance(info, (*info)->rays[i]);
-		if (dist < 1)
-		{
-			draw_screen(info, i);
-			continue ;
-		}
+		dist = calc_wall_dist(info, (*info)->rays[i]);
 		half_wallheight = calculate_wallheight(dist);
-		draw_ceiling(info, half_wallheight, i);
-		draw_wall(info, half_wallheight, i);
-		draw_floor(info, half_wallheight, i);
+		draw_on_y(info, half_wallheight, i);
 	}
 }

@@ -10,20 +10,19 @@ static void	init_rgb(t_color **color)
 
 static void init_texture(t_texture **texture, int type)
 {
-	(*texture)->fd = -2;
 	(*texture)->img = ft_calloc(1, sizeof(t_img));
 	(*texture)->type = type;
 }
 
 static void	init_textures(t_info **info)
 {
-	(*info)->no = ft_calloc(1, sizeof(*(*info)->no));
+	(*info)->no = ft_calloc(1, sizeof(t_texture));
 	init_texture(&(*info)->no, NO);
-	(*info)->so = ft_calloc(1, sizeof(*(*info)->so));
+	(*info)->so = ft_calloc(1, sizeof(t_texture));
 	init_texture(&(*info)->so, SO);
-	(*info)->ea = ft_calloc(1, sizeof(*(*info)->ea));
+	(*info)->ea = ft_calloc(1, sizeof(t_texture));
 	init_texture(&(*info)->ea, EA);
-	(*info)->we = ft_calloc(1, sizeof(*(*info)->we));
+	(*info)->we = ft_calloc(1, sizeof(t_texture));
 	init_texture(&(*info)->we, WE);
 }
 

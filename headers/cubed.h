@@ -33,7 +33,7 @@
 # endif
 
 # ifndef PLR_ROT_STEP
-#  define PLR_ROT_STEP 10
+#  define PLR_ROT_STEP 5
 # endif
 
 enum e_keycode
@@ -79,11 +79,13 @@ typedef struct s_color
 
 typedef struct s_ray
 {
+	int		text_x;
 	double	x;
 	double	y;
 	double	cos;
 	double	sin;
 	double	angle;
+	int		wall_color;
 }	t_ray;
 
 typedef struct s_player
@@ -121,7 +123,6 @@ typedef struct s_texture
 	t_img	*img;
 	char	*filename;
 	int		type;
-	int		fd;
 	int		height;
 	int		width;
 	int		**matrix;
@@ -173,9 +174,14 @@ void	flood_fill(t_info **texture, int y, int x);
 void	draw_minimap(t_info **info);
 void	draw_background(t_info **info, int height, int width);
 void	draw_line(t_info **info, t_coord *from, t_coord *to, int color);
+void	draw_y_line(t_info **info, t_coord *from, t_coord *to, int color);
 void	draw_player(t_info **info);
 void	draw_rays(t_info **info);
 void	draw_maze(t_info **info);
+void	draw_ceiling(t_info **info, double half_wallheight, int x);
+void	draw_wall(t_info **info, double half_wallheight, t_ray *ray, int x);
+void	draw_floor(t_info **info, double half_wallheight, int x);
+void	draw_screen(t_info **info, int x);
 
 // RAYCASTING
 void	cast_rays(t_info **info);
@@ -195,6 +201,7 @@ void	render(t_info **info);
 
 // INIT
 t_info *init_info(void);
+void	init_ray(double angle, t_ray *ray, t_player *player);
 
 // MOVE
 void	calc_player_angle(t_info **info);

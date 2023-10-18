@@ -7,28 +7,26 @@ static void	parse_matrix(t_texture **tex)
 	int	j;
 
 	(*tex)->matrix = ft_calloc((*tex)->height, sizeof(int *));
-	i = 0;
-	while (i < (*tex)->height)
-		(*tex)->matrix[i++] = ft_calloc((*tex)->width, sizeof(int));
-	i = 0;
-	j = 0;
-	while (i < (*tex)->height)
+	i = -1;
+	while (++i < (*tex)->height)
+		(*tex)->matrix[i] = ft_calloc((*tex)->width, sizeof(int));
+	i = -1;
+	j = -1;
+	while (++i < (*tex)->height)
 	{
-		j = 0;
-		while (j < (*tex)->width)
+		j = -1;
+		while (++j < (*tex)->width)
 		{
 			(*tex)->matrix[i][j] = *(unsigned int *)((*tex)->img->addr
 								+ ((*tex)->img->line_length * i)
 								+ (j * ((*tex)->img->bits_per_pixel / 8)));
-			j++;
 		}
-		i++;
 	}
 }
 
 static void	parse_texture_matrix(t_info **info, t_texture **tex)
 {
-	(*tex)->img->img = mlx_xpm_file_to_image((*info)->mlx, (*tex)->filename, &(*tex)->width, &(*tex)->height);
+	(*tex)->img->img = mlx_xpm_file_to_image((*info)->mlx->mlx, (*tex)->filename, &(*tex)->width, &(*tex)->height);
 	if (!(*tex)->img->img)
 		ft_put_error_exit("Can't open texture file");
 	(*tex)->img->addr = mlx_get_data_addr((*tex)->img->img, &(*tex)->img->bits_per_pixel,

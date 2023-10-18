@@ -5,7 +5,8 @@ LIBFT_PATH = ./libft
 MLX_PATH = ./mlx
 
 SRC_INT =	init_mlx \
-			init_info
+			init_info \
+			init_ray
 
 SRC =	cub3d \
 		main
@@ -44,6 +45,8 @@ SRC_RNDR =	mlx_handler \
 			draw_background \
 			draw_line \
 			draw_player \
+			draw_color \
+			draw_wall \
 			draw_maze \
 			draw_rays \
 			render
@@ -51,7 +54,7 @@ SRC_RNDR =	mlx_handler \
 HDRS =	cubed \
 		lst
 
-BUILD_FLAGS = -Wall -Wextra -Werror
+BUILD_FLAGS = -Wall -Wextra -Werror -O3
 
 SRC_INT_PRE = $(addprefix ./src/initializing/, $(SRC_INT))
 SRC_INT_SUFF = $(addsuffix .c, $(SRC_INT_PRE))

@@ -14,6 +14,6 @@ void	draw_rays(t_info **info)
 		from.y = (*info)->player->y;
 		to.x = (*info)->rays[i].x;
 		to.y = (*info)->rays[i].y;
-		draw_line(info, &from, &to, BLACK);
+		draw_line(info, &from, &to, COLOR_MAGENTA);
 	}
 }

@@ -18,12 +18,15 @@ void	move_front_back(int sign_x, int sign_y, t_info **info)
 	double nextX;
 	double nextY;
 
-	nextX = (*info)->player->x + (sign_x * ((*info)->player->dir_x * (PLR_STEP * 5)));
-	nextY = (*info)->player->y + (sign_y * ((*info)->player->dir_y * (PLR_STEP * 5)));
-	if ((*info)->map[(int)nextY / GRID_SIZE] && (*info)->map[(int)nextY / GRID_SIZE][(int)nextX / GRID_SIZE].ch == '1')
-		return ;
-	(*info)->player->x = (*info)->player->x + (sign_x * (*info)->player->dir_x * PLR_STEP);
-	(*info)->player->y = (*info)->player->y + (sign_y * (*info)->player->dir_y * PLR_STEP);
+	nextX = (*info)->player->x + (sign_x * ((*info)->player->dir_x * (PLR_STEP * 7)));
+	if ((*info)->map[(int)(*info)->player->y / GRID_SIZE]
+		&& (*info)->map[(int)(*info)->player->y
+		/ GRID_SIZE][(int)nextX / GRID_SIZE].ch != '1')
+		(*info)->player->x = (*info)->player->x + (sign_x * (*info)->player->dir_x * PLR_STEP);
+	nextY = (*info)->player->y + (sign_y * ((*info)->player->dir_y * (PLR_STEP * 7)));
+	if ((*info)->map[(int)nextY / GRID_SIZE]
+		&& (*info)->map[(int)nextY / GRID_SIZE][(int)nextX / GRID_SIZE].ch != '1')
+		(*info)->player->y = (*info)->player->y + (sign_y * (*info)->player->dir_y * PLR_STEP);
 }
 
 void	move_side(int sign_x, int sign_y, t_info **info)
