@@ -25,8 +25,6 @@ void	draw_wall(t_info **info, double half_wallheight, t_ray *ray, int x)
 	to_y = (WIN_HEIGHT / 2) + half_wallheight;
 	text = get_texture(info, ray);
 	text_y = 0;
-	if ((half_wallheight * 2) >= WIN_HEIGHT)
-		text_y = (((half_wallheight * 2) - WIN_HEIGHT) / GRID_SIZE);
 	y_inc = text->height / (half_wallheight * 2);
 	while (text_y < text->height && from.y <= to_y)
 	{
