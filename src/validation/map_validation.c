@@ -25,7 +25,7 @@ static void	validate_inaccessables(t_info **info)
 		{
 			temp = &(*info)->map[(*info)->y_index][(*info)->x_index++];
 			if (!temp->checked && temp->ch == '0')
-				ft_put_error_exit("Invalid map");
+				ft_put_error_exit("Map has innaccessible area.");
 		}
 		(*info)->x_index = 0;
 		(*info)->y_index++;
