@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 17:16:14 by meskelin          #+#    #+#             */
-/*   Updated: 2023/10/24 11:49:36 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/10/24 12:07:17 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	draw_line(t_info **info, t_coord *from, t_coord *to, int color)
 
 void	draw_y_line(t_info **info, t_coord *from, t_coord *to, int color)
 {
-	int y;
+	int	y;
 
 	y = from->y;
 	while (1)

@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:49:29 by meskelin          #+#    #+#             */
-/*   Updated: 2023/10/24 11:49:30 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/10/24 12:04:51 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ static void	create_grid(t_info **info, int x, int y, int color)
 
 void	draw_minimap(t_info **info)
 {
-	int x;
-	int y;
-	int	color;
-	t_coord *temp;
+	int		x;
+	int		y;
+	int		color;
+	t_coord	*temp;
 
 	y = -1;
 	while (++y < (*info)->m_height)

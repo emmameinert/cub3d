@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:49:24 by meskelin          #+#    #+#             */
-/*   Updated: 2023/10/24 11:49:26 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/10/24 12:06:57 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static double	calculate_wallheight(double distance)
 {
-	double height;
+	double	height;
 
 	height = floor((WIN_HEIGHT / 2) / distance);
 	return (height);
@@ -22,10 +22,12 @@ static double	calculate_wallheight(double distance)
 
 static double	calc_wall_dist(t_info **info, t_ray ray)
 {
-	double dist;
+	double	dist;
 
-	dist = sqrt(pow((*info)->player->x - ray.x, 2) + pow((*info)->player->y - ray.y, 2)) * 0.15;
-	dist = dist * cos(ft_dtorad(ray.angle - (*info)->player->angle)); // fish eye fix
+	dist = sqrt(pow((*info)->player->x - ray.x, 2)
+			+ pow((*info)->player->y - ray.y, 2)) * 0.15;
+	dist = dist
+		* cos(ft_dtorad(ray.angle - (*info)->player->angle));
 	return (dist);
 }
 

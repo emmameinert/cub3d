@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:49:07 by meskelin          #+#    #+#             */
-/*   Updated: 2023/10/24 11:49:08 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/10/24 12:08:23 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,16 @@ static void	get_wall_info(t_info **info, int i, int is_vertical)
 static int	wall_hit(t_info **info, int i, int is_vertical)
 {
 	static int	increment_x;
-	int	increment_y;
+	int			increment_y;
 
 	increment_y = (int)floor((*info)->rays[i].y / GRID_SIZE);
 	if (is_vertical)
 		increment_x = (int)floor((*info)->rays[i].x / GRID_SIZE);
-	if (increment_x >= (*info)->m_width || increment_x < 0 || (*info)->map[increment_y][increment_x].ch == ' ')
+	if (increment_x >= (*info)->m_width || increment_x < 0
+		|| (*info)->map[increment_y][increment_x].ch == ' ')
 		return (1);
-	else if (increment_y >= (*info)->m_height || increment_y < 0 || (*info)->map[increment_y][increment_x].ch == ' ')
+	else if (increment_y >= (*info)->m_height || increment_y < 0
+		|| (*info)->map[increment_y][increment_x].ch == ' ')
 		return (1);
 	if ((*info)->map[increment_y][increment_x].ch == '1')
 	{
@@ -69,9 +71,11 @@ static int	wall_hit(t_info **info, int i, int is_vertical)
 static double	get_angle(t_info **info, int i)
 {
 	if (i == 0)
-		return (ft_angle((*info)->player->angle + ((*info)->player->fov / 2)));
+		return (ft_angle((*info)->player->angle
+				+ ((*info)->player->fov / 2)));
 	else
-		return (ft_angle((*info)->rays[i - 1].angle - (*info)->player->ray_increment));
+		return (ft_angle((*info)->rays[i - 1].angle
+				- (*info)->player->ray_increment));
 }
 
 void	cast_rays(t_info **info)
