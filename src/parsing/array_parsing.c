@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:48:40 by meskelin          #+#    #+#             */
-/*   Updated: 2023/10/24 13:09:40 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/10/24 13:10:36 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,12 @@ void	parse_array(t_info **info, t_node **map)
 		{
 			if (temp && temp->coords->ch != '\n')
 			{
-				(*info)->map[i][j] = (t_coord){ temp->coords->x, temp->coords->y, 0, temp->coords->ch, 0 };
+				(*info)->map[i][j] = (t_coord)
+				{temp->coords->x, temp->coords->y, 0, temp->coords->ch, 0};
 				temp = temp->next;
 			}
 			else
-				(*info)->map[i][j] = (t_coord){ j, i, 0, ' ', 0 };
+				(*info)->map[i][j] = (t_coord){j, i, 0, ' ', 0};
 		}
 		if (temp && temp->coords->ch == '\n')
 			temp = temp->next;
