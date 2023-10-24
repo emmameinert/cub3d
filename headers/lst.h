@@ -1,3 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lst.h                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/24 11:43:29 by meskelin          #+#    #+#             */
+/*   Updated: 2023/10/24 11:47:47 by meskelin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef LST_H
+# define LST_H
 
 # include <stdlib.h>
 # include <unistd.h>
@@ -23,3 +37,5 @@ void	ft_lstiter(t_node *lst, void (*f)(void *));
 t_node	*ft_lstlast(t_node **lst);
 t_node	*ft_lstnew(int x, int y, char ch);
 int		ft_lstsize(t_node *lst);
+
+#endif
