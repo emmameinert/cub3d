@@ -28,10 +28,6 @@
 #  define PLR_SIZE GRID_SIZE / 2
 # endif
 
-# ifndef PLR_STEP
-#  define PLR_STEP 1
-# endif
-
 # ifndef PLR_ROT_STEP
 #  define PLR_ROT_STEP 5
 # endif

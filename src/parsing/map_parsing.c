@@ -1,7 +1,7 @@
 
 #include "../../headers/cubed.h"
 
-static	void	double_player_validation(t_info **info, int x)
+static	void	validate_number_of_players(t_info **info, int x)
 {
 	if ((*info)->player->x == -2)
 	{
@@ -26,7 +26,7 @@ static void	parse_row(char *input, t_node **map, t_info **info)
 		}
 		if (valid_char(*input) == 2)
 		{
-			double_player_validation(info, x);
+			validate_number_of_players(info, x);
 			(*info)->player->dir = *input;
 		}
 		*map = ft_lstadd_back(map, x++, (*info)->y_index, *input);
