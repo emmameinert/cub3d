@@ -6,13 +6,13 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:48:02 by meskelin          #+#    #+#             */
-/*   Updated: 2023/10/24 11:48:04 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/10/24 13:11:20 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/cubed.h"
 
-static t_mlx *init_mlx_wind(void)
+static t_mlx	*init_mlx_wind(void)
 {
 	t_mlx	*mlx;
 
@@ -26,7 +26,7 @@ static t_mlx *init_mlx_wind(void)
 	return (mlx);
 }
 
-static t_img *init_img(t_info **info)
+static t_img	*init_img(t_info **info)
 {
 	t_img	*img;
 

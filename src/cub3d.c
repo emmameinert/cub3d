@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:50:33 by meskelin          #+#    #+#             */
-/*   Updated: 2023/10/24 11:50:34 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/10/24 13:13:41 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	run_program(char **argv)
 {
-	int fd;
-	t_info *info;
+	int		fd;
+	t_info	*info;
 
 	suffix_cmp(argv[1], ".cub");
 	fd = open_file(argv[1]);

@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:43:24 by meskelin          #+#    #+#             */
-/*   Updated: 2023/10/24 11:43:26 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/10/24 13:18:50 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 # endif
 
 # ifndef PLR_SIZE
-#  define PLR_SIZE GRID_SIZE / 2
+#  define PLR_SIZE 8
 # endif
 
 # ifndef PLR_ROT_STEP
@@ -81,7 +81,7 @@ typedef struct s_color
 	int	r;
 	int	g;
 	int	b;
-	int draw_color;
+	int	draw_color;
 }	t_color;
 
 typedef struct s_ray
@@ -159,7 +159,7 @@ void		run_program(char **argv);
 // MATH
 double		ft_dtorad(double angle);
 double		ft_angle(double angle);
-int 		ft_rgbtocolor(t_color rgb);
+int			ft_rgbtocolor(t_color rgb);
 
 //INPUT
 char		*parse_textures(int fd, t_info **texture);
@@ -169,29 +169,29 @@ void		parse_matrices(t_info **info);
 void		parse_player(t_player **player);
 
 // VALIDATION
-char	*texture_file_existence(char *texture_file, char *msg, char *file);
-void	validate_parse_input(int fd, t_info **info);
-void	validate_map_exists(t_node **map);
-void	validate_texture_count(int counter);
-int		valid_char(char ch);
-void	validate_map(t_node **map, t_info **texture);
-void	flood_fill(t_info **texture, int y, int x);
+char		*texture_file_existence(char *texture_file, char *msg, char *file);
+void		validate_parse_input(int fd, t_info **info);
+void		validate_map_exists(t_node **map);
+void		validate_texture_count(int counter);
+int			valid_char(char ch);
+void		validate_map(t_node **map, t_info **texture);
+void		flood_fill(t_info **texture, int y, int x);
 
 // DRAW
-void	draw_minimap(t_info **info);
-void	draw_background(t_info **info, int height, int width);
-void	draw_line(t_info **info, t_coord *from, t_coord *to, int color);
-void	draw_y_line(t_info **info, t_coord *from, t_coord *to, int color);
-void	draw_player(t_info **info);
-void	draw_rays(t_info **info);
-void	draw_maze(t_info **info);
-void	draw_ceiling(t_info **info, double half_wallheight, int x);
-void	draw_wall(t_info **info, double half_wallheight, t_ray *ray, int x);
-void	draw_floor(t_info **info, double half_wallheight, int x);
-void	draw_screen(t_info **info, int x);
+void		draw_minimap(t_info **info);
+void		draw_background(t_info **info, int height, int width);
+void		draw_line(t_info **info, t_coord *from, t_coord *to, int color);
+void		draw_y_line(t_info **info, t_coord *from, t_coord *to, int color);
+void		draw_player(t_info **info);
+void		draw_rays(t_info **info);
+void		draw_maze(t_info **info);
+void		draw_ceiling(t_info **info, double half_wallheight, int x);
+void		draw_wall(t_info **info, double half_wallheight, t_ray *ray, int x);
+void		draw_floor(t_info **info, double half_wallheight, int x);
+void		draw_screen(t_info **info, int x);
 
 // RAYCASTING
-void	cast_rays(t_info **info);
+void		cast_rays(t_info **info);
 
 // FILES
 int			open_file(char *file);
@@ -199,26 +199,27 @@ void		close_file(int fd);
 void		suffix_cmp(char *file, char *suffix);
 
 // MLX
-void	init_mlx(t_info **info);
-int		on_destroy(t_info **info);
-int		key_hook(int keycode, t_info **info);
-void	hook_loop(t_info **info);
-void	put_pixel(t_info **info, int x, int y, int color);
-void	render(t_info **info);
+void		init_mlx(t_info **info);
+int			on_destroy(t_info **info);
+int			key_hook(int keycode, t_info **info);
+void		hook_loop(t_info **info);
+void		put_pixel(t_info **info, int x, int y, int color);
+void		render(t_info **info);
 
 // INIT
-t_info *init_info(void);
-void	init_ray(double angle, t_ray *ray, t_player *player);
+void		init_player(t_info **info);
+t_info		*init_info(void);
+void		init_ray(double angle, t_ray *ray, t_player *player);
 
 // MOVE
-void	calc_player_angle(t_info **info);
-void	move_front_back(int sign_x, int sign_y, t_info **info);
-void	move_side(int sign_x, int sign_y, t_info **info);
-void	rot_player(int sign, t_info **info);
+void		calc_player_angle(t_info **info);
+void		move_front_back(int sign_x, int sign_y, t_info **info);
+void		move_side(int sign_x, int sign_y, t_info **info);
+void		rot_player(int sign, t_info **info);
 
 // EXIT
-int		on_destroy(t_info **info);
-void	exit_failure(void);
-void	exit_success(t_mlx **mlx);
+int			on_destroy(t_info **info);
+void		exit_failure(void);
+void		exit_success(t_mlx **mlx);
 
 #endif

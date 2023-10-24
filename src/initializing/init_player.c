@@ -1,20 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_put_error_exit.c                                :+:      :+:    :+:   */
+/*   init_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/24 11:45:11 by meskelin          #+#    #+#             */
-/*   Updated: 2023/10/24 13:16:10 by meskelin         ###   ########.fr       */
+/*   Created: 2023/10/24 13:12:25 by meskelin          #+#    #+#             */
+/*   Updated: 2023/10/24 13:12:40 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../headers/cubed.h"
 
-void	ft_put_error_exit(char *msg)
+void	init_player(t_info **info)
 {
-	ft_putstr_fd("Error\n", 2);
-	ft_putendl_fd(msg, 2);
-	exit(1);
+	(*info)->player = ft_calloc(1, sizeof(t_player));
+	(*info)->player->x = -2;
+	(*info)->player->y = -2;
+	(*info)->player->angle = 60;
+	(*info)->player->dir_x = 0;
+	(*info)->player->dir_y = 0;
+	(*info)->player->move_speed = 0.5;
+	(*info)->player->rot_speed = 5.0;
 }
