@@ -77,7 +77,7 @@ void	cast_rays(t_info **info)
 		init_ray(get_angle(info, i), &(*info)->rays[i], (*info)->player);
 		cos_inc = cos(ft_dtorad((*info)->rays[i].angle)) / 192;
 		sin_inc = -sin(ft_dtorad((*info)->rays[i].angle)) / 192;
-		while (1) // check for wall hit
+		while (1)
 		{
 			(*info)->rays[i].x += cos_inc;
 			if (wall_hit(info, i, 1))

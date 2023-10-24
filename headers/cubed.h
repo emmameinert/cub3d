@@ -13,11 +13,11 @@
 # include <math.h>
 
 # ifndef WIN_WIDTH
-#  define WIN_WIDTH 1920
+#  define WIN_WIDTH 1080
 # endif
 
 # ifndef WIN_HEIGHT
-#  define WIN_HEIGHT 1080
+#  define WIN_HEIGHT 720
 # endif
 
 # ifndef GRID_SIZE

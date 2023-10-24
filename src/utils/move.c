@@ -13,21 +13,30 @@ void	rot_player(int sign, t_info **info)
 	calc_player_angle(info);
 }
 
+static int step_collides_wall(t_info **info, int y, int x)
+{
+	char ch;
+
+	if (!(*info)->map[y])
+		return (1);
+	ch = (*info)->map[y][x].ch;
+	if (ch == '1' || ch == ' ')
+		return (1);
+	return (0);
+}
+
 void	move_front_back(int sign_x, int sign_y, t_info **info)
 {
 	double	nextX;
 	double	nextY;
-	int		next_step;
+	int		step_size;
 
-	next_step = 2;
-	nextX = (*info)->player->x + (sign_x * ((*info)->player->dir_x * next_step));
-	if ((*info)->map[(int)(*info)->player->y / GRID_SIZE]
-		&& (*info)->map[(int)(*info)->player->y
-		/ GRID_SIZE][(int)nextX / GRID_SIZE].ch != '1')
+	step_size = 3;
+	nextX = ((*info)->player->x + (sign_x * ((*info)->player->dir_x * step_size))) / GRID_SIZE;
+	if (!step_collides_wall(info, (int)(*info)->player->y / GRID_SIZE, (int)nextX))
 		(*info)->player->x = (*info)->player->x + (sign_x * (*info)->player->dir_x);
-	nextY = (*info)->player->y + (sign_y * ((*info)->player->dir_y *  next_step));
-	if ((*info)->map[(int)nextY / GRID_SIZE]
-		&& (*info)->map[(int)nextY / GRID_SIZE][(int)nextX / GRID_SIZE].ch != '1')
+	nextY = ((*info)->player->y + (sign_y * ((*info)->player->dir_y *  step_size))) / GRID_SIZE;
+	if (!step_collides_wall(info, (int)nextY,(int)nextX))
 		(*info)->player->y = (*info)->player->y + (sign_y * (*info)->player->dir_y);
 }
 
