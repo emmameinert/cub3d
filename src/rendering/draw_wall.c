@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:49:47 by meskelin          #+#    #+#             */
-/*   Updated: 2023/10/24 11:49:48 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/10/24 11:57:58 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ void	draw_wall(t_info **info, double half_wallheight, t_ray *ray, int x)
 	y_inc = text->height / (half_wallheight * 2);
 	while (text_y < text->height && from.y <= to_y)
 	{
-		put_pixel(info, from.x, from.y, text->matrix[(int)floor(text_y)][ray->text_x]);
+		put_pixel(info, from.x, from.y,
+			text->matrix[(int)floor(text_y)][ray->text_x]);
 		from.y++;
 		text_y += y_inc;
 	}

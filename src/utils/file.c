@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:50:06 by meskelin          #+#    #+#             */
-/*   Updated: 2023/10/24 11:50:07 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/10/24 11:56:15 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 int	open_file(char *file)
 {
-	int fd;
+	int	fd;
 
 	fd = open(file, O_RDONLY);
-	 if (fd == -1)
-	 	ft_put_error_exit("Failed to open the file");
+	if (fd == -1)
+		ft_put_error_exit("Failed to open the file");
 	return (fd);
 }
 
@@ -30,7 +30,7 @@ void	close_file(int fd)
 
 void	suffix_cmp(char *file, char *suffix)
 {
-	int	len;
+	int		len;
 	char	*file_ending;
 	char	*file_trimmed;
 

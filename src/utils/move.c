@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:50:13 by meskelin          #+#    #+#             */
-/*   Updated: 2023/10/24 11:50:14 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/10/24 12:03:14 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,14 @@ void	calc_player_angle(t_info **info)
 
 void	rot_player(int sign, t_info **info)
 {
-	(*info)->player->angle = ft_angle((*info)->player->angle + (sign * PLR_ROT_STEP));
+	(*info)->player->angle = ft_angle((*info)->player->angle
+			+ (sign * PLR_ROT_STEP));
 	calc_player_angle(info);
 }
 
-static int step_collides_wall(t_info **info, int y, int x)
+static int	step_collides_wall(t_info **info, int y, int x)
 {
-	char ch;
+	char	ch;
 
 	if (!(*info)->map[y])
 		return (1);
@@ -38,17 +39,22 @@ static int step_collides_wall(t_info **info, int y, int x)
 
 void	move_front_back(int sign_x, int sign_y, t_info **info)
 {
-	double	nextX;
-	double	nextY;
+	double	next_x;
+	double	next_y;
 	int		step_size;
 
 	step_size = 3;
-	nextX = ((*info)->player->x + (sign_x * ((*info)->player->dir_x * step_size))) / GRID_SIZE;
-	if (!step_collides_wall(info, (int)(*info)->player->y / GRID_SIZE, (int)nextX))
-		(*info)->player->x = (*info)->player->x + (sign_x * (*info)->player->dir_x);
-	nextY = ((*info)->player->y + (sign_y * ((*info)->player->dir_y *  step_size))) / GRID_SIZE;
-	if (!step_collides_wall(info, (int)nextY,(int)nextX))
-		(*info)->player->y = (*info)->player->y + (sign_y * (*info)->player->dir_y);
+	next_x = ((*info)->player->x + (sign_x
+				* ((*info)->player->dir_x * step_size))) / GRID_SIZE;
+	if (!step_collides_wall(info,
+			(int)(*info)->player->y / GRID_SIZE, (int)next_x))
+		(*info)->player->x = (*info)->player->x
+			+ (sign_x * (*info)->player->dir_x);
+	next_y = ((*info)->player->y + (sign_y
+				* ((*info)->player->dir_y * step_size))) / GRID_SIZE;
+	if (!step_collides_wall(info, (int)next_y, (int)next_x))
+		(*info)->player->y = (*info)->player->y
+			+ (sign_y * (*info)->player->dir_y);
 }
 
 void	move_side(int sign_x, int sign_y, t_info **info)

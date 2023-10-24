@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:50:20 by meskelin          #+#    #+#             */
-/*   Updated: 2023/10/24 11:50:22 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/10/24 11:52:41 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	on_edge(t_info **info, int y, int x)
 
 void	flood_fill(t_info **info, int y, int x)
 {
-	t_coord *temp;
+	t_coord	*temp;
 
 	temp = &(*info)->map[y][x];
 	if (temp->ch == ' ')

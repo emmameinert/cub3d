@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:45:11 by meskelin          #+#    #+#             */
-/*   Updated: 2023/10/24 11:51:13 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/10/24 11:52:01 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void ft_put_error_exit(char *msg)
 {
-    ft_putstr_fd("Error\n", 2);
-    ft_putendl_fd(msg, 2);
-    exit(1);
+	ft_putstr_fd("Error\n", 2);
+	ft_putendl_fd(msg, 2);
+	exit(1);
 }

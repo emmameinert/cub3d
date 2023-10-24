@@ -6,13 +6,13 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:50:09 by meskelin          #+#    #+#             */
-/*   Updated: 2023/10/24 11:50:10 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/10/24 11:55:23 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/cubed.h"
 
-int key_hook(int keycode, t_info **info)
+int	key_hook(int keycode, t_info **info)
 {
 	if (keycode == ESC)
 		exit_success(&(*info)->mlx);
@@ -34,8 +34,8 @@ int key_hook(int keycode, t_info **info)
 	return (0);
 }
 
-int on_destroy(t_info **info)
+int	on_destroy(t_info **info)
 {
 	exit_success(&(*info)->mlx);
-	return(0);
+	return (0);
 }
