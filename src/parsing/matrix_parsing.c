@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:48:53 by meskelin          #+#    #+#             */
-/*   Updated: 2023/10/24 11:48:54 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/10/24 12:13:48 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,19 +29,21 @@ static void	parse_matrix(t_texture **tex)
 		while (++j < (*tex)->width)
 		{
 			(*tex)->matrix[i][j] = *(unsigned int *)((*tex)->img->addr
-								+ ((*tex)->img->line_length * i)
-								+ (j * ((*tex)->img->bits_per_pixel / 8)));
+					+ ((*tex)->img->line_length * i)
+					+ (j * ((*tex)->img->bits_per_pixel / 8)));
 		}
 	}
 }
 
 static void	parse_texture_matrix(t_info **info, t_texture **tex)
 {
-	(*tex)->img->img = mlx_xpm_file_to_image((*info)->mlx->mlx, (*tex)->filename, &(*tex)->width, &(*tex)->height);
+	(*tex)->img->img = mlx_xpm_file_to_image((*info)->mlx->mlx,
+			(*tex)->filename, &(*tex)->width, &(*tex)->height);
 	if (!(*tex)->img->img)
 		ft_put_error_exit("Can't open texture file");
-	(*tex)->img->addr = mlx_get_data_addr((*tex)->img->img, &(*tex)->img->bits_per_pixel,
-						&(*tex)->img->line_length, &(*tex)->img->endian);
+	(*tex)->img->addr = mlx_get_data_addr((*tex)->img->img,
+			&(*tex)->img->bits_per_pixel,
+			&(*tex)->img->line_length, &(*tex)->img->endian);
 	if (!(*tex)->img->addr)
 		ft_put_error_exit("Can't read texture data");
 	parse_matrix(tex);

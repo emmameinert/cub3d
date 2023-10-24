@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:48:49 by meskelin          #+#    #+#             */
-/*   Updated: 2023/10/24 11:48:51 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/10/24 12:14:12 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ static void	init_height_width(t_info **info, int first_line_parsed)
 	}
 }
 
-static void	parse_nodes(int fd, t_node **map, t_info **info, int first_line_parsed)
+static void	parse_nodes(int fd, t_node **map, t_info **info,
+	int first_line_parsed)
 {
 	char	*line;
 

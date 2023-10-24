@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:48:36 by meskelin          #+#    #+#             */
-/*   Updated: 2023/10/24 11:48:38 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/10/24 12:23:15 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_rgbtocolor(t_color rgb)
 {
-	int color;
+	int	color;
 
 	color = (rgb.r * 6 / 256) * 36 + (rgb.g * 6 / 256) * 6 + (rgb.b * 6 / 256);
 	return (color);

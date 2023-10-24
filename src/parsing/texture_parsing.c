@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:49:01 by meskelin          #+#    #+#             */
-/*   Updated: 2023/10/24 11:49:02 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/10/24 12:12:09 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	validate_parse_range(char *line, t_color *color, int start)
 	char	**numbers;
 	int		i;
 	int		colour[3];
-	char 	*input;
+	char	*input;
 
 	input = ft_substr(line, start, ft_strlen(line) - start);
 	input = ft_strtrim(input, "\n\t FC");
@@ -42,7 +42,7 @@ static void	validate_parse_range(char *line, t_color *color, int start)
 
 static int	parse_floor_ceiling(char **input, char *line, t_info **info)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (input[0][0] == 'F')
@@ -68,17 +68,21 @@ static int	parse_floor_ceiling(char **input, char *line, t_info **info)
 
 static int	texture_comparison(char **input, t_info **info)
 {
-    if (!ft_strncmp_all(input[0], "NO"))
-        (*info)->no->filename = texture_file_existence((*info)->no->filename, "NO Texture duplicate", input[1]);
-    else if (!ft_strncmp_all(input[0], "SO"))
-        (*info)->so->filename = texture_file_existence((*info)->so->filename, "SO Texture duplicate", input[1]);
-    else if (!ft_strncmp_all(input[0], "EA"))
-        (*info)->ea->filename = texture_file_existence((*info)->ea->filename, "EA Texture duplicate", input[1]);
-    else if (!ft_strncmp_all(input[0], "WE"))
-        (*info)->we->filename = texture_file_existence((*info)->we->filename, "WE Texture duplicate", input[1]);
-    else
-        return (0);
-    return (1);
+	if (!ft_strncmp_all(input[0], "NO"))
+		(*info)->no->filename = texture_file_existence((*info)->no->filename,
+				"NO Texture duplicate", input[1]);
+	else if (!ft_strncmp_all(input[0], "SO"))
+		(*info)->so->filename = texture_file_existence((*info)->so->filename,
+				"SO Texture duplicate", input[1]);
+	else if (!ft_strncmp_all(input[0], "EA"))
+		(*info)->ea->filename = texture_file_existence((*info)->ea->filename,
+				"EA Texture duplicate", input[1]);
+	else if (!ft_strncmp_all(input[0], "WE"))
+		(*info)->we->filename = texture_file_existence((*info)->we->filename,
+				"WE Texture duplicate", input[1]);
+	else
+		return (0);
+	return (1);
 }
 
 /// @brief checks if we have information about the textures floor or cealing
@@ -101,10 +105,10 @@ static int	validate_texture(char *line, t_info **info)
 	return (1);
 }
 
-char *parse_textures(int fd, t_info **info)
+char	*parse_textures(int fd, t_info **info)
 {
-	char		*line;
-	int			counter;
+	char	*line;
+	int		counter;
 
 	counter = 0;
 	while (fd > 1)
