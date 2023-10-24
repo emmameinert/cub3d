@@ -4,7 +4,7 @@
 int	main(int argc, char **argv)
 {
 	if (argc < 2 || argc > 2)
-		ft_put_error_exit("Expecting a filename as argument");
+		ft_put_error_exit("Expecting one filename as an argmunent.");
 	else if (argv[1][0] == '\0')
 		return (0);
 	else
