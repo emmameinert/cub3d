@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:50:02 by meskelin          #+#    #+#             */
-/*   Updated: 2023/11/07 11:36:35 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/11/07 11:46:41 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ static void	free_mlx(t_info **info)
 	free((*info)->we->img);
 	free((*info)->we);
 	mlx_destroy_window((*info)->mlx->mlx, (*info)->mlx->window);
-	free((*info)->mlx->mlx);
 }
 
 static void	free_colors(t_info **info)
