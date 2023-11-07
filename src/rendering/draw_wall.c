@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:49:47 by meskelin          #+#    #+#             */
-/*   Updated: 2023/10/24 11:57:58 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/11/07 15:01:53 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void	draw_wall(t_info **info, double half_wallheight, t_ray *ray, int x)
 	text = get_texture(info, ray);
 	text_y = 0;
 	y_inc = text->height / (half_wallheight * 2);
+	if (ray->wall_color == NO || ray->wall_color == EA)
+		ray->text_x = text->height - 1 - ray->text_x;
 	while (text_y < text->height && from.y <= to_y)
 	{
 		put_pixel(info, from.x, from.y,
