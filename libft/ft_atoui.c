@@ -6,16 +6,19 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:43:50 by meskelin          #+#    #+#             */
-/*   Updated: 2023/10/24 11:43:52 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/11/07 13:31:32 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
 int	ft_atoui(const char *str)
 {
 	long	result;
 
+	if (!*str)
+		ft_put_error_exit("Invalid color input");
 	while (*str == ' ' || *str == '\t' || *str == '\n' || *str == '\r'
 		|| *str == '\v' || *str == '\f')
 		str++;
