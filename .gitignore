@@ -5,3 +5,4 @@
 libft/*.a
 cub3D
 mlx/*.o
+cub3D.dSYM/Contents/Info.plist

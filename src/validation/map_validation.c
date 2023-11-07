@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_validation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:50:25 by meskelin          #+#    #+#             */
-/*   Updated: 2023/10/24 11:50:26 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/11/07 09:48:06 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,24 +24,24 @@ int	valid_char(char ch)
 	return (0);
 }
 
-static void	validate_inaccessables(t_info **info)
-{
-	t_coord	*temp;
+// static void	validate_inaccessables(t_info **info)
+// {
+// 	t_coord	*temp;
 
-	(*info)->y_index = 0;
-	(*info)->x_index = 0;
-	while ((*info)->y_index < (*info)->m_height)
-	{
-		while ((*info)->x_index < (*info)->m_width)
-		{
-			temp = &(*info)->map[(*info)->y_index][(*info)->x_index++];
-			if (!temp->checked && temp->ch == '0')
-				ft_put_error_exit("Map has innaccessible area.");
-		}
-		(*info)->x_index = 0;
-		(*info)->y_index++;
-	}
-}
+// 	(*info)->y_index = 0;
+// 	(*info)->x_index = 0;
+// 	while ((*info)->y_index < (*info)->m_height)
+// 	{
+// 		while ((*info)->x_index < (*info)->m_width)
+// 		{
+// 			temp = &(*info)->map[(*info)->y_index][(*info)->x_index++];
+// 			if (!temp->checked && temp->ch == '0')
+// 				ft_put_error_exit("Map has innaccessible area.");
+// 		}
+// 		(*info)->x_index = 0;
+// 		(*info)->y_index++;
+// 	}
+// }
 
 void	validate_map_exists(t_node **map)
 {
@@ -54,5 +54,4 @@ void	validate_map(t_node **map, t_info **info)
 	if (!map || !*info)
 		ft_put_error_exit("No map found");
 	flood_fill(info, (*info)->player->y, (*info)->player->x);
-	validate_inaccessables(info);
 }
