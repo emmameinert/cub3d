@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:48:49 by meskelin          #+#    #+#             */
-/*   Updated: 2023/10/24 12:14:12 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/11/07 10:42:28 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ void	parse_map(int fd, t_info **info, char *line)
 	if (line)
 	{
 		parse_row(line, &map, info);
+		free(line);
 		parse_nodes(fd, &map, info, 1);
 	}
 	else

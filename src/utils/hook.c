@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:50:09 by meskelin          #+#    #+#             */
-/*   Updated: 2023/10/24 11:55:23 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/11/07 10:37:55 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	key_hook(int keycode, t_info **info)
 {
 	if (keycode == ESC)
-		exit_success(&(*info)->mlx);
+		exit_success(info);
 	calc_player_angle(info);
 	if (keycode == UP)
 		move_front_back(1, 1, info);
@@ -36,6 +36,6 @@ int	key_hook(int keycode, t_info **info)
 
 int	on_destroy(t_info **info)
 {
-	exit_success(&(*info)->mlx);
+	exit_success(info);
 	return (0);
 }

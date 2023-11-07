@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:43:24 by meskelin          #+#    #+#             */
-/*   Updated: 2023/10/24 13:18:50 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/11/07 10:20:53 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,6 +220,6 @@ void		rot_player(int sign, t_info **info);
 // EXIT
 int			on_destroy(t_info **info);
 void		exit_failure(void);
-void		exit_success(t_mlx **mlx);
+void		exit_success(t_info **info);
 
 #endif
