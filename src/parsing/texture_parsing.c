@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture_parsing.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:49:01 by meskelin          #+#    #+#             */
-/*   Updated: 2023/11/07 10:16:54 by emeinert         ###   ########.fr       */
+/*   Updated: 2023/11/07 12:05:27 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	validate_parse_range(char *line, t_color *color, int start)
 	int		i;
 	int		colour[3];
 	char	*input;
-	char 	*trimmed_input;
+	char	*trimmed_input;
 
 	input = ft_substr(line, start, ft_strlen(line) - start);
 	trimmed_input = ft_strtrim(input, "\n\t FC");
