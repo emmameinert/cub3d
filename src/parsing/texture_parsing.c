@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture_parsing.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:49:01 by meskelin          #+#    #+#             */
-/*   Updated: 2023/10/24 12:12:09 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/11/07 10:16:54 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,12 @@ static void	validate_parse_range(char *line, t_color *color, int start)
 	int		i;
 	int		colour[3];
 	char	*input;
+	char 	*trimmed_input;
 
 	input = ft_substr(line, start, ft_strlen(line) - start);
-	input = ft_strtrim(input, "\n\t FC");
-	numbers = ft_split(input, ',');
+	trimmed_input = ft_strtrim(input, "\n\t FC");
+	free(input);
+	numbers = ft_split(trimmed_input, ',');
 	i = 0;
 	while (numbers[i] && i < 3)
 	{
@@ -30,14 +32,11 @@ static void	validate_parse_range(char *line, t_color *color, int start)
 			break ;
 		i++;
 	}
-	free(input);
+	free(trimmed_input);
 	free_char_array(numbers);
 	if (i != 3)
 		ft_put_error_exit("Wrong color");
-	color->r = colour[0];
-	color->g = colour[1];
-	color->b = colour[2];
-	color->draw_color = ft_rgbtocolor(*color);
+	ft_parse_color(color, colour);
 }
 
 static int	parse_floor_ceiling(char **input, char *line, t_info **info)

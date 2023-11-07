@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cubed.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:43:24 by meskelin          #+#    #+#             */
-/*   Updated: 2023/10/24 13:18:50 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/11/07 10:15:51 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,6 +160,7 @@ void		run_program(char **argv);
 double		ft_dtorad(double angle);
 double		ft_angle(double angle);
 int			ft_rgbtocolor(t_color rgb);
+void		ft_parse_color(t_color *color, int *colour);
 
 //INPUT
 char		*parse_textures(int fd, t_info **texture);
