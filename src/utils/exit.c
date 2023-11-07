@@ -6,29 +6,42 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:50:02 by meskelin          #+#    #+#             */
-/*   Updated: 2023/11/07 11:26:41 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/11/07 11:31:46 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/cubed.h"
 
-static void free_mlx(t_info **info)
+static void	free_matrix(t_texture **tex)
+{
+	int	i;
+
+	i = -1;
+	while (++i < (*tex)->height)
+		free((*tex)->matrix[i]);
+}
+
+static void	free_mlx(t_info **info)
 {
 	mlx_destroy_image((*info)->mlx->mlx, (*info)->mlx->img->img);
 	free((*info)->mlx->img);
 	free((*info)->no->filename);
+	free_matrix(&(*info)->no);
 	mlx_destroy_image((*info)->mlx->mlx, (*info)->no->img->img);
 	free((*info)->no->img);
 	free((*info)->no);
 	free((*info)->so->filename);
+	free_matrix(&(*info)->so);
 	mlx_destroy_image((*info)->mlx->mlx, (*info)->so->img->img);
 	free((*info)->so->img);
 	free((*info)->so);
 	free((*info)->ea->filename);
+	free_matrix(&(*info)->ea);
 	mlx_destroy_image((*info)->mlx->mlx, (*info)->ea->img->img);
 	free((*info)->ea->img);
 	free((*info)->ea);
 	free((*info)->we->filename);
+	free_matrix(&(*info)->we);
 	mlx_destroy_image((*info)->mlx->mlx, (*info)->we->img->img);
 	free((*info)->we->img);
 	free((*info)->we);
