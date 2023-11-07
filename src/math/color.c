@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:48:36 by meskelin          #+#    #+#             */
-/*   Updated: 2023/11/07 13:50:42 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/11/07 14:00:10 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	calculate_colors(char **input)
 	i = 0;
 	while (input[i])
 		i++;
-	if (input[i] || input[i + 1] || i != 3)
+	if (i > 3)
 		ft_put_error_exit("Invalid number of values for the color");
 }
 
