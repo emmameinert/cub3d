@@ -46,6 +46,7 @@ SRC_LL =	ft_lstsize \
 SRC_UTLS =	file \
 			hook \
 			move \
+			line_validation \
 			exit
 
 SRC_VLD =	map_validation \

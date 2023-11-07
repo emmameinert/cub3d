@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:49:01 by meskelin          #+#    #+#             */
-/*   Updated: 2023/11/07 14:22:58 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/11/07 15:12:32 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,20 +103,6 @@ static int	validate_texture(char *line, t_info **info)
 	}
 	free_char_array(input);
 	return (1);
-}
-
-static void validate_line(char *line)
-{
-	char *temp;
-
-	temp = ft_strtrim(line, "\n\t 1NSEW");
-	if (ft_strlen(temp) > 0)
-	{
-		free(temp);
-		free(line);
-		ft_put_error_exit("Invalid input file");
-	}
-	free(temp);
 }
 
 char	*parse_textures(int fd, t_info **info)
