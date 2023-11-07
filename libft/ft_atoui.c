@@ -6,12 +6,11 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:43:50 by meskelin          #+#    #+#             */
-/*   Updated: 2023/11/07 13:31:32 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/11/07 13:46:36 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
 int	ft_atoui(const char *str)
 {
