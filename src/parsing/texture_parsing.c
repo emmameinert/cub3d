@@ -6,11 +6,12 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:49:01 by meskelin          #+#    #+#             */
-/*   Updated: 2023/11/07 13:31:22 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/11/07 13:44:10 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/cubed.h"
+#include <stdio.h>
 
 static void	calculate_colors(char **input)
 {
@@ -19,7 +20,7 @@ static void	calculate_colors(char **input)
 	i = 0;
 	while (input[i])
 		i++;
-	if (i != 2)
+	if (i != 3)
 		ft_put_error_exit("Invalid number of values for the color");
 }
 

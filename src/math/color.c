@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:48:36 by meskelin          #+#    #+#             */
-/*   Updated: 2023/11/07 12:01:01 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/11/07 13:39:05 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ void	ft_parse_color(t_color *color, int *colour)
 	color->draw_color = ft_rgbtocolor(*color);
 }
 
-int	ft_rgbtocolor(t_color rgb)
+long	ft_rgbtocolor(t_color rgb)
 {
-	int	color;
+	long	color;
 
-	color = (rgb.r * 6 / 256) * 36 + (rgb.g * 6 / 256) * 6 + (rgb.b * 6 / 256);
+	color = ((rgb.r & 0xff) << 16) + ((rgb.g & 0xff) << 8) + (rgb.b & 0xff);
 	return (color);
 }
