@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   file_parsing.c                                     :+:      :+:    :+:   */
+/*   ft_lstfree.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/24 11:48:45 by meskelin          #+#    #+#             */
-/*   Updated: 2023/11/07 11:00:27 by meskelin         ###   ########.fr       */
+/*   Created: 2023/11/07 10:53:15 by meskelin          #+#    #+#             */
+/*   Updated: 2023/11/07 11:05:04 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../headers/cubed.h"
+#include "../../headers/lst.h"
 
-void	validate_parse_input(int fd, t_info **info)
+static void	ft_clr_rec(t_node *lst)
 {
-	char		*line;
+	if (!lst)
+		return ;
+	ft_clr_rec(lst->next);
+	lst->next = NULL;
+	free(lst->coords);
+	free(lst);
+}
 
-	line = NULL;
-	line = parse_textures(fd, info);
-	parse_map(fd, info, line);
-	parse_player(&(*info)->player);
+void	ft_lstfree(t_node **lst)
+{
+	if (!lst || !*lst)
+		return ;
+	ft_clr_rec(*lst);
+	*lst = NULL;
 }
