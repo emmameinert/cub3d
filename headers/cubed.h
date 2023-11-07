@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:43:24 by meskelin          #+#    #+#             */
-/*   Updated: 2023/11/07 15:13:29 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/11/07 17:03:07 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,7 +177,7 @@ void		validate_texture_count(int counter);
 int			valid_char(char ch);
 void		validate_map(t_node **map, t_info **texture);
 void		flood_fill(t_info **texture, int y, int x);
-void		validate_line(char *line);
+int			validate_line(char *line, char *validate);
 
 // DRAW
 void		draw_minimap(t_info **info);

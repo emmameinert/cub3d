@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:49:01 by meskelin          #+#    #+#             */
-/*   Updated: 2023/11/07 15:12:32 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/11/07 17:04:03 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,10 @@ static void	validate_parse_range(char *line, t_color *color, int start)
 		i++;
 	}
 	free(trimmed_input);
+	if (numbers[i])
+		ft_put_error_exit("Invalid color input");
 	free_char_array(numbers);
-	if (i != 3 || numbers[i])
+	if (i != 3)
 		ft_put_error_exit("Invalid color input");
 	ft_parse_color(color, colour);
 }
@@ -84,7 +86,7 @@ static int	texture_comparison(char **input, t_info **info)
 		return (0);
 	return (1);
 }
-
+#include <stdio.h>
 /// @brief checks if we have information about the textures floor or cealing
 /// @param line line of the file we are reading
 /// @param info here we save our general information about the map
@@ -93,16 +95,27 @@ static int	validate_texture(char *line, t_info **info)
 	char	**input;
 
 	input = ft_split(line, 32);
-	if (!texture_comparison(input, info))
+	if (!ft_strncmp_all(input[0], "NO")
+		|| !ft_strncmp_all(input[0], "SO")
+		|| !ft_strncmp_all(input[0], "EA")
+		|| !ft_strncmp_all(input[0], "WE")
+		|| !ft_strncmp_all(input[0], "F")
+		|| !ft_strncmp_all(input[0], "C")
+		|| validate_line(input[0], "\n\t "))
 	{
-		if (!parse_floor_ceiling(input, line, info))
+		if (!texture_comparison(input, info))
 		{
-			free_char_array(input);
-			return (0);
+			if (!parse_floor_ceiling(input, line, info))
+			{
+				free_char_array(input);
+				return (0);
+			}
 		}
+		free_char_array(input);
+		return (1);
 	}
-	free_char_array(input);
-	return (1);
+	ft_put_error_exit("Invalid texture");
+	return (0);
 }
 
 char	*parse_textures(int fd, t_info **info)
@@ -120,7 +133,7 @@ char	*parse_textures(int fd, t_info **info)
 		{
 			if (line[0] != '\n')
 			{
-				validate_line(line);
+				validate_line(line,  "\n\t 1NSEW");
 				parse_matrices(info);
 				return (line);
 			}

@@ -68,7 +68,7 @@ SRC_RNDR =	mlx_handler \
 HDRS =	cubed \
 		lst
 
-BUILD_FLAGS = -Wall -Wextra -Werror -O3
+BUILD_FLAGS = -Wall -Wextra -Werror -O3 #-fsanitize=address,undefined
 
 SRC_INT_PRE = $(addprefix ./src/initializing/, $(SRC_INT))
 SRC_INT_SUFF = $(addsuffix .c, $(SRC_INT_PRE))
@@ -115,3 +115,6 @@ fclean: clean
 
 .PHONY: re
 re: fclean all
+
+.PHONY: bonus
+bonus:
