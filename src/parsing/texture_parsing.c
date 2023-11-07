@@ -6,22 +6,11 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:49:01 by meskelin          #+#    #+#             */
-/*   Updated: 2023/11/07 13:49:14 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/11/07 13:50:37 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/cubed.h"
-
-static void	calculate_colors(char **input)
-{
-	int i;
-
-	i = 0;
-	while (input[i])
-		i++;
-	if (input[i] || input[i + 1] || i != 3)
-		ft_put_error_exit("Invalid number of values for the color");
-}
 
 static void	validate_parse_range(char *line, t_color *color, int start)
 {

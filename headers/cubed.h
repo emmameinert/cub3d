@@ -6,7 +6,7 @@
 /*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:43:24 by meskelin          #+#    #+#             */
-/*   Updated: 2023/11/07 13:46:30 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/11/07 13:50:56 by meskelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,6 +159,7 @@ void		run_program(char **argv);
 double		ft_dtorad(double angle);
 double		ft_angle(double angle);
 long		ft_rgbtocolor(t_color rgb);
+void		calculate_colors(char **input);
 void		ft_parse_color(t_color *color, int *colour);
 
 //INPUT
