@@ -3,14 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   texture_parsing.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emmameinert <emmameinert@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:49:01 by meskelin          #+#    #+#             */
-/*   Updated: 2023/11/07 17:04:03 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/11/11 15:28:27 by emmameinert      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/cubed.h"
+#include "stdio.h"
+
+char	*add_color_string(char *added, char **line, int i)
+{
+	char *added_string;
+
+	if (!line[i])
+		return(added);
+	added_string = ft_strjoin(added, line[i]);
+	add_color_string(added_string, line, i + 1);
+	return (NULL);
+}
+
 
 static void	validate_parse_range(char *line, t_color *color, int start)
 {
@@ -22,8 +35,12 @@ static void	validate_parse_range(char *line, t_color *color, int start)
 
 	input = ft_substr(line, start, ft_strlen(line) - start);
 	trimmed_input = ft_strtrim(input, "\n\t FC");
+	printf("trimmed input %s\n", trimmed_input);
 	free(input);
-	numbers = ft_split(trimmed_input, ',');
+	input = add_color_str(NULL, ft_split(trimmed_input, ' '), 0);
+	free(trimmed_input);
+	numbers = ft_split(input, ',');
+	free(input);
 	calculate_colors(numbers);
 	i = 0;
 	while (numbers[i] && i < 3)
@@ -33,7 +50,6 @@ static void	validate_parse_range(char *line, t_color *color, int start)
 			break ;
 		i++;
 	}
-	free(trimmed_input);
 	if (numbers[i])
 		ft_put_error_exit("Invalid color input");
 	free_char_array(numbers);
@@ -86,7 +102,14 @@ static int	texture_comparison(char **input, t_info **info)
 		return (0);
 	return (1);
 }
-#include <stdio.h>
+void	print_array(char **arr)
+{
+	while (*arr)
+	{
+		printf("%s", *arr);
+		*arr++;
+	}
+}
 /// @brief checks if we have information about the textures floor or cealing
 /// @param line line of the file we are reading
 /// @param info here we save our general information about the map
@@ -95,6 +118,7 @@ static int	validate_texture(char *line, t_info **info)
 	char	**input;
 
 	input = ft_split(line, 32);
+	print_array(input);
 	if (!ft_strncmp_all(input[0], "NO")
 		|| !ft_strncmp_all(input[0], "SO")
 		|| !ft_strncmp_all(input[0], "EA")
