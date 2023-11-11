@@ -6,7 +6,7 @@
 /*   By: emmameinert <emmameinert@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:49:01 by meskelin          #+#    #+#             */
-/*   Updated: 2023/11/11 18:35:51 by emmameinert      ###   ########.fr       */
+/*   Updated: 2023/11/11 18:43:26 by emmameinert      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ char	*add_color_string(char **line)
 	while (line[i] && line[i + 1])
 	{
 		copy = ft_strjoin(added_string, line[i + 1]);
+		free(added_string);
 		added_string = ft_strdup(copy);
 		free(copy);
 		i++;
@@ -41,12 +42,15 @@ static void	validate_parse_range(char *line, t_color *color, int start)
 	int		colour[3];
 	char	*input;
 	char	*trimmed_input;
+	char 	**double_trim;
 
 	input = ft_substr(line, start, ft_strlen(line) - start);
 	trimmed_input = ft_strtrim(input, "\n\t FC");
 	free(input);
-	input = add_color_string((ft_split(trimmed_input, ' ')));
+	double_trim = ft_split(trimmed_input, ' ');
 	free(trimmed_input);
+	input = add_color_string(double_trim);
+	free_char_array(double_trim);
 	numbers = ft_split(input, ',');
 	free(input);
 	calculate_colors(numbers);
