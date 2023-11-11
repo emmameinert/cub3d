@@ -6,22 +6,31 @@
 /*   By: emmameinert <emmameinert@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:49:01 by meskelin          #+#    #+#             */
-/*   Updated: 2023/11/11 15:28:27 by emmameinert      ###   ########.fr       */
+/*   Updated: 2023/11/11 18:35:51 by emmameinert      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/cubed.h"
 #include "stdio.h"
 
-char	*add_color_string(char *added, char **line, int i)
+char	*add_color_string(char **line)
 {
 	char *added_string;
+	char *copy;
+	int	i;
 
-	if (!line[i])
-		return(added);
-	added_string = ft_strjoin(added, line[i]);
-	add_color_string(added_string, line, i + 1);
-	return (NULL);
+	i = 0;
+	if (!line[0])
+		return (NULL);
+	added_string = ft_strdup(line[i]);
+	while (line[i] && line[i + 1])
+	{
+		copy = ft_strjoin(added_string, line[i + 1]);
+		added_string = ft_strdup(copy);
+		free(copy);
+		i++;
+	}
+	return (added_string);
 }
 
 
@@ -35,9 +44,8 @@ static void	validate_parse_range(char *line, t_color *color, int start)
 
 	input = ft_substr(line, start, ft_strlen(line) - start);
 	trimmed_input = ft_strtrim(input, "\n\t FC");
-	printf("trimmed input %s\n", trimmed_input);
 	free(input);
-	input = add_color_str(NULL, ft_split(trimmed_input, ' '), 0);
+	input = add_color_string((ft_split(trimmed_input, ' ')));
 	free(trimmed_input);
 	numbers = ft_split(input, ',');
 	free(input);
@@ -102,14 +110,7 @@ static int	texture_comparison(char **input, t_info **info)
 		return (0);
 	return (1);
 }
-void	print_array(char **arr)
-{
-	while (*arr)
-	{
-		printf("%s", *arr);
-		*arr++;
-	}
-}
+
 /// @brief checks if we have information about the textures floor or cealing
 /// @param line line of the file we are reading
 /// @param info here we save our general information about the map
@@ -118,7 +119,6 @@ static int	validate_texture(char *line, t_info **info)
 	char	**input;
 
 	input = ft_split(line, 32);
-	print_array(input);
 	if (!ft_strncmp_all(input[0], "NO")
 		|| !ft_strncmp_all(input[0], "SO")
 		|| !ft_strncmp_all(input[0], "EA")
