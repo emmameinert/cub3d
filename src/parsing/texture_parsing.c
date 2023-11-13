@@ -3,56 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   texture_parsing.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emmameinert <emmameinert@student.42.fr>    +#+  +:+       +#+        */
+/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:49:01 by meskelin          #+#    #+#             */
-/*   Updated: 2023/11/11 18:43:26 by emmameinert      ###   ########.fr       */
+/*   Updated: 2023/11/13 11:40:46 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/cubed.h"
-#include "stdio.h"
-
-char	*add_color_string(char **line)
-{
-	char *added_string;
-	char *copy;
-	int	i;
-
-	i = 0;
-	if (!line[0])
-		return (NULL);
-	added_string = ft_strdup(line[i]);
-	while (line[i] && line[i + 1])
-	{
-		copy = ft_strjoin(added_string, line[i + 1]);
-		free(added_string);
-		added_string = ft_strdup(copy);
-		free(copy);
-		i++;
-	}
-	return (added_string);
-}
-
 
 static void	validate_parse_range(char *line, t_color *color, int start)
 {
 	char	**numbers;
 	int		i;
 	int		colour[3];
-	char	*input;
-	char	*trimmed_input;
-	char 	**double_trim;
 
-	input = ft_substr(line, start, ft_strlen(line) - start);
-	trimmed_input = ft_strtrim(input, "\n\t FC");
-	free(input);
-	double_trim = ft_split(trimmed_input, ' ');
-	free(trimmed_input);
-	input = add_color_string(double_trim);
-	free_char_array(double_trim);
-	numbers = ft_split(input, ',');
-	free(input);
+	numbers = prepare_string(line, start);
 	calculate_colors(numbers);
 	i = 0;
 	while (numbers[i] && i < 3)
@@ -161,7 +127,7 @@ char	*parse_textures(int fd, t_info **info)
 		{
 			if (line[0] != '\n')
 			{
-				validate_line(line,  "\n\t 1NSEW");
+				validate_line(line, "\n\t 1NSEW");
 				parse_matrices(info);
 				return (line);
 			}
