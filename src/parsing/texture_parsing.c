@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture_parsing.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meskelin <meskelin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emeinert <emeinert@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:49:01 by meskelin          #+#    #+#             */
-/*   Updated: 2023/11/07 17:04:03 by meskelin         ###   ########.fr       */
+/*   Updated: 2023/11/13 11:40:46 by emeinert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,8 @@ static void	validate_parse_range(char *line, t_color *color, int start)
 	char	**numbers;
 	int		i;
 	int		colour[3];
-	char	*input;
-	char	*trimmed_input;
 
-	input = ft_substr(line, start, ft_strlen(line) - start);
-	trimmed_input = ft_strtrim(input, "\n\t FC");
-	free(input);
-	numbers = ft_split(trimmed_input, ',');
+	numbers = prepare_string(line, start);
 	calculate_colors(numbers);
 	i = 0;
 	while (numbers[i] && i < 3)
@@ -33,7 +28,6 @@ static void	validate_parse_range(char *line, t_color *color, int start)
 			break ;
 		i++;
 	}
-	free(trimmed_input);
 	if (numbers[i])
 		ft_put_error_exit("Invalid color input");
 	free_char_array(numbers);
@@ -86,7 +80,7 @@ static int	texture_comparison(char **input, t_info **info)
 		return (0);
 	return (1);
 }
-#include <stdio.h>
+
 /// @brief checks if we have information about the textures floor or cealing
 /// @param line line of the file we are reading
 /// @param info here we save our general information about the map
@@ -133,7 +127,7 @@ char	*parse_textures(int fd, t_info **info)
 		{
 			if (line[0] != '\n')
 			{
-				validate_line(line,  "\n\t 1NSEW");
+				validate_line(line, "\n\t 1NSEW");
 				parse_matrices(info);
 				return (line);
 			}
