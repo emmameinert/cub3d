@@ -4,7 +4,7 @@ CUB3D is C graphics project using the 42 library MINILIBX. It is about creating 
 
 ## Idea of the project
 
-The idea is to create a 3D map from a given file. The map is started as 1s and 0s for walls and floor respectively. Secondly the file stores data about the floor and ceiling color, as well as the texture paths for the walls and the original player location and POV.
+The idea is to create a 3D map from a given file. The map is made of 1s and 0s for walls and floor respectively. Secondly the file stores data about the floor and ceiling color, as well as the texture paths for the walls and the original player location and POV.
 
 ## Raycasting 
 
